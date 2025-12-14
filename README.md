@@ -49,14 +49,14 @@ function Hello() {
 
 Press `Cmd+Shift+V` for markdown preview, or `Cmd+K P` for interactive mode.
 
-## Blueprints
+## Recipes
 
-The [blueprints/](./blueprints/) folder contains **examples** of what's possible with Reactive MD — PRD templates, wireframes, user journeys, and design patterns as interactive markdown documents.
+The [recipes/](./recipes/) folder contains **examples** of what's possible with Reactive MD — from simple components to self-contained project folders with local imports.
 
 ## Contributing
 
 We welcome contributions! Please see:
-- [blueprints/](./blueprints/) - Example templates and use cases
+- [recipes/](./recipes/) - Example templates and patterns
 - [Issues](https://github.com/million-views/reactive-md/issues) - Report bugs or request features
 
 ## License
