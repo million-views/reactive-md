@@ -1,70 +1,87 @@
-# Blueprints
+# JSX Preview Blueprints
 
-**Blueprints** are living product requirement documents (PRDs) with embedded interactive JSX components. They bridge the gap between static documentation and working prototypes.
+This is a collection of **living documents** — product specs, wireframes, and user journeys with embedded, interactive React components.
 
-## What is a Blueprint?
+Unlike static mockups or separate prototyping tools, these documents let you **tell a story with working visuals**.
+
+## For Product Managers
+
+Write PRDs where stakeholders can *interact* with your proposed features. No more "imagine this button does X" — they can click it and see.
+
+## For UX Designers
+
+Document user journeys with real, clickable prototypes inline. Show the happy path, edge cases, and error states in one scrollable document.
+
+## For Anyone with an Idea
+
+Sketch concepts using AI-generated JSX and see them render instantly. Iterate on ideas without leaving your editor.
+
+---
+
+## What's a Blueprint?
 
 A blueprint is a Markdown file with embedded JSX that:
-- **Describes** a feature or product concept
+- **Describes** a feature or product concept in plain language
 - **Demonstrates** the UI with live, interactive components
-- **Documents** user journeys and edge cases
+- **Documents** user journeys, edge cases, and success metrics
 - **Evolves** as the product matures
 
-## Structure
+Think of it as a PRD that you can *run*.
+
+---
+
+## Directory Structure
 
 ```
 blueprints/
-├── README.md              # This file
-├── templates/             # Blueprint templates
-│   └── feature-spec.md    # Standard feature blueprint template
-├── components/            # Reusable UI patterns
-│   └── button-variants.md # Button component exploration
-├── features/              # Feature-specific blueprints
-│   └── dark-mode.md       # Dark mode feature spec
-└── explorations/          # Experimental ideas
-    └── ai-assist.md       # AI-assisted editing exploration
+├── prd-templates/          # PRD structure templates
+│   ├── feature-spec.md     # Single feature PRD
+│   ├── user-flow.md        # Multi-step user journey
+│   └── a-b-test-proposal.md
+│
+├── wireframes/             # Quick visual concepts
+│   ├── landing-pages.md    # Hero, CTA, pricing
+│   ├── dashboards.md       # Data-heavy layouts
+│   └── empty-states.md     # Zero-data, error, loading
+│
+├── user-journeys/          # Multi-step narratives
+│   ├── signup-flow.md      # Registration → Onboarding
+│   └── checkout-flow.md    # Cart → Payment → Confirmation
+│
+├── feature-concepts/       # Specific feature ideas
+│   ├── notification-system.md
+│   ├── dark-mode-toggle.md
+│   └── infinite-scroll.md
+│
+├── design-patterns/        # Reusable UI patterns
+│   ├── navigation.md       # Navbars, sidebars, breadcrumbs
+│   ├── data-tables.md      # Sorting, filtering, pagination
+│   └── feedback-states.md  # Loading, success, error
+│
+└── case-studies/           # Complete mini-PRDs
+    ├── saas-dashboard.md   # Full dashboard PRD
+    └── e-commerce-pdp.md   # Product detail page
 ```
 
-## Contributing a Blueprint
+---
 
-1. Copy a template from `templates/`
-2. Fill in the sections with your feature idea
-3. Add interactive JSX examples
-4. Submit a PR
+## Who Benefits?
 
-## Example
+| Audience | What They Find |
+|----------|---------------|
+| **Product Managers** | PRD templates, feature concepts, case studies |
+| **UX Designers** | Wireframes, user journeys, design patterns |
+| **Developers** | Working code they can copy, design patterns |
+| **Stakeholders** | Visual specs they can actually interact with |
 
-Here's a minimal blueprint structure:
+---
 
-```markdown
-# Feature: [Name]
+## Contributing
 
-## Problem Statement
-What user problem does this solve?
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on adding blueprints.
 
-## Proposed Solution
-How does this feature address the problem?
-
-## Interactive Demo
-\`\`\`jsx
-export default function Demo() {
-  return <button>Try Me</button>;
-}
-\`\`\`
-
-## User Journey
-1. User opens...
-2. User clicks...
-3. User sees...
-
-## Success Metrics
-- Metric 1
-- Metric 2
-```
-
-## Why Blueprints?
-
-- **Stakeholder alignment**: Everyone sees the same interactive prototype
-- **Faster iteration**: Change code, see results immediately
-- **Living documentation**: Specs stay in sync with implementation
-- **Community input**: Contributors can propose features as working prototypes
+The best blueprints:
+1. **Solve a real problem** — not just "cool demo"
+2. **Tell a story** — context before code
+3. **Are interactive** — let readers explore, not just observe
+4. **Document decisions** — explain the "why" alongside the "what"
