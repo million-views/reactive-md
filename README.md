@@ -1,6 +1,6 @@
 # Reactive MD
 
-**Preview React components instantly in VS Code** — no browser, no dev server, just code and see.
+**Reactive markdown for developers and product teams** — preview React components instantly in VS Code.
 
 ## Quick Links
 
