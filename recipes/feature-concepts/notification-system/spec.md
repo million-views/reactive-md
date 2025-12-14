@@ -2,7 +2,7 @@
 title: Notification System PRD
 author: @product-manager
 status: draft
-date: 2024-12-13
+date: 2025-12-14
 ---
 
 # Notification System
@@ -136,7 +136,7 @@ function NotificationList() {
 For immediate feedback, show toast notifications that auto-dismiss:
 
 ```jsx live
-import { motion, AnimatePresence } from 'motion';
+import { motion, AnimatePresence } from 'motion/react';
 import { CheckCircle, AlertCircle, Info, X } from 'lucide-react';
 
 function ToastDemo() {

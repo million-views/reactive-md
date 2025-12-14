@@ -4,7 +4,7 @@
  * A single notification row with read/unread state.
  * Uses motion for slide-in animation.
  */
-import { motion } from 'motion';
+import { motion } from 'motion/react';
 import { Check } from 'lucide-react';
 
 export default function NotificationItem({ 

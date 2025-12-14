@@ -103,7 +103,7 @@ Load custom styles:
 Use bundled libraries for rich UX:
 
 ```jsx live
-import { motion } from 'motion';
+import { motion } from 'motion/react';
 import { Bell } from 'lucide-react';
 import dayjs from 'dayjs';
 

@@ -4,7 +4,7 @@
  * An animated toggle switch for dark/light mode.
  * Uses motion for smooth transitions and lucide-react for icons.
  */
-import { motion } from 'motion';
+import { motion } from 'motion/react';
 import { Sun, Moon } from 'lucide-react';
 
 export default function ThemeToggle({ dark, onToggle }) {

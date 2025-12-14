@@ -5,7 +5,7 @@
  * Uses lucide-react for the icon and motion for animations.
  */
 import { Bell } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion';
+import { motion, AnimatePresence } from 'motion/react';
 
 export default function NotificationBell({ count = 0, onClick }) {
   return (

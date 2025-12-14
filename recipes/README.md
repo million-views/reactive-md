@@ -1,8 +1,17 @@
 # Reactive MD Recipes
 
-**Literary UI/UX for designers and product teams.**
+**Literate UI/UX for designers and product teams.**
 
-Write product specs, wireframes, and user journeys with embedded, interactive React components. Unlike static mockups or separate prototyping tools, these documents let you **tell a story with working visuals**.
+## The Idea
+
+> *"Instead of imagining that our main task is to instruct a computer what to do, let us concentrate rather on explaining to human beings what we want a computer to do."*
+> — Donald Knuth, *Literate Programming* (1984)
+
+Knuth's insight was simple but radical: programs should be written for people first, machines second. This idea gave us Jupyter Notebooks for data science and Org mode for Emacs wizards.
+
+**Reactive MD brings literate programming to UI/UX.**
+
+Write product specs, wireframes, and user journeys with embedded, interactive React components. Unlike static mockups or separate prototyping tools, these documents let you **tell a story with working visuals** — prose and prototypes in one scrollable narrative.
 
 ---
 
@@ -41,8 +50,8 @@ recipes/
 │   └── ...
 │
 ├── feature-concepts/                # Specific feature ideas
-│   ├── notification-system.md
-│   ├── dark-mode-toggle.md
+│   ├── notification-system/         # Folder with spec + components
+│   ├── dark-mode-toggle/
 │   └── ...
 │
 ├── design-patterns/                 # Reusable UI patterns

@@ -2,7 +2,7 @@
 
 All notable changes to Reactive MD will be documented here.
 
-## [1.0.0-alpha.9] - 2024-12-14
+## [1.0.0-alpha.9] - 2025-12-14
 
 ### Changed
 - **BREAKING**: Renamed extension from `jsx-preview` to `reactive-md`
@@ -12,7 +12,7 @@ All notable changes to Reactive MD will be documented here.
   - Config keys: `jsxPreview.*` → `reactiveMd.*`
 - Framework-agnostic naming for future Svelte/Vue support
 
-## [1.0.0-alpha.8] - 2024-12-13
+## [1.0.0-alpha.8] - 2025-12-13
 
 ### Changed
 - Marketplace optimization with improved README
@@ -21,7 +21,7 @@ All notable changes to Reactive MD will be documented here.
 ### Fixed
 - Documentation cleanup and terminology standardization
 
-## [1.0.0-alpha.7] - 2024-12-12
+## [1.0.0-alpha.7] - 2025-12-12
 
 ### Added
 - Initial alpha release
