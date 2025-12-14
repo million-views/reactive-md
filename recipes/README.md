@@ -1,15 +1,21 @@
 # Reactive MD Recipes
 
-A collection of **examples** showing what's possible with Reactive MD — from simple components to self-contained project folders with local imports.
+**Literary UI/UX for designers and product teams.**
+
+Write product specs, wireframes, and user journeys with embedded, interactive React components. Unlike static mockups or separate prototyping tools, these documents let you **tell a story with working visuals**.
 
 ---
 
-## What's a Recipe?
+## Who Is This For?
 
-A recipe is a working example that demonstrates a Reactive MD capability:
-- **Markdown files** with embedded `jsx live` fences
-- **Local imports** — JSX components and CSS in the same folder
-- **Interactive demos** — click, type, hover, and see state changes
+### Product Managers
+Write PRDs where stakeholders can *interact* with your proposed features. No more "imagine this button does X" — they can click it and see.
+
+### UX Designers  
+Document user journeys with real, clickable prototypes inline. Show the happy path, edge cases, and error states in one scrollable document.
+
+### Anyone with an Idea
+Sketch concepts using AI-generated JSX and see them render instantly. Iterate on ideas without leaving your editor.
 
 ---
 
@@ -19,105 +25,71 @@ A recipe is a working example that demonstrates a Reactive MD capability:
 recipes/
 ├── README.md
 ├── CONTRIBUTING.md
+├── USE-CASES.md                     # Index of all use cases
 │
-├── getting-started/            # Core features
-│   ├── hello-world.md          # Minimal jsx live fence
-│   ├── tailwind-basics.md      # Tailwind v4 utilities
-│   ├── typescript-support.md   # TSX with type annotations
-│   └── ...
-│
-├── local-imports/              # Self-contained folders
-│   ├── button-library/
-│   │   ├── demo.md             # Imports from ./Button.jsx
-│   │   ├── Button.jsx          # Local component
-│   │   └── styles.css          # Local CSS via @import
-│   └── ...
-│
-├── npm-packages/               # External dependencies
-│   ├── motion-animations.md    # motion library
-│   ├── icons-lucide.md         # lucide-react icons
-│   ├── date-formatting.md      # dayjs
-│   └── ...
-│
-├── prd-templates/              # Product requirement docs
+├── prd-templates/                   # PRD structure templates
 │   ├── feature-spec.md
 │   ├── user-flow.md
 │   ├── a-b-test-proposal.md
 │   └── ...
 │
-├── wireframes/                 # Visual concepts
+├── wireframes/                      # Quick visual concepts
 │   ├── landing-pages.md
 │   └── ...
 │
-├── user-journeys/              # Multi-step narratives
+├── user-journeys/                   # Multi-step narratives
 │   └── ...
 │
-├── feature-concepts/           # Feature proposals
+├── feature-concepts/                # Specific feature ideas
 │   ├── notification-system.md
 │   ├── dark-mode-toggle.md
 │   └── ...
 │
-├── design-patterns/            # Reusable UI patterns
+├── design-patterns/                 # Reusable UI patterns
 │   ├── feedback-states.md
 │   └── ...
 │
-└── case-studies/               # Complete examples
+└── case-studies/                    # Complete mini-PRDs
     └── ...
 ```
 
 ---
 
-## Feature Coverage
+## What Makes a Good Recipe?
 
-These recipes demonstrate all key Reactive MD features:
+Each recipe is a **self-contained folder** that demonstrates a use case:
 
-| Feature | Recipe |
-|---------|--------|
-| ⚡ **Live Reload** | All recipes — edit and see changes instantly |
-| 📝 **Markdown Fences** | `getting-started/hello-world.md` |
-| 🎨 **Tailwind v4** | `getting-started/tailwind-basics.md` |
-| 📦 **npm Packages** | `npm-packages/*.md` |
-| 🔍 **CodeLens** | Any `.jsx` or `.tsx` file |
-| 🎯 **TypeScript** | `getting-started/typescript-support.md` |
-| 📁 **Local Imports** | `local-imports/button-library/` |
-| 🎨 **CSS Imports** | `local-imports/button-library/styles.css` |
+```
+notification-system/
+├── README.md           # Overview and context
+├── spec.md             # The interactive document
+├── Toast.jsx           # Local component
+├── NotificationBell.jsx
+└── styles.css          # Custom styles
+```
+
+Recipes should:
+- **Tell a story** — context before code
+- **Be interactive** — click, hover, see state changes
+- **Use local imports** — keep components alongside the spec
+- **Leverage Tailwind** — for consistent, beautiful styling
+- **Show real patterns** — things people actually build
 
 ---
 
-## Self-Contained Project Folders
+## Reactive MD Features in Recipes
 
-Reactive MD supports **local imports** — keep your components and styles alongside your markdown:
+Recipes naturally showcase all Reactive MD capabilities:
 
-```
-my-feature/
-├── demo.md           # Your interactive document
-├── Button.jsx        # Local component
-├── Card.jsx          # Another component
-└── styles.css        # Custom CSS
-```
-
-In `demo.md`:
-
-~~~markdown
-```css live
-@import "./styles.css";
-```
-
-```jsx live
-import Button from './Button.jsx';
-import Card from './Card.jsx';
-
-function Demo() {
-  return (
-    <Card>
-      <Button>Click me</Button>
-    </Card>
-  );
-}
-```
-~~~
-
-This keeps everything self-contained and version-controlled together.
+| Feature | How It's Used |
+|---------|---------------|
+| ⚡ **Live Reload** | Edit any recipe and see changes instantly |
+| 📝 **Markdown Fences** | `jsx live` renders components inline |
+| 🎨 **Tailwind v4** | All examples use Tailwind utilities |
+| 📦 **npm Packages** | `motion`, `lucide-react`, `dayjs` for rich UX |
+| 📁 **Local Imports** | Components in same folder as spec |
+| 🎨 **CSS Imports** | Custom styles via `@import` |
+| 🎯 **TypeScript** | Type-safe components where appropriate |
 
 ---
 
@@ -125,8 +97,4 @@ This keeps everything self-contained and version-controlled together.
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
 
-Good recipes:
-1. **Demonstrate a specific feature** — focused, not sprawling
-2. **Are self-contained** — copy the folder and it works
-3. **Include context** — explain what and why
-4. **Show real patterns** — things people actually build
+See [USE-CASES.md](./USE-CASES.md) for the full index of recipes.

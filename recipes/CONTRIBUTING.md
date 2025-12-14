@@ -1,122 +1,131 @@
 # Contributing Recipes
 
-Guidelines for contributing examples to Reactive MD Recipes.
+Guidelines for contributing use cases to Reactive MD Recipes.
 
 ---
 
 ## What Makes a Good Recipe?
 
-### 1. Demonstrate a Specific Feature
+### 1. Tell a Story First
 
-Each recipe should focus on one Reactive MD capability:
-- A single `jsx live` pattern
-- Local imports from the same folder
-- A specific npm package integration
-- A UI pattern with state management
+Start with context before code:
+- What problem does this solve?
+- Who experiences this problem?
+- What's the user journey?
 
-### 2. Be Self-Contained
+### 2. Make It Interactive
 
-Recipes should work when copied to a new folder:
-- Include all required files (`.md`, `.jsx`, `.css`)
-- No dependencies on files outside the recipe folder
-- Document any required npm packages
+Static screenshots belong in Figma. Recipes should:
+- Let readers click, type, hover
+- Show state changes (open/closed, loading/loaded)
+- Demonstrate edge cases inline
 
-### 3. Show Real Patterns
+### 3. Be Self-Contained
 
-Focus on things people actually build:
-- Buttons, forms, cards, modals
-- Loading states, error states, empty states
-- Navigation patterns, data display
+Each recipe should work when copied to a new folder:
+
+```
+my-recipe/
+├── README.md           # Overview and context
+├── spec.md             # The interactive document
+├── Component.jsx       # Local components
+└── styles.css          # Custom styles (optional)
+```
+
+### 4. Document the "Why"
+
+Explain decisions:
+- Why this approach over alternatives?
+- What trade-offs did you consider?
+- What's still uncertain?
 
 ---
 
 ## Recipe Structure
 
-### Simple Recipe (Single File)
+Every recipe should include:
 
 ```markdown
-# Recipe Title
+---
+title: Feature Name
+author: @your-github-handle
+status: draft | in-review | complete
+date: YYYY-MM-DD
+---
 
-Brief description of what this demonstrates.
+# Feature Name
 
-## The Code
+## Problem Statement
+What user problem does this solve?
 
-```jsx live
-function Demo() {
-  return <div>Your component here</div>;
-}
-```
+## Proposed Solution
+High-level description + interactive demos.
 
-## Key Points
+## User Journey
+Step-by-step flow with embedded components.
 
-- What Reactive MD feature this shows
-- Any gotchas or tips
-```
+## Edge Cases
+Error states, empty states, loading states.
 
-### Self-Contained Recipe (Folder)
-
-```
-my-recipe/
-├── README.md         # Overview and instructions
-├── demo.md           # The interactive document
-├── Component.jsx     # Local component(s)
-└── styles.css        # Optional custom CSS
+## Open Questions
+What's still undecided?
 ```
 
 ---
 
-## JSX Guidelines
+## Using Reactive MD Features
 
-### Keep Components Standalone
+Recipes should showcase what's possible:
 
-```jsx
-// ✅ Good - manages its own state
-export default function Counter() {
-  const [count, setCount] = React.useState(0);
+### Local Imports
+
+Keep components alongside your spec:
+
+```jsx live
+import Button from './Button.jsx';
+import Card from './Card.jsx';
+
+function Demo() {
+  return <Card><Button>Click me</Button></Card>;
+}
+```
+
+### CSS Imports
+
+Load custom styles:
+
+```css live
+@import "./styles.css";
+```
+
+### npm Packages
+
+Use bundled libraries for rich UX:
+
+```jsx live
+import { motion } from 'motion';
+import { Bell } from 'lucide-react';
+import dayjs from 'dayjs';
+
+function Notification() {
   return (
-    <button onClick={() => setCount(c => c + 1)}>
-      Count: {count}
-    </button>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+      <Bell /> New message at {dayjs().format('h:mm A')}
+    </motion.div>
   );
 }
-
-// ❌ Avoid - requires external state
-export default function Counter({ count, setCount }) {
-  return <button onClick={() => setCount(c + 1)}>Count: {count}</button>;
-}
 ```
 
-### Use Tailwind for Styling
+### Tailwind Styling
 
-Reactive MD includes Tailwind v4. Use utility classes:
+Use utility classes for consistent design:
 
-```jsx
-// ✅ Good
-<button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-  Click me
-</button>
-
-// ❌ Avoid inline styles
-<button style={{ padding: '8px 16px', backgroundColor: 'blue' }}>
-  Click me
-</button>
-```
-
-### Show State Changes
-
-Make components interactive:
-
-```jsx
-export default function ToggleButton() {
-  const [on, setOn] = React.useState(false);
-  
+```jsx live
+function Card({ children }) {
   return (
-    <button 
-      onClick={() => setOn(!on)}
-      className={`px-4 py-2 rounded ${on ? 'bg-green-500' : 'bg-gray-300'}`}
-    >
-      {on ? 'ON' : 'OFF'}
-    </button>
+    <div className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition">
+      {children}
+    </div>
   );
 }
 ```
@@ -127,24 +136,22 @@ export default function ToggleButton() {
 
 | Type | Folder | Description |
 |------|--------|-------------|
-| Core feature | `getting-started/` | Basic Reactive MD capabilities |
-| Self-contained | `local-imports/` | Folder with local .jsx and .css |
-| npm package | `npm-packages/` | Using external libraries |
 | PRD template | `prd-templates/` | Document structure templates |
-| Visual concept | `wireframes/` | Page layouts |
+| Visual concept | `wireframes/` | Page layouts, quick mockups |
 | User flow | `user-journeys/` | Multi-step narratives |
-| Feature idea | `feature-concepts/` | Feature proposals |
-| UI pattern | `design-patterns/` | Reusable patterns |
-| Complete example | `case-studies/` | Full working examples |
+| Feature idea | `feature-concepts/` | Specific feature proposals |
+| UI pattern | `design-patterns/` | Reusable interaction patterns |
+| Complete PRD | `case-studies/` | Full-fledged product specs |
 
 ---
 
 ## Submitting
 
 1. Fork this repository
-2. Add your recipe to the appropriate folder
+2. Create your recipe folder in the appropriate category
 3. Test with Reactive MD (`Cmd+K P`) to verify it works
-4. Submit a Pull Request
+4. Update `USE-CASES.md` with your recipe
+5. Submit a Pull Request
 
 ---
 
