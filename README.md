@@ -51,12 +51,12 @@ Press `Cmd+Shift+V` for markdown preview, or `Cmd+K P` for interactive mode.
 
 ## Blueprints
 
-This repository contains **blueprints** - living product requirement documents with embedded interactive JSX components. See the [blueprints/](./blueprints/) folder for examples.
+The [blueprints/](./blueprints/) folder contains **examples** of what's possible with Reactive MD — PRD templates, wireframes, user journeys, and design patterns as interactive markdown documents.
 
 ## Contributing
 
 We welcome contributions! Please see:
-- [blueprints/](./blueprints/) - Contribute product ideas as interactive specs
+- [blueprints/](./blueprints/) - Example templates and use cases
 - [Issues](https://github.com/million-views/reactive-md/issues) - Report bugs or request features
 
 ## License
