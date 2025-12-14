@@ -10,7 +10,7 @@ Common patterns for loading, success, error, and empty states.
 
 Use skeletons for content that has a predictable shape:
 
-```jsx
+```jsx live
 export default function SkeletonCard() {
   const [loading, setLoading] = React.useState(true);
   
@@ -57,7 +57,7 @@ export default function SkeletonCard() {
 
 Use spinners for indeterminate loading:
 
-```jsx
+```jsx live
 export default function SpinnerExamples() {
   return (
     <div className="flex gap-8 items-center">
@@ -88,7 +88,7 @@ export default function SpinnerExamples() {
 
 ## Success States
 
-```jsx
+```jsx live
 export default function SuccessStates() {
   const [state, setState] = React.useState('idle');
   
@@ -135,7 +135,7 @@ export default function SuccessStates() {
 
 ## Error States
 
-```jsx
+```jsx live
 export default function ErrorStates() {
   const [hasError, setHasError] = React.useState(true);
   
@@ -185,7 +185,7 @@ export default function ErrorStates() {
 
 ## Empty States
 
-```jsx
+```jsx live
 export default function EmptyStates() {
   return (
     <div className="grid grid-cols-2 gap-6">

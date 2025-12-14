@@ -10,8 +10,8 @@ Infinite scroll can improve engagement but requires careful UX consideration for
 
 ## Infinite List Demo
 
-```jsx
-import { useState, useEffect, useRef } from 'react';
+```jsx live
+
 
 const generateItems = (start, count) =>
   Array.from({ length: count }, (_, i) => ({
@@ -21,9 +21,9 @@ const generateItems = (start, count) =>
   }));
 
 export default function InfiniteScroll() {
-  const [items, setItems] = useState(generateItems(0, 10));
-  const [loading, setLoading] = useState(false);
-  const loaderRef = useRef(null);
+  const [items, setItems] = React.useState(generateItems(0, 10));
+  const [loading, setLoading] = React.useState(false);
+  const loaderRef = React.useRef(null);
   
   const loadMore = () => {
     setLoading(true);
@@ -75,7 +75,7 @@ export default function InfiniteScroll() {
 
 ## Skeleton Loading
 
-```jsx
+```jsx live
 export default function SkeletonLoading() {
   return (
     <div className="max-w-md mx-auto space-y-4">

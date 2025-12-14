@@ -6,7 +6,7 @@ Quick visual concepts for common landing page sections.
 
 ## Hero Section
 
-```jsx
+```jsx live
 export default function HeroSection() {
   return (
     <div className="bg-gradient-to-br from-blue-600 to-purple-700 text-white p-12 rounded-lg">
@@ -42,7 +42,7 @@ export default function HeroSection() {
 
 ## Social Proof Bar
 
-```jsx
+```jsx live
 export default function SocialProof() {
   const logos = ['Acme Inc', 'TechCorp', 'StartupXYZ', 'Enterprise Co', 'ScaleUp'];
   
@@ -67,7 +67,7 @@ export default function SocialProof() {
 
 ## Feature Grid
 
-```jsx
+```jsx live
 export default function FeatureGrid() {
   const features = [
     { icon: '⚡', title: 'Lightning Fast', desc: 'Built for speed. See changes in milliseconds.' },
@@ -102,7 +102,7 @@ export default function FeatureGrid() {
 
 ## Pricing Cards
 
-```jsx
+```jsx live
 export default function PricingCards() {
   const [annual, setAnnual] = React.useState(true);
   
@@ -180,7 +180,7 @@ export default function PricingCards() {
 
 ## CTA Section
 
-```jsx
+```jsx live
 export default function CTASection() {
   return (
     <div className="bg-gray-900 text-white p-12 rounded-lg text-center">
@@ -207,7 +207,7 @@ export default function CTASection() {
 
 ## Footer
 
-```jsx
+```jsx live
 export default function Footer() {
   const sections = [
     { title: 'Product', links: ['Features', 'Pricing', 'Changelog', 'Roadmap'] },

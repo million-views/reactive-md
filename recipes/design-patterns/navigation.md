@@ -10,12 +10,12 @@ Navigation is the backbone of any application. This recipe explores common patte
 
 ## Responsive Navbar
 
-```jsx
-import { useState } from 'react';
+```jsx live
+
 
 export default function ResponsiveNavbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [activeItem, setActiveItem] = useState('home');
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [activeItem, setActiveItem] = React.useState('home');
   
   const navItems = [
     { id: 'home', label: 'Home' },
@@ -83,8 +83,8 @@ export default function ResponsiveNavbar() {
 
 ## Sidebar Navigation
 
-```jsx
-import { useState } from 'react';
+```jsx live
+
 
 const menuItems = [
   { id: 'dashboard', icon: '📊', label: 'Dashboard' },
@@ -95,8 +95,8 @@ const menuItems = [
 ];
 
 export default function SidebarNav() {
-  const [active, setActive] = useState('dashboard');
-  const [collapsed, setCollapsed] = useState(false);
+  const [active, setActive] = React.useState('dashboard');
+  const [collapsed, setCollapsed] = React.useState(false);
   
   return (
     <div className={`bg-gray-900 text-white rounded-xl transition-all ${collapsed ? 'w-16' : 'w-48'}`}>
@@ -133,7 +133,7 @@ export default function SidebarNav() {
 
 ## Breadcrumbs
 
-```jsx
+```jsx live
 export default function Breadcrumbs() {
   const path = ['Home', 'Products', 'Electronics', 'Headphones'];
   

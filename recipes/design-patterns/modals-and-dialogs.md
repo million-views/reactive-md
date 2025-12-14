@@ -10,11 +10,11 @@ Modals demand attention and should be used thoughtfully. This recipe explores pa
 
 ## Modal Gallery
 
-```jsx
-import { useState } from 'react';
+```jsx live
+
 
 export default function ModalGallery() {
-  const [activeModal, setActiveModal] = useState(null);
+  const [activeModal, setActiveModal] = React.useState(null);
   
   const Modal = ({ children, onClose }) => (
     <div className="fixed inset-0 flex items-center justify-center z-50">

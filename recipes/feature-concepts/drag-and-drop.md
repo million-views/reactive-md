@@ -10,8 +10,8 @@ Drag and drop interactions add intuitiveness but require careful accessibility c
 
 ## Sortable List
 
-```jsx
-import { useState } from 'react';
+```jsx live
+
 
 const initialItems = [
   { id: 1, text: 'First item', color: 'bg-blue-100' },
@@ -21,8 +21,8 @@ const initialItems = [
 ];
 
 export default function SortableList() {
-  const [items, setItems] = useState(initialItems);
-  const [dragging, setDragging] = useState(null);
+  const [items, setItems] = React.useState(initialItems);
+  const [dragging, setDragging] = React.useState(null);
   
   const moveUp = (index) => {
     if (index === 0) return;
@@ -79,8 +79,8 @@ export default function SortableList() {
 
 ## Kanban Board
 
-```jsx
-import { useState } from 'react';
+```jsx live
+
 
 const initialBoard = {
   todo: [
@@ -102,7 +102,7 @@ const columns = [
 ];
 
 export default function KanbanBoard() {
-  const [board, setBoard] = useState(initialBoard);
+  const [board, setBoard] = React.useState(initialBoard);
   
   const moveTask = (taskId, fromCol, toCol) => {
     const task = board[fromCol].find((t) => t.id === taskId);

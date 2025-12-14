@@ -10,8 +10,8 @@ Real-time features create engaging, collaborative experiences. This recipe explo
 
 ## Live Activity Feed
 
-```jsx
-import { useState, useEffect } from 'react';
+```jsx live
+
 
 const activities = [
   { user: 'Alice', action: 'commented on', target: 'Design Review', time: 'just now' },
@@ -21,10 +21,10 @@ const activities = [
 ];
 
 export default function LiveActivityFeed() {
-  const [feed, setFeed] = useState(activities);
-  const [newActivity, setNewActivity] = useState(null);
+  const [feed, setFeed] = React.useState(activities);
+  const [newActivity, setNewActivity] = React.useState(null);
   
-  useEffect(() => {
+  React.useEffect(() => {
     const interval = setInterval(() => {
       const users = ['Alice', 'Bob', 'Carol', 'Dave', 'Eve'];
       const actions = ['commented on', 'updated', 'viewed', 'shared'];
@@ -81,8 +81,8 @@ export default function LiveActivityFeed() {
 
 ## Presence Indicators
 
-```jsx
-import { useState, useEffect } from 'react';
+```jsx live
+
 
 const users = [
   { name: 'Alice', avatar: '👩', status: 'online' },
@@ -92,9 +92,9 @@ const users = [
 ];
 
 export default function PresenceIndicators() {
-  const [presence, setPresence] = useState(users);
+  const [presence, setPresence] = React.useState(users);
   
-  useEffect(() => {
+  React.useEffect(() => {
     const interval = setInterval(() => {
       setPresence((prev) =>
         prev.map((user) => ({

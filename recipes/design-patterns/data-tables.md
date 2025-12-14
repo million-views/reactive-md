@@ -10,8 +10,8 @@ Data tables are essential for displaying structured information. This recipe exp
 
 ## Interactive Data Table
 
-```jsx
-import { useState } from 'react';
+```jsx live
+
 
 const data = [
   { id: 1, name: 'Alice Johnson', email: 'alice@example.com', role: 'Admin', status: 'Active' },
@@ -22,9 +22,9 @@ const data = [
 ];
 
 export default function DataTable() {
-  const [sortField, setSortField] = useState('name');
-  const [sortDir, setSortDir] = useState('asc');
-  const [filter, setFilter] = useState('');
+  const [sortField, setSortField] = React.useState('name');
+  const [sortDir, setSortDir] = React.useState('asc');
+  const [filter, setFilter] = React.useState('');
   
   const handleSort = (field) => {
     if (sortField === field) {

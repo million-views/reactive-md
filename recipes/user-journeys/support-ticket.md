@@ -10,8 +10,8 @@ A well-designed support ticket flow reduces frustration and helps users get help
 
 ## Interactive Support Flow
 
-```jsx
-import { useState } from 'react';
+```jsx live
+
 
 const categories = [
   { id: 'billing', label: 'Billing Issue', icon: '💳' },
@@ -21,9 +21,9 @@ const categories = [
 ];
 
 export default function SupportTicketFlow() {
-  const [step, setStep] = useState('category');
-  const [category, setCategory] = useState(null);
-  const [priority, setPriority] = useState(null);
+  const [step, setStep] = React.useState('category');
+  const [category, setCategory] = React.useState(null);
+  const [priority, setPriority] = React.useState(null);
   
   if (step === 'submitted') {
     return (

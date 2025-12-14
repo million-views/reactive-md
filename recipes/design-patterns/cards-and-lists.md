@@ -10,7 +10,7 @@ Cards and lists are fundamental building blocks for displaying collections. This
 
 ## Card Grid
 
-```jsx
+```jsx live
 const cards = [
   { id: 1, title: 'Project Alpha', desc: 'UI redesign for mobile app', status: 'Active', icon: '🚀' },
   { id: 2, title: 'Project Beta', desc: 'Backend API optimization', status: 'Review', icon: '⚡' },
@@ -55,8 +55,8 @@ export default function CardGrid() {
 
 ## List View
 
-```jsx
-import { useState } from 'react';
+```jsx live
+
 
 const items = [
   { id: 1, title: 'Weekly Team Sync', time: '10:00 AM', category: 'Meeting' },
@@ -66,7 +66,7 @@ const items = [
 ];
 
 export default function ListView() {
-  const [selected, setSelected] = useState([]);
+  const [selected, setSelected] = React.useState([]);
   
   const toggle = (id) => {
     setSelected(

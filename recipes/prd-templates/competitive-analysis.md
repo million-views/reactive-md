@@ -16,7 +16,7 @@ Use this template to compare different solutions, competitors, or approaches wit
 
 ### Comparison Matrix
 
-```jsx
+```jsx live
 const competitors = [
   { name: 'Our Solution', score: 85, color: 'bg-blue-600' },
   { name: 'Competitor A', score: 70, color: 'bg-gray-400' },
@@ -49,8 +49,8 @@ export default function ComparisonChart() {
 
 ### Feature Comparison
 
-```jsx
-import { useState } from 'react';
+```jsx live
+
 
 const features = [
   { name: 'Feature A', ours: true, compA: true, compB: false, compC: false },
@@ -60,7 +60,7 @@ const features = [
 ];
 
 export default function FeatureMatrix() {
-  const [highlight, setHighlight] = useState(null);
+  const [highlight, setHighlight] = React.useState(null);
   
   const Check = () => <span className="text-green-600 text-lg">✓</span>;
   const Cross = () => <span className="text-red-400 text-lg">✗</span>;
@@ -101,11 +101,11 @@ export default function FeatureMatrix() {
 
 ### Side-by-Side Experience
 
-```jsx
-import { useState } from 'react';
+```jsx live
+
 
 export default function SideBySide() {
-  const [activeTab, setActiveTab] = useState('ours');
+  const [activeTab, setActiveTab] = React.useState('ours');
   
   return (
     <div className="border rounded-xl overflow-hidden">

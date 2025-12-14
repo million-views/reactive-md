@@ -10,12 +10,12 @@ Mobile-first design ensures great experiences across all devices. This case stud
 
 ## Interactive Prototype
 
-```jsx
-import { useState } from 'react';
+```jsx live
+
 
 export default function MobileAppConcept() {
-  const [activeTab, setActiveTab] = useState('home');
-  const [showMenu, setShowMenu] = useState(false);
+  const [activeTab, setActiveTab] = React.useState('home');
+  const [showMenu, setShowMenu] = React.useState(false);
   
   const tabs = [
     { id: 'home', icon: '🏠', label: 'Home' },

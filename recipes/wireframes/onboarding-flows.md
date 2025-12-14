@@ -10,8 +10,8 @@ Great onboarding flows guide users through complex setup processes while keeping
 
 ## Multi-Step Wizard
 
-```jsx
-import { useState } from 'react';
+```jsx live
+
 
 const steps = [
   { id: 1, title: 'Welcome', description: 'Let\'s get you started' },
@@ -21,7 +21,7 @@ const steps = [
 ];
 
 export default function OnboardingWizard() {
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = React.useState(1);
   
   const step = steps.find(s => s.id === currentStep);
   

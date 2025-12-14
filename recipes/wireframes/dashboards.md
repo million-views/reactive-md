@@ -10,11 +10,11 @@ Dashboards are complex, data-heavy interfaces. Use these wireframes to explore l
 
 ## Dashboard Layout
 
-```jsx
-import { useState } from 'react';
+```jsx live
+
 
 export default function DashboardLayout() {
-  const [activeNav, setActiveNav] = useState('overview');
+  const [activeNav, setActiveNav] = React.useState('overview');
   
   const navItems = [
     { id: 'overview', icon: '📊', label: 'Overview' },
@@ -65,7 +65,7 @@ export default function DashboardLayout() {
 
 ## Stat Cards
 
-```jsx
+```jsx live
 const stats = [
   { label: 'Total Revenue', value: '$45,231', change: '+12.5%', up: true },
   { label: 'Active Users', value: '2,350', change: '+4.2%', up: true },

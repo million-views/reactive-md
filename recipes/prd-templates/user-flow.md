@@ -33,7 +33,7 @@ date: YYYY-MM-DD
 
 *What happens in this step? What decisions does the user make?*
 
-```jsx
+```jsx live
 export default function Step1() {
   return (
     <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow">
@@ -68,7 +68,7 @@ export default function Step1() {
 
 *What happens next?*
 
-```jsx
+```jsx live
 export default function Step2() {
   const [selected, setSelected] = React.useState(null);
   const options = [
@@ -123,7 +123,7 @@ export default function Step2() {
 
 *Final step before completion.*
 
-```jsx
+```jsx live
 export default function Step3() {
   const [loading, setLoading] = React.useState(false);
   const [done, setDone] = React.useState(false);
@@ -184,7 +184,7 @@ export default function Step3() {
 
 *What happens when things go wrong?*
 
-```jsx
+```jsx live
 export default function ErrorState() {
   return (
     <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow">

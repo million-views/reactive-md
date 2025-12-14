@@ -10,8 +10,8 @@ Empty states are often overlooked but critical for user experience. These wirefr
 
 ## Empty State Gallery
 
-```jsx
-import { useState } from 'react';
+```jsx live
+
 
 const emptyStates = [
   {
@@ -45,7 +45,7 @@ const emptyStates = [
 ];
 
 export default function EmptyStateGallery() {
-  const [active, setActive] = useState('no-data');
+  const [active, setActive] = React.useState('no-data');
   
   const state = emptyStates.find(s => s.id === active);
   
@@ -84,13 +84,13 @@ export default function EmptyStateGallery() {
 
 ## Loading States
 
-```jsx
-import { useState, useEffect } from 'react';
+```jsx live
+
 
 export default function LoadingStates() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = React.useState(true);
   
-  useEffect(() => {
+  React.useEffect(() => {
     const timer = setInterval(() => setLoading(l => !l), 3000);
     return () => clearInterval(timer);
   }, []);

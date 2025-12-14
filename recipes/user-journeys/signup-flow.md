@@ -10,8 +10,8 @@ The signup flow is critical for conversion. This recipe explores the complete jo
 
 ## Interactive Journey
 
-```jsx
-import { useState } from 'react';
+```jsx live
+
 
 const stages = [
   {
@@ -41,7 +41,7 @@ const stages = [
 ];
 
 export default function SignupFlow() {
-  const [stage, setStage] = useState(0);
+  const [stage, setStage] = React.useState(0);
   
   const current = stages[stage];
   const isComplete = stage >= stages.length;

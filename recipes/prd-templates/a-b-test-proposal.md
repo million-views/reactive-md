@@ -27,7 +27,7 @@ Example:
 
 *Show the current implementation:*
 
-```jsx
+```jsx live
 export default function ControlVariant() {
   return (
     <div className="p-6 bg-white rounded-lg shadow max-w-sm">
@@ -51,7 +51,7 @@ export default function ControlVariant() {
 
 *First alternative:*
 
-```jsx
+```jsx live
 export default function VariantA() {
   return (
     <div className="p-6 bg-white rounded-lg shadow max-w-sm">
@@ -77,7 +77,7 @@ export default function VariantA() {
 
 *Second alternative (optional):*
 
-```jsx
+```jsx live
 export default function VariantB() {
   return (
     <div className="p-6 bg-white rounded-lg shadow max-w-sm">
@@ -106,7 +106,7 @@ export default function VariantB() {
 
 ## Side-by-Side Comparison
 
-```jsx
+```jsx live
 export default function Comparison() {
   return (
     <div className="grid grid-cols-3 gap-4">

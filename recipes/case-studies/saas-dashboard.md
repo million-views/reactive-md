@@ -24,12 +24,12 @@ A modern analytics dashboard that provides real-time insights for SaaS businesse
 
 ## Interactive Prototype
 
-```jsx
-import { useState } from 'react';
+```jsx live
+
 
 export default function DashboardPRD() {
-  const [view, setView] = useState('overview');
-  const [period, setPeriod] = useState('7d');
+  const [view, setView] = React.useState('overview');
+  const [period, setPeriod] = React.useState('7d');
   
   const metrics = [
     { label: 'Monthly Revenue', value: '$52,400', change: '+12%', up: true },

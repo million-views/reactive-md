@@ -36,7 +36,7 @@ Example:
 
 *Describe what this component does, then show it:*
 
-```jsx
+```jsx live
 export default function ExampleComponent() {
   const [active, setActive] = React.useState(false);
   
@@ -71,7 +71,7 @@ export default function ExampleComponent() {
 
 ### Empty State Example
 
-```jsx
+```jsx live
 export default function EmptyState() {
   return (
     <div className="text-center py-12 text-gray-500">

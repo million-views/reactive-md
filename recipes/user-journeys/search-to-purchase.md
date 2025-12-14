@@ -10,8 +10,8 @@ The search-to-purchase journey is fundamental to e-commerce. This recipe explore
 
 ## Interactive Journey
 
-```jsx
-import { useState } from 'react';
+```jsx live
+
 
 const products = [
   { id: 1, name: 'Wireless Headphones', price: 99, rating: 4.5, image: '🎧' },
@@ -21,9 +21,9 @@ const products = [
 ];
 
 export default function SearchToPurchase() {
-  const [stage, setStage] = useState('search');
-  const [query, setQuery] = useState('');
-  const [selected, setSelected] = useState(null);
+  const [stage, setStage] = React.useState('search');
+  const [query, setQuery] = React.useState('');
+  const [selected, setSelected] = React.useState(null);
   
   const filtered = products.filter((p) =>
     p.name.toLowerCase().includes(query.toLowerCase())

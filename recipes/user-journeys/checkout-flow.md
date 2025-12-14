@@ -10,8 +10,8 @@ E-commerce checkout is where conversions happen or abandon. This recipe explores
 
 ## Interactive Checkout
 
-```jsx
-import { useState } from 'react';
+```jsx live
+
 
 const steps = [
   { id: 'cart', title: 'Cart', icon: '🛒' },
@@ -21,7 +21,7 @@ const steps = [
 ];
 
 export default function CheckoutFlow() {
-  const [step, setStep] = useState(0);
+  const [step, setStep] = React.useState(0);
   
   const CartStep = () => (
     <div className="space-y-4">

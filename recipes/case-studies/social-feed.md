@@ -10,8 +10,8 @@ Social feeds are complex systems with real-time updates, engagement features, an
 
 ## Interactive Prototype
 
-```jsx
-import { useState } from 'react';
+```jsx live
+
 
 const initialPosts = [
   {
@@ -47,8 +47,8 @@ const initialPosts = [
 ];
 
 export default function SocialFeed() {
-  const [posts, setPosts] = useState(initialPosts);
-  const [newPost, setNewPost] = useState('');
+  const [posts, setPosts] = React.useState(initialPosts);
+  const [newPost, setNewPost] = React.useState('');
   
   const toggleLike = (id) => {
     setPosts(posts.map((post) =>

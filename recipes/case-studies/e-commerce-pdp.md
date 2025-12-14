@@ -10,15 +10,15 @@ Product Detail Pages (PDPs) are critical for e-commerce conversion. This case st
 
 ## Interactive Prototype
 
-```jsx
-import { useState } from 'react';
+```jsx live
+
 
 export default function ProductDetailPage() {
-  const [selectedSize, setSelectedSize] = useState('M');
-  const [selectedColor, setSelectedColor] = useState('black');
-  const [quantity, setQuantity] = useState(1);
-  const [activeImage, setActiveImage] = useState(0);
-  const [addedToCart, setAddedToCart] = useState(false);
+  const [selectedSize, setSelectedSize] = React.useState('M');
+  const [selectedColor, setSelectedColor] = React.useState('black');
+  const [quantity, setQuantity] = React.useState(1);
+  const [activeImage, setActiveImage] = React.useState(0);
+  const [addedToCart, setAddedToCart] = React.useState(false);
   
   const images = ['📱', '📱', '📱', '📱'];
   const sizes = ['XS', 'S', 'M', 'L', 'XL'];

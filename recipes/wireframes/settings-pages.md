@@ -10,18 +10,18 @@ Settings pages often have complex state management. These wireframes explore tog
 
 ## Settings Panel
 
-```jsx
-import { useState } from 'react';
+```jsx live
+
 
 export default function SettingsPanel() {
-  const [settings, setSettings] = useState({
+  const [settings, setSettings] = React.useState({
     notifications: true,
     darkMode: false,
     autoSave: true,
     twoFactor: false,
   });
   
-  const [saved, setSaved] = useState(false);
+  const [saved, setSaved] = React.useState(false);
   
   const toggle = (key) => {
     setSettings({ ...settings, [key]: !settings[key] });
