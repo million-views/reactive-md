@@ -1,12 +1,12 @@
-# JSX Preview
+# Reactive MD
 
 A VS Code extension for interactive JSX/TSX previews with live editing.
 
 ## Quick Links
 
-- 📦 [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=anthropic.jsx-preview)
+- 📦 [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=million-views.reactive-md)
 - 🏠 [Homepage](https://m5nv.com)
-- 🐛 [Report Issues](https://github.com/million-views/jsx-preview/issues)
+- 🐛 [Report Issues](https://github.com/million-views/reactive-md/issues)
 
 ## Features
 
@@ -22,18 +22,18 @@ A VS Code extension for interactive JSX/TSX previews with live editing.
 
 1. Open VS Code
 2. Press `Cmd+Shift+X` (Mac) or `Ctrl+Shift+X` (Windows/Linux)
-3. Search for "JSX Preview"
+3. Search for "Reactive MD"
 4. Click Install
 
 Or install from the command line:
 ```bash
-code --install-extension anthropic.jsx-preview
+code --install-extension million-views.reactive-md
 ```
 
 ## Usage
 
-1. Open any `.jsx` or `.tsx` file
-2. Press `Cmd+Shift+P` → "JSX Preview: Open Preview"
+1. Open any `.jsx`, `.tsx`, or `.md` file
+2. Press `Cmd+K P` (Mac) or `Ctrl+K P` (Windows/Linux)
 3. Start editing - the preview updates in real-time!
 
 ## Blueprints
@@ -44,7 +44,7 @@ This repository contains **blueprints** - living product requirement documents w
 
 We welcome contributions! Please see:
 - [blueprints/](./blueprints/) - Contribute product ideas as interactive specs
-- [Issues](https://github.com/million-views/jsx-preview/issues) - Report bugs or request features
+- [Issues](https://github.com/million-views/reactive-md/issues) - Report bugs or request features
 
 ## License
 

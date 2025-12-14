@@ -1,6 +1,6 @@
 # Contributing Blueprints
 
-Thank you for contributing to JSX Preview Blueprints! This guide will help you create blueprints that are useful, interactive, and well-documented.
+Thank you for contributing to Reactive MD Blueprints! This guide will help you create blueprints that are useful, interactive, and well-documented.
 
 ## What Makes a Good Blueprint?
 
@@ -101,7 +101,7 @@ export default function NotificationBell({ count, setCount }) {
 
 ### Use Tailwind for Styling
 
-JSX Preview has built-in Tailwind v4 support. Use it:
+Reactive MD has built-in Tailwind v4 support. Use it:
 
 ```jsx
 // ✅ Good - Tailwind classes
@@ -146,7 +146,7 @@ export default function LoadingButton() {
 
 1. Fork this repository
 2. Create your blueprint in the appropriate folder
-3. Test it with JSX Preview to ensure components render
+3. Test it with Reactive MD to ensure components render
 4. Submit a Pull Request with:
    - Clear title describing the blueprint
    - Brief description of the use case

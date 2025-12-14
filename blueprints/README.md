@@ -1,4 +1,4 @@
-# JSX Preview Blueprints
+# Reactive MD Blueprints
 
 This is a collection of **living documents** — product specs, wireframes, and user journeys with embedded, interactive React components.
 
