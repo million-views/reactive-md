@@ -1,6 +1,6 @@
 # Reactive MD Recipes
 
-**Literate UI/UX for designers and product teams.**
+**Literate UI/UX for product teams.**
 
 ## The Idea
 

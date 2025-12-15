@@ -1,6 +1,6 @@
 # Reactive MD
 
-**Literate UI/UX for designers and product teams** — preview React components instantly in VS Code.
+**Literate UI/UX for product teams** — preview React components instantly in VS Code.
 
 ## Quick Links
 
