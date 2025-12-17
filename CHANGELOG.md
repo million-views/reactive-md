@@ -2,6 +2,24 @@
 
 All notable changes to Reactive MD will be documented here.
 
+## [1.0.0] - 2025-12-16
+
+### Added
+- 🎉 **Initial stable release**
+- Live preview for JSX/TSX files with hot reload
+- Markdown `jsx live` and `css live` code fences
+- Tailwind CSS v4 with zero configuration
+- Bundled libraries: `motion`, `lucide-react`, `dayjs`, `clsx`, `es-toolkit`, `uuid`
+- Local file imports support
+- TypeScript support
+- Two preview modes: Markdown Preview (static) and Interactive Preview (full React runtime)
+- CodeLens "▶ Preview" above exported components
+- Configurable debounce, CodeLens visibility, and update modes
+
+### Changed
+- Tagline: "Literate UI/UX for product teams"
+- Mode toggle uses icons: 🎯 (Spotlight) | ▤ (Gallery)
+
 ## [1.0.0-alpha.14] - 2025-12-16
 
 ### Fixed
