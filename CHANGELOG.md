@@ -2,6 +2,14 @@
 
 All notable changes to Reactive MD will be documented here.
 
+## [1.0.1] - 2025-12-17
+
+### Fixed
+- Multi-component JSX files now render correctly in Interactive Preview
+- Fixed extraction of components with destructured parameters (e.g., `function Card({ title, children })`)
+- JSDoc comments in JSX files no longer cause rendering errors
+- Focus/Gallery toggle now properly enables for files with multiple exported components
+
 ## [1.0.0] - 2025-12-16
 
 ### Added
