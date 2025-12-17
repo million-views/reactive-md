@@ -2,6 +2,21 @@
 
 All notable changes to Reactive MD will be documented here.
 
+## [1.0.0-alpha.14] - 2025-12-16
+
+### Fixed
+- External CSS files imported via `@import` in `css live` fences now update properly in Markdown Preview
+- CSS custom property changes (e.g., `--color: var(--blue)` → `--color: var(--red)`) now refresh immediately
+
+### Added
+- Troubleshooting guide section for editor scroll behavior when editing CSS live fences
+- Documented workarounds for VS Code scroll sync limitation
+
+## [1.0.0-alpha.13] - 2025-12-16
+
+### Fixed
+- Cache invalidation for external CSS file changes
+
 ## [1.0.0-alpha.9] - 2025-12-14
 
 ### Changed

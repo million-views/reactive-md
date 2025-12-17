@@ -28,6 +28,32 @@ Common causes:
 - Syntax errors in your component
 - Missing default export
 
+### Editor Scrolls When Editing CSS Live Fences
+
+**Issue**: Editor jumps/scrolls when typing in `css live` fences with Markdown Preview open, especially when changes affect layout (e.g., CSS custom properties).
+
+**Cause**: VS Code's built-in scroll synchronization between editor and preview. When CSS changes affect rendered content height, VS Code scrolls the editor to maintain sync.
+
+**Workarounds**:
+
+1. **Close Markdown Preview while editing CSS** (recommended)
+   - Edit your CSS without preview open
+   - Reopen preview (`Cmd+Shift+V`) when done
+   
+2. **Use Interactive Preview instead**
+   - Open Interactive Preview: `Cmd+K P`
+   - Interactive Preview doesn't have this scroll sync issue
+   
+3. **Remove `live` temporarily**
+   - Change ` ```css live` to ` ```css` while editing
+   - Add `live` back when done
+   
+4. **Increase debounce delay** (partial mitigation)
+   - Settings → `reactiveMd.debounceMs` → set to `1000` or higher
+   - Makes refresh less frequent but doesn't eliminate scroll jumps
+
+**Technical note**: This is a fundamental VS Code limitation. The `markdown.preview.refresh` command always triggers scroll sync, and there's no API to disable it.
+
 ### Extension Not Activating
 
 The extension only activates when you open a `.jsx` or `.tsx` file. Opening a `.js` file won't trigger activation.

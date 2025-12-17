@@ -1,0 +1,242 @@
+
+/* ========================================= */
+/* GLOBAL TOKENS (:root)                     */
+/* Pure Solid Primitives Only                */
+/* ========================================= */
+:root {
+  /* --- NEUTRAL SCALE (Slate) --- */
+  --c-slate-50:  oklch(98% 0.01 260);
+  --c-slate-100: oklch(96% 0.01 260);
+  --c-slate-200: oklch(92% 0.02 260);
+  --c-slate-300: oklch(87% 0.03 260);
+  --c-slate-400: oklch(70% 0.04 260);
+  --c-slate-500: oklch(55% 0.04 260);
+  --c-slate-600: oklch(45% 0.04 260);
+  --c-slate-700: oklch(37% 0.05 260);
+  --c-slate-800: oklch(28% 0.05 260);
+  --c-slate-900: oklch(20% 0.05 260);
+  --c-slate-950: oklch(15% 0.05 260);
+
+  /* --- BRAND SCALE: Blue --- */
+  --c-blue-400:  oklch(70% 0.18 260);
+  --c-blue-500:  oklch(62% 0.22 260);
+
+  /* --- BRAND SCALE: Emerald --- */
+  --c-emerald-400: oklch(75% 0.16 150);
+  --c-emerald-500: oklch(65% 0.18 150);
+
+  /* --- BRAND SCALE: Violet --- */
+  --c-violet-400: oklch(62% 0.18 295);
+  --c-violet-500: oklch(58% 0.22 295);
+
+  /* --- BRAND SCALE: Rose --- */
+  --c-rose-400:   oklch(70% 0.18 15);
+  --c-rose-500:   oklch(62% 0.22 15);
+
+  /* --- BRAND SCALE: Amber --- */
+  --c-amber-400:  oklch(80% 0.16 85);
+  --c-amber-500:  oklch(70% 0.18 85);
+
+  /* --- UTILITIES --- */
+  --c-white: oklch(100% 0 0);
+  --c-black: oklch(0% 0 0);
+
+  /* --- SPACING SCALE --- */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-6: 1.5rem;
+  --s-8: 2rem;
+  --s-12: 3rem;
+}
+
+
+.pricing-root {
+  /* --- SEMANTIC MAPPING WITH RELATIVE COLORS --- */
+  
+  /* INK */
+  --c-text: light-dark(var(--c-slate-800), var(--c-slate-50));
+  --c-muted: light-dark(var(--c-slate-500), var(--c-slate-400));
+  
+  /* ACCENT */
+  --c-accent: light-dark(var(--c-blue-500), var(--c-emerald-500));
+  --c-accent-hover: light-dark(var(--c-blue-400), var(--c-emerald-400));
+  --c-on-acc: light-dark(var(--c-white), var(--c-slate-50));
+
+  /* PAPER */
+  --bg-page: linear-gradient(135deg,
+      light-dark(var(--c-slate-50), var(--c-slate-900)),
+      light-dark(var(--c-slate-100), var(--c-slate-800))
+  );
+  
+  /* Card BG */
+  --bg-card: light-dark(
+    var(--c-white), 
+    oklch(from var(--c-white) l c h / 0.1)
+  );
+
+  /* FRAME: Borders */
+  --b-color: light-dark(
+    oklch(from var(--c-black) l c h / 0.1), 
+    oklch(from var(--c-white) l c h / 0.1)
+  );
+  --b-width: 1px;
+  --b-style: solid;
+
+  /* EFFECTS: Shadows */
+  --fx-shadow: 0 10px 20px -5px light-dark(
+    oklch(from var(--c-slate-800) l c h / 0.1), 
+    oklch(from var(--c-black) l c h / 0.5)
+  );
+
+  /* Glow: Accent Color @ 0% -> Accent Color @ 100% (in box-shadow) */
+  --fx-glow: 0 4px 6px -4px light-dark(transparent, var(--c-accent));
+  --fx-blur: blur(10px);
+  --fx-trans: 0.2s ease;
+
+  /* --- TYPOGRAPHY (--f-) --- */
+  --f-sans:   system-ui, sans-serif;
+  --f-bold:   700;
+  --f-semi:   600;
+  --f-black:  900;
+  --f-size-h: 1.875rem;         /* Heading size */
+  --f-size-p: var(--s-12);      /* Price size (3rem) */
+  --f-size-s: var(--s-4);       /* Subtext */
+
+  /* --- SPACING & LAYOUT --- */
+  --w-min-content: 375px;       /* min width constraint */
+  --w-max-content: 600px;       /* max width constraint */
+
+  --p-page:   var(--s-8);       /* Page padding */
+  --p-card:   var(--s-8);       /* Card padding */
+  --p-btn:    var(--s-3);       /* Button padding */
+  
+  --g-grid:   var(--s-2);       /* Standard grid gap */
+  --g-flex:   var(--s-2);       /* Standard list gap */
+
+  /* --- SHAPE (--r-) --- */
+  --r-page:   var(--s-4);       /* 1rem radius */
+  --r-card:   var(--s-4);       /* 1rem radius */
+  --r-btn:    var(--s-2);       /* 0.5rem radius */
+
+  /* ========================================= */
+  /* 3. COMPONENT IMPLEMENTATION               */
+  /* ========================================= */
+
+  /* ROOT CONTAINER */
+  min-width: 100%;
+  max-width: var(--w-max-content);
+
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: var(--g-grid);
+ 
+  background: var(--bg-page);
+  padding: var(--p-page);
+  border-radius: var(--r-page);
+
+  font-family: var(--f-sans);
+  color: var(--c-muted);
+
+  /* Content Constraint */
+  & > * {
+    text-align: center;
+  }
+
+  /* HEADINGS */
+  & h2 {
+    color: var(--c-text);
+    font-size: var(--f-size-h);
+    font-weight: var(--f-black);
+  }
+
+  /* CARD */
+  & article {
+    min-width: var(--w-min-content);
+    max-width: 100%;
+
+    display: grid;
+    gap: var(--g-grid);
+    padding: var(--p-card);
+    text-align: left;
+
+    background: var(--bg-card);
+    backdrop-filter: var(--fx-blur);
+    border: var(--b-width) var(--b-style) var(--b-color);
+    border-radius: var(--r-card);
+    box-shadow: var(--fx-shadow);
+
+    & > :not(ul) { text-align: center; }
+
+    /* Text Elements */
+    & small { 
+      text-transform: uppercase; 
+      letter-spacing: 0.05em;
+      font-size: var(--s-3);
+    }
+    
+    & .price-row {
+      color: var(--c-muted);
+      & strong { 
+        font-size: var(--f-size-p); 
+        font-weight: var(--f-black); 
+        color: var(--c-text); 
+      }
+    }
+    
+    & .highlight { 
+      color: var(--c-accent); 
+      font-weight: var(--f-semi); 
+    }
+
+    /* List */
+    & ul {
+      padding: 0; 
+      list-style: none;
+      color: var(--c-text);
+
+      & li {
+        display: flex; 
+        gap: var(--g-flex);
+        margin-block-end: var(--s-2);
+        &::before { 
+          content: "✓"; 
+          color: var(--c-accent); 
+          font-weight: var(--f-semi); 
+        }
+      }
+    }
+
+    /* Button */
+    & button {
+      margin-top: var(--s-8); 
+      width: 100%;
+      padding: var(--p-btn);
+      border: none; 
+      border-radius: var(--r-btn);
+      
+      background: var(--c-accent);
+      color: var(--c-on-acc);
+      font-weight: var(--f-bold);
+      
+      cursor: pointer;
+      transition: background var(--fx-trans);
+      box-shadow: var(--fx-glow);
+
+      &:hover { 
+        background: var(--c-accent-hover);
+      }
+    }
+  }
+
+  /* FOOTER */
+  & footer { 
+    font-size: var(--f-size-s);
+    font-style: italic;
+    & > :first-child {
+      margin-top: var(--s-3);
+    }
+  }
+}
