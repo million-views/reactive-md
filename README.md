@@ -5,7 +5,6 @@
 ## Quick Links
 
 - 📦 [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=million-views.reactive-md)
-- 🏠 [Homepage](https://m5nv.com)
 - 🐛 [Report Issues](https://github.com/million-views/reactive-md/issues)
 
 ## ✨ Key Features
