@@ -7,7 +7,6 @@
 Settings pages often have complex state management. These wireframes explore toggle patterns, form layouts, and save behaviors.
 
 ---
-
 ## Settings Panel
 
 ```jsx live

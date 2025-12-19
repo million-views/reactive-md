@@ -2,6 +2,43 @@
 
 All notable changes to Reactive MD will be documented here.
 
+## [1.0.6] - 2025-12-18
+
+### Fixed
+- **Platform Support**: Expanded from 6 to 9 supported platforms via cross-compilation
+  - Added: Linux ARM64, Linux ARMhf, Alpine ARM64
+  - All platforms now build correctly using cross-compilation on free GitHub runners
+  - Improved workflow reliability for multi-platform publishing
+
+## [1.0.5] - 2025-12-18
+
+### Fixed
+- **Platform Publishing**: Fixed GitHub Actions workflow to correctly build for all supported platforms
+  - Updated from deprecated `macos-13` runner to `macos-14-large` for Intel Mac builds
+  - Verified 3-way intersection of VS Code targets, esbuild binaries, and GitHub Actions runners
+  - All 6 supported platforms now build correctly: Windows (x64, ARM64), Linux (x64), Alpine (x64), macOS (Intel, Apple Silicon)
+
+### Changed
+- Reduced extension package size by ~50% (now 6-9 MB per platform, down from 12-15 MB)
+  - Removed 6MB demo.gif from published packages
+
+## [1.0.4] - 2025-12-18
+
+### Changed
+- Package size optimization (incomplete - republished as v1.0.5)
+
+## [1.0.3] - 2025-12-18
+
+### Fixed
+- Improved publishing workflow reliability and cross-platform compatibility
+
+## [1.0.2] - 2025-12-18
+
+### Fixed
+- Extension now works correctly on Windows and Linux
+- Resolved "platform mismatch" error when opening Interactive Preview on non-macOS systems
+- All platforms now receive optimized builds with correct native dependencies
+
 ## [1.0.1] - 2025-12-17
 
 ### Fixed
