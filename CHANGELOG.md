@@ -2,6 +2,18 @@
 
 All notable changes to Reactive MD will be documented here.
 
+## [1.0.7] - 2025-12-21
+
+### Fixed
+- **Dayjs Plugins**: You can now use dayjs plugins in Markdown Preview
+  - Import and use plugins: `import relativeTime from 'dayjs/plugin/relativeTime'`
+  - Or use pre-extended plugins directly: `dayjs().fromNow()` works without imports
+  - Available plugins: `relativeTime`, `duration`, `utc`, `timezone`
+
+### Improved
+- **Error Messages**: Cleaner package error messages in Markdown Preview
+  - Package names now displayed as visual badges only (no duplicate text)
+
 ## [1.0.6] - 2025-12-18
 
 ### Fixed
