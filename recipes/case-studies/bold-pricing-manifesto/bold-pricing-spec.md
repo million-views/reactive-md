@@ -83,3 +83,6 @@ The base design tokens and css for the new component is defined in [bold-pricing
 - [ ] Prepare stakeholder presentation
 
 > **Break out of the herd.**
+
+---
+*Created with [Reactive MD](https://marketplace.visualstudio.com/items?itemName=million-views.reactive-md)*

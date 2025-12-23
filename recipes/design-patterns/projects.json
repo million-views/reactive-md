@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "title": "Project Alpha",
+    "desc": "UI redesign for mobile app",
+    "status": "Active",
+    "icon": "🚀"
+  },
+  {
+    "id": 2,
+    "title": "Project Beta",
+    "desc": "Backend API optimization",
+    "status": "Review",
+    "icon": "⚡"
+  },
+  {
+    "id": 3,
+    "title": "Project Gamma",
+    "desc": "New feature development",
+    "status": "Planning",
+    "icon": "📝"
+  },
+  {
+    "id": 4,
+    "title": "Project Delta",
+    "desc": "Performance testing",
+    "status": "Active",
+    "icon": "🔍"
+  }
+]

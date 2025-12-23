@@ -201,5 +201,4 @@ export default function MobileAppConcept() {
 5. **Performance**: Fast load times, smooth animations
 
 ---
-
 *Created with [Reactive MD](https://marketplace.visualstudio.com/items?itemName=million-views.reactive-md)*

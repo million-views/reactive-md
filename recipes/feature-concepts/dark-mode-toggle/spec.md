@@ -230,3 +230,6 @@ This approach allows:
 | Dark mode adoption | > 40% of users |
 | User satisfaction (survey) | > 4.5/5 |
 | Time spent in app after 6 PM | +15% |
+
+---
+*Created with [Reactive MD](https://marketplace.visualstudio.com/items?itemName=million-views.reactive-md)*

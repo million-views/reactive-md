@@ -1,170 +1,84 @@
 # E-Commerce Product Detail Page
 
-> A complete mini-PRD for an e-commerce PDP.
+> A complete mini-PRD for an e-commerce PDP with proper component architecture.
 
 ## About This Case Study
 
-Product Detail Pages (PDPs) are critical for e-commerce conversion. This case study explores the complete requirements for a high-converting PDP.
+Product Detail Pages (PDPs) are critical for e-commerce conversion. This case study explores the complete requirements for a high-converting PDP, demonstrating best practices for component organization and interactive prototyping.
 
 ---
 
 ## Interactive Prototype
 
+This example shows a realistic PDP with:
+- **Component Architecture**: Main component with helper sub-components
+- **Bundled Packages**: Uses `lucide-react` for icons
+- **Local Imports**: Components imported from separate files
+- **State Management**: Multiple pieces of interactive state
+- **Realistic Data**: Imported from JSON structure
+
 ```jsx live
+import ProductDetailPage from './ProductDetailPage.jsx';
 
-
-export default function ProductDetailPage() {
-  const [selectedSize, setSelectedSize] = React.useState('M');
-  const [selectedColor, setSelectedColor] = React.useState('black');
-  const [quantity, setQuantity] = React.useState(1);
-  const [activeImage, setActiveImage] = React.useState(0);
-  const [addedToCart, setAddedToCart] = React.useState(false);
-  
-  const images = ['📱', '📱', '📱', '📱'];
-  const sizes = ['XS', 'S', 'M', 'L', 'XL'];
-  const colors = [
-    { id: 'black', hex: 'bg-gray-900' },
-    { id: 'white', hex: 'bg-white border' },
-    { id: 'blue', hex: 'bg-blue-600' },
-    { id: 'red', hex: 'bg-red-600' },
-  ];
-  
-  const handleAddToCart = () => {
-    setAddedToCart(true);
-    setTimeout(() => setAddedToCart(false), 2000);
-  };
-  
+function PDPContainer() {
   return (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-      <div className="grid md:grid-cols-2 gap-6 p-6">
-        {/* Images */}
-        <div>
-          <div className="aspect-square bg-gray-100 rounded-xl flex items-center justify-center text-8xl mb-4">
-            {images[activeImage]}
-          </div>
-          <div className="flex gap-2">
-            {images.map((img, i) => (
-              <button
-                key={i}
-                onClick={() => setActiveImage(i)}
-                className={`w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center ${
-                  activeImage === i ? 'ring-2 ring-blue-600' : ''
-                }`}
-              >
-                {img}
-              </button>
-            ))}
-          </div>
-        </div>
-        
-        {/* Details */}
-        <div>
-          <div className="text-sm text-gray-500 mb-1">Brand Name</div>
-          <h1 className="text-2xl font-bold mb-2">Premium Product Name</h1>
-          <div className="flex items-center gap-2 mb-4">
-            <span className="text-yellow-500">★★★★★</span>
-            <span className="text-sm text-gray-500">(128 reviews)</span>
-          </div>
-          
-          <div className="text-3xl font-bold text-green-600 mb-6">$129.99</div>
-          
-          {/* Color Selection */}
-          <div className="mb-4">
-            <div className="text-sm font-medium mb-2">Color: <span className="capitalize">{selectedColor}</span></div>
-            <div className="flex gap-2">
-              {colors.map((color) => (
-                <button
-                  key={color.id}
-                  onClick={() => setSelectedColor(color.id)}
-                  className={`w-8 h-8 rounded-full ${color.hex} ${
-                    selectedColor === color.id ? 'ring-2 ring-offset-2 ring-blue-600' : ''
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-          
-          {/* Size Selection */}
-          <div className="mb-4">
-            <div className="text-sm font-medium mb-2">Size</div>
-            <div className="flex gap-2">
-              {sizes.map((size) => (
-                <button
-                  key={size}
-                  onClick={() => setSelectedSize(size)}
-                  className={`w-10 h-10 rounded-lg border font-medium ${
-                    selectedSize === size
-                      ? 'bg-blue-600 text-white border-blue-600'
-                      : 'hover:border-gray-400'
-                  }`}
-                >
-                  {size}
-                </button>
-              ))}
-            </div>
-          </div>
-          
-          {/* Quantity */}
-          <div className="mb-6">
-            <div className="text-sm font-medium mb-2">Quantity</div>
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                className="w-10 h-10 rounded-lg border hover:bg-gray-50"
-              >
-                -
-              </button>
-              <span className="w-12 text-center font-medium">{quantity}</span>
-              <button
-                onClick={() => setQuantity(quantity + 1)}
-                className="w-10 h-10 rounded-lg border hover:bg-gray-50"
-              >
-                +
-              </button>
-            </div>
-          </div>
-          
-          {/* Add to Cart */}
-          <button
-            onClick={handleAddToCart}
-            className={`w-full py-4 rounded-xl font-bold text-lg transition-colors ${
-              addedToCart
-                ? 'bg-green-600 text-white'
-                : 'bg-blue-600 text-white hover:bg-blue-700'
-            }`}
-          >
-            {addedToCart ? '✓ Added to Cart!' : 'Add to Cart'}
-          </button>
-        </div>
-      </div>
+    <div className="max-w-6xl mx-auto p-6">
+      <ProductDetailPage />
     </div>
   );
 }
 ```
 
+## Component Structure
+
+Following GUIDE.md best practices, this PDP is split into focused components:
+
+- **`ProductDetailPage.jsx`** - Main container component
+- **`ProductImageGallery`** - Image display and navigation (helper component)
+- **`ProductInfo`** - Product details, variants, pricing (helper component)
+- **`ProductFeatures`** - Feature list display (helper component)
+
+This structure makes the code maintainable and demonstrates how to organize complex UIs.
+
+## Key Features Demonstrated
+
+### Interactive Elements
+- **Image Gallery**: Click thumbnails to switch main image
+- **Variant Selection**: Color and size picker with visual feedback
+- **Quantity Controls**: Increment/decrement with bounds checking
+- **Add to Cart**: Success state with visual feedback
+- **Wishlist Toggle**: Heart icon with state persistence
+
+### Best Practices Applied
+- **Local Component Imports**: Components kept alongside the specification
+- **Helper Component Pattern**: Complex UI broken into focused sub-components
+- **Bundled Package Usage**: `lucide-react` for consistent iconography
+- **Accessible Interactions**: Proper button states and keyboard navigation
+- **Realistic Data Structure**: Product data that mirrors real e-commerce APIs
+
+## Business Requirements
+
+### User Experience
+- **Visual Hierarchy**: Clear product information layout
+- **Interactive Feedback**: Immediate response to user actions
+- **Error Prevention**: Disabled states and validation
+- **Mobile Responsive**: Grid layout adapts to screen size
+
+### Technical Requirements
+- **Performance**: Efficient re-rendering with proper state management
+- **Accessibility**: Screen reader support and keyboard navigation
+- **Browser Compatibility**: Works across modern browsers
+- **Bundle Size**: Uses only bundled packages for offline functionality
+
+## Implementation Notes
+
+This prototype demonstrates how Reactive MD enables:
+- **Rapid Prototyping**: Build interactive PDPs in minutes
+- **Stakeholder Communication**: Visual specifications that stakeholders can interact with
+- **Developer Handoff**: Working code that can be directly implemented
+- **Design System Integration**: Consistent styling and interaction patterns
+
+The component architecture shown here scales to real applications while maintaining the benefits of literate programming.
+
 ---
-
-## Key Requirements
-
-### Must Have (P0)
-- [ ] High-quality product images with zoom
-- [ ] Clear pricing and availability
-- [ ] Size/color/variant selection
-- [ ] Add to cart functionality
-- [ ] Mobile-responsive layout
-
-### Should Have (P1)
-- [ ] Customer reviews section
-- [ ] Related products carousel
-- [ ] Size guide modal
-- [ ] Wishlist functionality
-- [ ] Share buttons
-
-### Nice to Have (P2)
-- [ ] AR/3D product viewer
-- [ ] Recently viewed products
-- [ ] Stock notifications
-
----
-
 *Created with [Reactive MD](https://marketplace.visualstudio.com/items?itemName=million-views.reactive-md)*

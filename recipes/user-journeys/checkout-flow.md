@@ -135,5 +135,4 @@ export default function CheckoutFlow() {
 ```
 
 ---
-
 *Created with [Reactive MD](https://marketplace.visualstudio.com/items?itemName=million-views.reactive-md)*

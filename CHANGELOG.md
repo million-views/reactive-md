@@ -4,15 +4,27 @@ All notable changes to Reactive MD will be documented here.
 
 ## [1.0.7] - 2025-12-21
 
+### Added
+- **JSON Data Imports**: Enhanced cards-and-lists recipe with JSON data import patterns
+  - Added `projects.json` and `tasks.json` for static data examples
+  - Updated `CardGrid.jsx` and `ListView.jsx` to import from JSON files
+  - Demonstrates separation of data from presentation logic
+
 ### Fixed
 - **Dayjs Plugins**: You can now use dayjs plugins in Markdown Preview
   - Import and use plugins: `import relativeTime from 'dayjs/plugin/relativeTime'`
   - Or use pre-extended plugins directly: `dayjs().fromNow()` works without imports
   - Available plugins: `relativeTime`, `duration`, `utc`, `timezone`
+- **PRD Template Footers**: Added missing Reactive MD footers to template files
+  - Fixed `feature-spec.md` and `a-b-test-proposal.md` templates
 
 ### Improved
 - **Error Messages**: Cleaner package error messages in Markdown Preview
   - Package names now displayed as visual badges only (no duplicate text)
+- **Recipe Documentation**: Restructured improvement planning as forward-looking TODO.md
+  - Renamed RECIPE_IMPROVEMENTS.md to TODO.md
+  - Rewritten as roadmap for future enhancements
+  - Focus on remaining feature demonstrations and advanced patterns
 - **User Guide**: Complete restructuring with better organization
   - Added extension settings documentation
   - New data and assets section explaining fetch vs import for local files

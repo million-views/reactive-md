@@ -22,6 +22,45 @@ Access settings via `Cmd+,` (Mac) or `Ctrl+,` (Windows/Linux) and search for "Re
 
 ## Component Development
 
+### React Imports in JSX Files
+
+**Do not import React explicitly** in `.jsx` or `.tsx` files - it's already globally available:
+
+```jsx
+// ❌ Wrong: Causes "React has already been declared" error
+import React from 'react';
+
+export default function MyComponent() {
+  return <div>Hello World</div>;
+}
+```
+
+```jsx
+// ✅ Correct: React is automatically available
+export default function MyComponent() {
+  return <div>Hello World</div>;
+}
+```
+
+**However, React hooks and other APIs must be imported explicitly:**
+
+```jsx
+// ✅ Correct: Import hooks and other React APIs
+import { useState, useEffect } from 'react';
+
+export default function MyComponent() {
+  const [count, setCount] = useState(0);
+  
+  useEffect(() => {
+    console.log('Component mounted');
+  }, []);
+  
+  return <div>Hello World</div>;
+}
+```
+
+**Why?** Reactive MD uses JSX automatic mode, which provides React globally for JSX compilation. However, hooks and other React APIs are not automatically available and must be imported.
+
 ### Quick Diagnosis
 
 When a component shows an error card instead of rendering, check these common causes first:

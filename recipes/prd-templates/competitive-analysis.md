@@ -155,5 +155,4 @@ export default function SideBySide() {
 - Recommendation 3
 
 ---
-
 *Created with [Reactive MD](https://marketplace.visualstudio.com/items?itemName=million-views.reactive-md)*

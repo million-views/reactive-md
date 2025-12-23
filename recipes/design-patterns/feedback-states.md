@@ -240,3 +240,6 @@ export default function EmptyStates() {
 | **Success** | Auto-dismiss after 3-5 seconds | Require manual dismissal |
 | **Error** | Provide actionable next steps | Show technical error messages |
 | **Empty** | Offer a clear CTA | Leave users stranded |
+
+---
+*Created with [Reactive MD](https://marketplace.visualstudio.com/items?itemName=million-views.reactive-md)*

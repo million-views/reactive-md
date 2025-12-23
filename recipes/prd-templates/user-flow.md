@@ -219,3 +219,6 @@ export default function ErrorState() {
 1. Should we allow skipping optional steps?
 2. Save progress for users who abandon mid-flow?
 3. A/B test single-page vs multi-step?
+
+---
+*Created with [Reactive MD](https://marketplace.visualstudio.com/items?itemName=million-views.reactive-md)*

@@ -140,5 +140,4 @@ export default function PresenceIndicators() {
 ```
 
 ---
-
 *Created with [Reactive MD](https://marketplace.visualstudio.com/items?itemName=million-views.reactive-md)*

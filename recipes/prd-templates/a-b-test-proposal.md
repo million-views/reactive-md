@@ -180,3 +180,6 @@ export default function Comparison() {
 - **Ship Variant A/B if**: CTR increase ≥ 10% with 95% confidence
 - **Iterate if**: Positive signal but < 95% confidence
 - **Kill if**: Negative impact on signup completion rate
+
+---
+*Created with [Reactive MD](https://marketplace.visualstudio.com/items?itemName=million-views.reactive-md)*

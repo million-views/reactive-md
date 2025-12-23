@@ -278,3 +278,6 @@ function LoadingNotifications() {
 | Time to notice critical alerts | 4+ hours | < 15 min |
 | "Missed notification" tickets | 25% of support | < 5% |
 | Daily active users checking notifications | N/A | > 60% |
+
+---
+*Created with [Reactive MD](https://marketplace.visualstudio.com/items?itemName=million-views.reactive-md)*

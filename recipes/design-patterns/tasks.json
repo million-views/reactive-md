@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Weekly Team Sync",
+    "time": "10:00 AM",
+    "category": "Meeting"
+  },
+  {
+    "id": 2,
+    "title": "Review Pull Requests",
+    "time": "2:00 PM",
+    "category": "Task"
+  },
+  {
+    "id": 3,
+    "title": "Client Presentation",
+    "time": "4:00 PM",
+    "category": "Meeting"
+  },
+  {
+    "id": 4,
+    "title": "Update Documentation",
+    "time": "Tomorrow",
+    "category": "Task"
+  }
+]

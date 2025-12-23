@@ -113,5 +113,4 @@ export default function SearchToPurchase() {
 ```
 
 ---
-
 *Created with [Reactive MD](https://marketplace.visualstudio.com/items?itemName=million-views.reactive-md)*

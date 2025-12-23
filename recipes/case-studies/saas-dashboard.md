@@ -117,5 +117,4 @@ export default function DashboardPRD() {
 - **Satisfaction**: NPS > 40 for dashboard specifically
 
 ---
-
 *Created with [Reactive MD](https://marketplace.visualstudio.com/items?itemName=million-views.reactive-md)*
