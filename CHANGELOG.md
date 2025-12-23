@@ -13,6 +13,14 @@ All notable changes to Reactive MD will be documented here.
 ### Improved
 - **Error Messages**: Cleaner package error messages in Markdown Preview
   - Package names now displayed as visual badges only (no duplicate text)
+- **User Guide**: Complete restructuring with better organization
+  - Added extension settings documentation
+  - New data and assets section explaining fetch vs import for local files
+  - Improved troubleshooting flow
+- **Installation Guide**: Enhanced troubleshooting documentation
+  - Added proper marketplace and Open VSX installation instructions
+  - Removed manual download references
+  - Platform-specific installation issue guidance
 
 ## [1.0.6] - 2025-12-18
 

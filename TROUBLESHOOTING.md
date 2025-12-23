@@ -1,6 +1,64 @@
 # Troubleshooting Reactive MD
 
-Quick solutions for common issues.
+Quick solutions for common issues with installing and using Reactive MD.
+
+---
+
+## Installation
+
+### From VS Code Marketplace (Recommended)
+
+#### GUI Installation
+1. Open VS Code
+2. Press `Cmd+Shift+X` (Mac) or `Ctrl+Shift+X` (Windows/Linux)
+3. Search for "Reactive MD"
+4. Click **Install**
+
+#### Command Line Installation
+```bash
+code --install-extension million-views.reactive-md
+```
+
+### From Open VSX (Alternative Editors)
+
+For VSCodium, Gitpod, or other VS Code-compatible editors:
+
+#### GUI Installation
+1. Open your editor
+2. Go to Extensions marketplace
+3. Search for "Reactive MD" by "million-views"
+4. Click **Install**
+
+#### Command Line Installation
+```bash
+# For VSCodium
+codium --install-extension million-views.reactive-md
+
+# For other editors, check their documentation for extension installation commands
+```
+
+### Verification
+
+After installation:
+1. Reload VS Code: `Cmd+Shift+P` → "Developer: Reload Window"
+2. Open any `.jsx` or `.tsx` file
+3. Look for "▶ Preview" above exported components (CodeLens)
+4. Try `Cmd+K P` to open Interactive Preview
+
+### Common Installation Issues
+
+#### Extension Not Appearing
+- **Check marketplace**: Ensure you're searching in the correct marketplace (VS Code vs Open VSX)
+- **Network issues**: Some corporate networks block marketplace access
+- **Version compatibility**: Requires VS Code 1.106.0+
+
+#### "Extension host terminated unexpectedly"
+- Try reloading window: `Cmd+Shift+P` → "Developer: Reload Window"
+- Check VS Code version compatibility
+
+#### CodeLens Not Showing
+- Extension may not be activated - open a `.jsx` or `.tsx` file first
+- Check settings: `reactiveMd.showCodeLens` should be `true`
 
 ---
 
@@ -11,6 +69,7 @@ Before diving into diagnostics:
 - [ ] File extension is `.jsx` or `.tsx` (not `.js` or `.ts`)
 - [ ] VS Code version is 1.106.0 or higher (`Help → About`)
 - [ ] Tried reloading window (`Cmd+Shift+P` → "Developer: Reload Window")
+- [ ] Extension is installed and enabled
 
 ---
 
@@ -39,15 +98,15 @@ Common causes:
 1. **Close Markdown Preview while editing CSS** (recommended)
    - Edit your CSS without preview open
    - Reopen preview (`Cmd+Shift+V`) when done
-   
+
 2. **Use Interactive Preview instead**
    - Open Interactive Preview: `Cmd+K P`
    - Interactive Preview doesn't have this scroll sync issue
-   
+
 3. **Remove `live` temporarily**
    - Change ` ```css live` to ` ```css` while editing
    - Add `live` back when done
-   
+
 4. **Increase debounce delay** (partial mitigation)
    - Settings → `reactiveMd.debounceMs` → set to `1000` or higher
    - Makes refresh less frequent but doesn't eliminate scroll jumps
@@ -95,7 +154,7 @@ Check if `reactive-md` is listed. If not, the extension failed to load.
 
 ## Network Issues
 
-The extension requires network access for npm packages via esm.sh CDN.
+The extension requires network access for external npm packages via esm.sh CDN in Interactive Preview mode.
 
 ### Test CDN Access
 
@@ -104,29 +163,36 @@ Open in browser: https://esm.sh/react@19
 If blocked:
 - Check corporate firewall/proxy settings
 - Add `esm.sh` to allowlist
+- Use offline mode with bundled packages only
 
-### Bundled Packages (Offline)
+### Bundled Packages (Always Available)
 
-These packages work offline: `lucide-react`, `motion`, `zustand`, `jotai`, `clsx`, `dayjs`, `es-toolkit`, `react-hook-form`, `swr`, `@tanstack/react-query`.
+These packages work offline in both preview modes:
+
+- `lucide-react` - Icons
+- `dayjs` - Date formatting  
+- `motion` - Animations
+- `clsx` - Conditional classes
+- `uuid` - ID generation
+- `es-toolkit` - Utility functions
+
+For other npm packages, use Interactive Preview with internet access.
 
 ---
 
 ## Platform-Specific Issues
 
 ### Mac
-
-**Quarantine warning**: If downloaded manually, macOS may quarantine files:
-```bash
-xattr -d com.apple.quarantine ~/Downloads/*.vsix
-```
+- **Marketplace access blocked**: Some corporate networks restrict VS Code Marketplace access
+- **Solution**: Try installing from Open VSX or contact IT about network restrictions
 
 ### Windows
-
-**Antivirus blocking**: Some antivirus software blocks VS Code extensions. Try adding VS Code to your exclusion list.
+- **Antivirus blocking**: Some antivirus software may interfere with extension installation
+- **Solution**: Temporarily disable antivirus during installation or add VS Code to exclusions
 
 ### Linux
-
-**Snap/Flatpak sandboxing**: Extensions may have limited network access. Try the `.deb`/`.rpm` package instead.
+- **Snap/Flatpak restrictions**: Sandboxed VS Code installations may have limited network access
+- **Solution**: Use the `.deb`/`.rpm` package instead of Snap/Flatpak, or try Open VSX
 
 ---
 
