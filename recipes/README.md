@@ -73,24 +73,9 @@ recipes/
 
 ## Styling Strategy
 
-Reactive MD supports **three styling approaches** for different use cases:
+Recipes use one of three styling approaches: **Wireframe** (low-fidelity), **Elementary** (high-fidelity), or **Tailwind** (rapid prototyping).
 
-### 1. **Wireframe Design System** (`design-systems/wireframe/`)
-For early-stage exploration and low-fidelity mockups. Uses monospace fonts, flat colors, and intentionally "sketchy" aesthetic.
-
-**Use when**: Exploring layouts, communicating structure without committing to visual design.
-
-### 2. **Elementary Design System** (`design-systems/elementary/`)
-For production-ready components with theming support. Uses "Ink & Paper" metaphor (inspired by Material Design), semantic tokens, and dark mode.
-
-**Use when**: Building reusable components, demonstrating theming, or creating case studies.
-
-### 3. **Tailwind CSS** (built-in)
-For rapid prototyping and one-off examples. No import needed, just use className utilities.
-
-**Use when**: Speed matters more than consistency, or building documentation examples.
-
-**See [design-systems/README.md](./design-systems/README.md) for complete decision framework.**
+**See [design-systems/README.md](./design-systems/README.md) for the complete styling guide, decision framework, and examples.**
 
 ---
 
