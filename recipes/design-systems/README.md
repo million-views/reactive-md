@@ -281,26 +281,7 @@ Consider creating a new design system when:
 - Minor tweaks (override Elementary tokens locally)
 - Exploration (use Wireframe)
 
----
-
-## Examples by System
-
-### Wireframe System Examples
-
-- [Landing Pages](../wireframes/landing-pages.md) - Low-fidelity page layouts
-- [Dashboards](../wireframes/dashboards.md) - Data interface structures
-- [Empty States](../wireframes/empty-states.md) - Zero-data patterns
-
-### Elementary System Examples
-
-- [Bold Pricing](../case-studies/bold-pricing-manifesto/bold-pricing-spec.md) - Themed component with design tokens
-- [Dark Mode Toggle](../feature-concepts/dark-mode-toggle/spec.md) - Theme switching demonstration
-
-### Tailwind Examples
-
-- [Feature Spec Template](../prd-templates/feature-spec.md) - Documentation template
-- [Signup Flow](../user-journeys/signup-flow.md) - User journey visualization
-- [Infinite Scroll](../feature-concepts/infinite-scroll.md) - Quick interaction pattern
+**Browse examples**: See [USE-CASES.md](../USE-CASES.md) for the complete recipe index organized by category.
 
 ---
 
