@@ -6,12 +6,65 @@
 
 Great onboarding flows guide users through complex setup processes while keeping them engaged. These wireframes explore common patterns.
 
+```css live
+@import '../design-systems/wireframe/tokens.css';
+@import './wireframe.css';
+```
+
 ---
 
 ## Multi-Step Wizard
 
 ```jsx live
+function StepIndicator({ step, currentStep, isLast }) {
+  const status = step.id < currentStep ? 'complete' : 
+                 step.id === currentStep ? 'current' : 'pending';
+  
+  return (
+    <div className="step">
+      <div className={`indicator ${status}`}>
+        {step.id < currentStep ? '✓' : step.id}
+      </div>
+      {!isLast && (
+        <div className={`connector ${step.id < currentStep ? 'complete' : 'pending'}`} />
+      )}
+    </div>
+  );
+}
 
+function WizardContent({ step, isComplete, onNext, onBack, showBack }) {
+  return (
+    <article className="wf-card">
+      <h2 className="title">{step.title}</h2>
+      <p className="description">{step.description}</p>
+      
+      {!isComplete ? (
+        <>
+          <div className="content">
+            Step {step.id} content here
+          </div>
+          <nav className="actions">
+            {showBack && (
+              <button onClick={onBack} className="wf-btn secondary">
+                Back
+              </button>
+            )}
+            <button onClick={onNext} className="wf-btn action">
+              Continue
+            </button>
+          </nav>
+        </>
+      ) : (
+        <>
+          <div className="icon">🎉</div>
+          <button onClick={onNext} className="wf-btn action">
+            Get Started
+          </button>
+        </>
+      )}
+    </article>
+  );
+}
 
 const steps = [
   { id: 1, title: 'Welcome', description: 'Let\'s get you started' },
@@ -24,72 +77,28 @@ export default function OnboardingWizard() {
   const [currentStep, setCurrentStep] = React.useState(1);
   
   const step = steps.find(s => s.id === currentStep);
+  const isComplete = currentStep >= steps.length;
   
   return (
-    <div className="max-w-lg mx-auto">
-      {/* Progress Steps */}
-      <div className="flex items-center justify-between mb-8">
+    <div className="wf-wizard">
+      <nav className="progress">
         {steps.map((s, i) => (
-          <div key={s.id} className="flex items-center">
-            <div
-              className={`w-10 h-10 rounded-full flex items-center justify-center font-bold transition-colors ${
-                s.id <= currentStep
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-200 text-gray-500'
-              }`}
-            >
-              {s.id < currentStep ? '✓' : s.id}
-            </div>
-            {i < steps.length - 1 && (
-              <div
-                className={`w-12 h-1 mx-2 transition-colors ${
-                  s.id < currentStep ? 'bg-blue-600' : 'bg-gray-200'
-                }`}
-              />
-            )}
-          </div>
+          <StepIndicator
+            key={s.id}
+            step={s}
+            currentStep={currentStep}
+            isLast={i === steps.length - 1}
+          />
         ))}
-      </div>
+      </nav>
       
-      {/* Step Content */}
-      <div className="bg-white rounded-xl p-8 shadow-lg text-center">
-        <h2 className="text-2xl font-bold mb-2">{step.title}</h2>
-        <p className="text-gray-600 mb-6">{step.description}</p>
-        
-        {currentStep < steps.length ? (
-          <div className="space-y-4">
-            <div className="h-24 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400">
-              Step {currentStep} content here
-            </div>
-            <div className="flex gap-3 justify-center">
-              {currentStep > 1 && (
-                <button
-                  onClick={() => setCurrentStep(currentStep - 1)}
-                  className="px-6 py-2 border rounded-lg hover:bg-gray-50"
-                >
-                  Back
-                </button>
-              )}
-              <button
-                onClick={() => setCurrentStep(currentStep + 1)}
-                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-              >
-                Continue
-              </button>
-            </div>
-          </div>
-        ) : (
-          <div className="space-y-4">
-            <div className="text-6xl">🎉</div>
-            <button
-              onClick={() => setCurrentStep(1)}
-              className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
-            >
-              Get Started
-            </button>
-          </div>
-        )}
-      </div>
+      <WizardContent
+        step={step}
+        isComplete={isComplete}
+        onNext={() => setCurrentStep(isComplete ? 1 : currentStep + 1)}
+        onBack={() => setCurrentStep(currentStep - 1)}
+        showBack={currentStep > 1 && !isComplete}
+      />
     </div>
   );
 }

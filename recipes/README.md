@@ -44,7 +44,7 @@ recipes/
 │   ├── a-b-test-proposal.md
 │   └── ...
 │
-├── wireframes/                      # Quick visual concepts
+├── wireframes/                      # Low-fidelity visual concepts
 │   ├── landing-pages.md
 │   └── ...
 │
@@ -60,9 +60,37 @@ recipes/
 │   ├── feedback-states.md
 │   └── ...
 │
-└── case-studies/                    # Complete mini-PRDs
-    └── ...
+├── case-studies/                    # Complete mini-PRDs
+│   └── ...
+│
+└── design-systems/                  # Design token systems
+    ├── README.md                    # Styling strategy and decision framework
+    ├── wireframe/                   # Low-fidelity sketch aesthetic
+    └── elementary/                  # Production design system
 ```
+
+---
+
+## Styling Strategy
+
+Reactive MD supports **three styling approaches** for different use cases:
+
+### 1. **Wireframe Design System** (`design-systems/wireframe/`)
+For early-stage exploration and low-fidelity mockups. Uses monospace fonts, flat colors, and intentionally "sketchy" aesthetic.
+
+**Use when**: Exploring layouts, communicating structure without committing to visual design.
+
+### 2. **Elementary Design System** (`design-systems/elementary/`)
+For production-ready components with theming support. Uses "Ink & Paper" metaphor (inspired by Material Design), semantic tokens, and dark mode.
+
+**Use when**: Building reusable components, demonstrating theming, or creating case studies.
+
+### 3. **Tailwind CSS** (built-in)
+For rapid prototyping and one-off examples. No import needed, just use className utilities.
+
+**Use when**: Speed matters more than consistency, or building documentation examples.
+
+**See [design-systems/README.md](./design-systems/README.md) for complete decision framework.**
 
 ---
 
@@ -83,7 +111,7 @@ Recipes should:
 - **Tell a story** — context before code
 - **Be interactive** — click, hover, see state changes
 - **Use local imports** — keep components alongside the spec
-- **Leverage Tailwind** — for consistent, beautiful styling
+- **Choose the right styling approach** — Wireframe for exploration, Material for production, Tailwind for speed
 - **Show real patterns** — things people actually build
 
 ---

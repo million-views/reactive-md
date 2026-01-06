@@ -19,7 +19,7 @@ No games. No "most popular" badges. No artificial scarcity. Just great software 
 
 ```jsx live
 const Container = 
-  ({ children }) => <div className="pricing-root">{children}</div>;
+  ({ children }) => <div className="bold-pricing">{children}</div>;
 const Card = 
   ({ children }) => <article>{children}</article>;
 
@@ -58,21 +58,22 @@ export function BoldPricing() {
 ```
 
 #### Design Tokens
-The base design tokens and css for the new component is defined in [bold-pricing-design.css](./bold-pricing-design.css). In addition to neutral `slate`, it includes `slate`, `blue`, `emerald`, `violet`, `rose` and `amber` in `:root` for use as brand colors.
+The base design tokens are defined in the Elementary Design System: [../../design-systems/elementary/tokens.css](../../design-systems/elementary/tokens.css). The component-specific styling is in [`bold-pricing.css`](../../design-systems/elementary/bold-pricing.css).
 
 ```css live
-@import './bold-pricing-design.css';
+@import '../../design-systems/elementary/tokens.css';
+@import '../../design-systems/elementary/bold-pricing.css';
 
-.pricing-root {
-  color-scheme: light dark;
+.bold-pricing {
+  color-scheme: light ;
   /* INK */
-  --c-text: light-dark(var(--c-slate-800), var(--c-slate-50));
+  --c-text: light-dark(var(--c-slate-800), var(--c-slate-050));
   --c-muted: light-dark(var(--c-slate-500), var(--c-slate-400));
   
   /* ACCENT */
-  --c-accent: light-dark(var(--c-violet-400), var(--c-emerald-400));
-  --c-accent-hover: light-dark(var(--c-violet-500), var(--c-emerald-500));
-  --c-on-acc: light-dark(var(--c-white), var(--c-slate-50));
+  --c-primary: light-dark(var(--c-rose-400), var(--c-emerald-400));
+  --c-primary-hover: light-dark(var(--c-rose-500), var(--c-emerald-500));
+  --c-on-primary: light-dark(var(--c-white), var(--c-slate-050));
 }
 ```
 

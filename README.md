@@ -52,6 +52,13 @@ Press `Cmd+Shift+V` for markdown preview, or `Cmd+K P` for interactive mode.
 
 The [recipes/](./recipes/) folder contains **examples** of what's possible with Reactive MD — from simple components to self-contained project folders with local imports.
 
+Recipes use **three styling approaches** depending on the use case:
+- **Wireframe System** - Low-fidelity sketches for exploration
+- **Elementary System** - High-fidelity prototypes with theming
+- **Tailwind CSS** - Rapid prototyping with utilities
+
+See [recipes/design-systems/STYLING-GUIDE.md](./recipes/design-systems/STYLING-GUIDE.md) for the complete decision framework.
+
 ## Contributing
 
 We welcome contributions! Please see:

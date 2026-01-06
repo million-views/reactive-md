@@ -6,11 +6,41 @@
 
 Settings pages often have complex state management. These wireframes explore toggle patterns, form layouts, and save behaviors.
 
+```css live
+@import '../design-systems/wireframe/tokens.css';
+@import './wireframe.css';
+```
 ---
 ## Settings Panel
 
 ```jsx live
+function ToggleButton({ active, onToggle, label }) {
+  return (
+    <button
+      onClick={onToggle}
+      className={`wf-toggle ${active ? 'active' : ''}`}
+      aria-label={`Toggle ${label}`}
+    >
+      <span className="thumb" />
+    </button>
+  );
+}
 
+function SettingItem({ setting, onToggle }) {
+  return (
+    <li className="item">
+      <div className="info">
+        <div className="label">{setting.label}</div>
+        <div className="description">{setting.desc}</div>
+      </div>
+      <ToggleButton
+        active={setting.value}
+        onToggle={() => onToggle(setting.key)}
+        label={setting.label}
+      />
+    </li>
+  );
+}
 
 export default function SettingsPanel() {
   const [settings, setSettings] = React.useState({
@@ -37,50 +67,33 @@ export default function SettingsPanel() {
     { key: 'darkMode', label: 'Dark Mode', desc: 'Use dark theme across the app' },
     { key: 'autoSave', label: 'Auto-save', desc: 'Automatically save your work' },
     { key: 'twoFactor', label: 'Two-Factor Auth', desc: 'Extra security for your account' },
-  ];
+  ].map(s => ({ ...s, value: settings[s.key] }));
   
   return (
-    <div className="max-w-md mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
-      <div className="p-6 border-b">
-        <h2 className="text-xl font-bold">Settings</h2>
-      </div>
+    <section className="wf-settings">
+      <header className="header">
+        <h2 className="title">Settings</h2>
+      </header>
       
-      <div className="divide-y">
-        {settingsList.map((item) => (
-          <div key={item.key} className="p-4 flex items-center justify-between">
-            <div>
-              <div className="font-medium">{item.label}</div>
-              <div className="text-sm text-gray-500">{item.desc}</div>
-            </div>
-            <button
-              onClick={() => toggle(item.key)}
-              className={`w-12 h-6 rounded-full transition-colors ${
-                settings[item.key] ? 'bg-blue-600' : 'bg-gray-200'
-              }`}
-            >
-              <div
-                className={`w-5 h-5 bg-white rounded-full shadow transition-transform ${
-                  settings[item.key] ? 'translate-x-6' : 'translate-x-0.5'
-                }`}
-              />
-            </button>
-          </div>
+      <ul className="list">
+        {settingsList.map((setting) => (
+          <SettingItem
+            key={setting.key}
+            setting={setting}
+            onToggle={toggle}
+          />
         ))}
-      </div>
+      </ul>
       
-      <div className="p-4 bg-gray-50">
+      <footer className="footer">
         <button
           onClick={save}
-          className={`w-full py-2 rounded-lg font-medium transition-colors ${
-            saved
-              ? 'bg-green-600 text-white'
-              : 'bg-blue-600 text-white hover:bg-blue-700'
-          }`}
+          className="wf-btn action full"
         >
           {saved ? '✓ Saved!' : 'Save Changes'}
         </button>
-      </div>
-    </div>
+      </footer>
+    </section>
   );
 }
 ```

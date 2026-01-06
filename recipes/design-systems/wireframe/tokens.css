@@ -1,0 +1,194 @@
+/* ================================================== */
+/* WIREFRAME DESIGN SYSTEM                            */
+/* Low-fidelity aesthetic for sketching ideas         */
+/* Uses same token names as Material system           */
+/* Only VALUES differ to create wireframe aesthetic   */
+/* ================================================== */
+
+:root {
+  /* ============================================== */
+  /* PRIMITIVES (The Warehouse)                    */
+  /* ============================================== */
+  
+  /* --- COLOR (--c-) 050-950 --- */
+  --c-slate-050: #fafafa;
+  --c-slate-100: #f5f5f5;
+  --c-slate-200: #e5e5e5;
+  --c-slate-300: #d4d4d4;
+  --c-slate-400: #a3a3a3;
+  --c-slate-500: #737373;
+  --c-slate-600: #525252;
+  --c-slate-700: #404040;
+  --c-slate-800: #262626;
+  --c-slate-900: #171717;
+  --c-slate-950: #0a0a0a;
+
+  --c-blue-400:    #525252;
+  --c-blue-500:    #404040;
+  --c-emerald-400: #525252;
+  --c-emerald-500: #404040;
+  --c-violet-400:  #525252;
+  --c-violet-500:  #404040;
+
+  --c-white: #ffffff;
+  --c-black: #000000;
+
+  /* --- SPACE (--s-) 0-9 --- */
+  --s-0:  0;
+  --s-1:  0.25rem;    /* 4px */
+  --s-2:  0.5rem;     /* 8px */
+  --s-3:  0.75rem;    /* 12px */
+  --s-4:  1rem;       /* 16px */
+  --s-5:  1.25rem;    /* 20px */
+  --s-6:  1.5rem;     /* 24px */
+  --s-7:  1.75rem;    /* 28px */
+  --s-8:  2rem;       /* 32px */
+  --s-9:  2.25rem;    /* 36px */
+
+  /* --- RADIUS (--r-) 0-6 --- */
+  --r-0:  0;
+  --r-1:  2px;
+  --r-2:  4px;
+  --r-3:  6px;
+  --r-4:  8px;
+  --r-5:  12px;
+  --r-6:  16px;
+
+  /* --- BORDER (--b-) 0-4 --- */
+  --b-0: 0;
+  --b-1: 1px;
+  --b-2: 2px;
+  --b-3: 3px;
+  --b-4: 4px;
+
+  /* --- FONT (--f-) --- */
+  --f-sans: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace;
+  --f-mono: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace;
+  --f-400: 400;
+  --f-600: 600;
+  --f-700: 700;
+  --f-900: 900;
+
+  /* --- TYPOGRAPHY (--t-) 1-9 --- */
+  --t-1:  0.75rem;    /* 12px */
+  --t-2:  0.875rem;   /* 14px */
+  --t-3:  1rem;       /* 16px */
+  --t-4:  1.125rem;   /* 18px */
+  --t-5:  1.25rem;    /* 20px */
+  --t-6:  1.5rem;     /* 24px */
+  --t-7:  1.875rem;   /* 30px */
+  --t-8:  2.25rem;    /* 36px */
+  --t-9:  3rem;       /* 48px */
+
+  /* --- Z-INDEX (--z-) 0-6 --- */
+  --z-0: 0;
+  --z-1: 10;
+  --z-2: 20;
+  --z-3: 30;
+  --z-4: 40;
+  --z-5: 50;
+  --z-6: 60;
+
+  /* --- ANIMATION (--a-) --- */
+  --a-fast: 0.15s;
+  --a-base: 0.2s;
+  --a-slow: 0.5s;
+  --a-ease: ease;
+
+  /* --- OPACITY (--o-) 0-9 --- */
+  --o-0:  0;
+  --o-1:  0.1;
+  --o-2:  0.2;
+  --o-3:  0.3;
+  --o-4:  0.4;
+  --o-5:  0.5;
+  --o-6:  0.6;
+  --o-7:  0.7;
+  --o-8:  0.8;
+  --o-9:  0.9;
+
+  /* --- EFFECTS (--fx-) 0-5 --- */
+  --fx-0: none;
+  --fx-1: none;
+  --fx-2: none;
+  --fx-3: none;
+  --fx-4: none;
+  --fx-5: none;
+
+  /* ============================================== */
+  /* SEMANTICS (The Blueprint)                     */
+  /* ============================================== */
+
+  /* INTENT-BASED TOKENS (Computed/Theme-aware values) */
+  --c-primary: var(--c-slate-600);
+  --c-primary-hover: var(--c-slate-700);
+  --c-on-primary: var(--c-white);
+
+  --c-text: var(--c-slate-800);
+  --c-text-secondary: var(--c-slate-500);
+  --c-text-accent: var(--c-slate-600);
+  --c-muted: var(--c-slate-400);
+  --c-border-default: var(--c-slate-800);
+  --c-border-subtle: var(--c-slate-300);
+
+  --bg-app: var(--c-white);
+  --bg-surface: var(--c-slate-100);
+  --bg-hover: var(--c-slate-050);
+
+  --b-standard: var(--b-1) solid var(--c-slate-800);
+
+  --fx-primary-glow: none;
+
+  /* SIMPLE ALIASES (Direct mappings to numeric primitives) */
+  --fx-card-shadow: var(--fx-0);
+  --fx-glass: none;
+
+  --t-body:     var(--t-3);
+  --t-heading:  var(--t-7);
+  --f-body:     var(--f-sans);
+  --f-code:     var(--f-mono);
+  
+  /* Radius */
+  --r-btn:      var(--r-2);
+  --r-input:    var(--r-2);
+  --r-card:     var(--r-3);
+  
+  /* Borders */
+  --b-focus:    var(--b-2) solid var(--c-slate-600);
+  --b-subtle:   var(--b-1) solid var(--c-slate-300);
+  
+  /* Padding */
+  --p-card:     var(--s-8);
+  --p-btn:      var(--s-4);
+  --p-input:    var(--s-3);
+  
+  /* Gaps */
+  --g-standard: var(--s-2);
+  
+  /* Margins */
+  --m-stack:    var(--s-6);
+  --m-gutter:   var(--s-4);
+  
+  /* Layout */
+  --w-container: 1200px;
+  --w-sidebar:  280px;
+  --w-prose:    65ch;
+  --h-header:   64px;
+  --h-hero:     60vh;
+  --h-screen-dvh: 100dvh;
+  
+  /* Z-index */
+  --z-dropdown: var(--z-2);
+  --z-modal:    var(--z-5);
+  
+  /* Animation */
+  --a-hover:    var(--a-fast);
+  --a-dropdown: var(--a-base);
+  --a-modal:    var(--a-slow);
+  
+  /* Opacity */
+  --o-disabled:      var(--o-5);
+  --o-placeholder:   var(--o-5);
+  --o-overlay:       var(--o-9);
+  --o-hover-darken:  var(--o-1);
+}

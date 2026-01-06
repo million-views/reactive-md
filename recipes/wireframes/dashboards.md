@@ -6,12 +6,36 @@
 
 Dashboards are complex, data-heavy interfaces. Use these wireframes to explore layouts, chart placements, and information hierarchy.
 
+```css live
+@import '../design-systems/wireframe/tokens.css';
+@import './wireframe.css';
+```
+
 ---
 
 ## Dashboard Layout
 
 ```jsx live
+function NavItem({ item, isActive, onClick }) {
+  return (
+    <button
+      onClick={onClick}
+      className={`item ${isActive ? 'active' : ''}`}
+    >
+      <span>{item.icon}</span>
+      <span>{item.label}</span>
+    </button>
+  );
+}
 
+function MetricCard({ label, value }) {
+  return (
+    <article className="wf-card">
+      <div className="label">{label}</div>
+      <div className="value">{value}</div>
+    </article>
+  );
+}
 
 export default function DashboardLayout() {
   const [activeNav, setActiveNav] = React.useState('overview');
@@ -23,41 +47,36 @@ export default function DashboardLayout() {
     { id: 'settings', icon: '⚙️', label: 'Settings' },
   ];
   
+  const metrics = [
+    { label: 'Metric 1', value: Math.floor(Math.random() * 1000) },
+    { label: 'Metric 2', value: Math.floor(Math.random() * 1000) },
+    { label: 'Metric 3', value: Math.floor(Math.random() * 1000) },
+  ];
+  
   return (
-    <div className="flex h-[400px] bg-gray-100 rounded-xl overflow-hidden">
-      {/* Sidebar */}
-      <div className="w-48 bg-gray-900 text-white p-4">
-        <div className="font-bold mb-6">Dashboard</div>
-        <nav className="space-y-1">
+    <div className="wf-dashboard">
+      <aside className="sidebar">
+        <h2 className="title">Dashboard</h2>
+        <nav className="nav">
           {navItems.map((item) => (
-            <button
+            <NavItem
               key={item.id}
+              item={item}
+              isActive={activeNav === item.id}
               onClick={() => setActiveNav(item.id)}
-              className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${
-                activeNav === item.id
-                  ? 'bg-blue-600'
-                  : 'hover:bg-gray-800'
-              }`}
-            >
-              <span>{item.icon}</span>
-              <span>{item.label}</span>
-            </button>
+            />
           ))}
         </nav>
-      </div>
+      </aside>
       
-      {/* Main Content */}
-      <div className="flex-1 p-6">
-        <h1 className="text-2xl font-bold mb-4 capitalize">{activeNav}</h1>
-        <div className="grid grid-cols-3 gap-4">
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="bg-white rounded-lg p-4 shadow">
-              <div className="text-gray-500 text-sm">Metric {i}</div>
-              <div className="text-2xl font-bold">{Math.floor(Math.random() * 1000)}</div>
-            </div>
+      <main className="main">
+        <h1 className="heading">{activeNav}</h1>
+        <div className="wf-grid metrics">
+          {metrics.map((metric, i) => (
+            <MetricCard key={i} label={metric.label} value={metric.value} />
           ))}
         </div>
-      </div>
+      </main>
     </div>
   );
 }
@@ -66,6 +85,18 @@ export default function DashboardLayout() {
 ## Stat Cards
 
 ```jsx live
+function StatCard({ stat }) {
+  return (
+    <article className="wf-card">
+      <div className="label">{stat.label}</div>
+      <div className="value">{stat.value}</div>
+      <div className={`change ${stat.up ? 'positive' : ''}`}>
+        {stat.change} vs last month
+      </div>
+    </article>
+  );
+}
+
 const stats = [
   { label: 'Total Revenue', value: '$45,231', change: '+12.5%', up: true },
   { label: 'Active Users', value: '2,350', change: '+4.2%', up: true },
@@ -75,17 +106,11 @@ const stats = [
 
 export default function StatCards() {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <section className="wf-grid stats">
       {stats.map((stat) => (
-        <div key={stat.label} className="bg-white rounded-xl p-4 shadow-sm border">
-          <div className="text-gray-500 text-sm">{stat.label}</div>
-          <div className="text-2xl font-bold mt-1">{stat.value}</div>
-          <div className={`text-sm mt-2 ${stat.up ? 'text-green-600' : 'text-red-600'}`}>
-            {stat.change} vs last month
-          </div>
-        </div>
+        <StatCard key={stat.label} stat={stat} />
       ))}
-    </div>
+    </section>
   );
 }
 ```
