@@ -26,7 +26,7 @@
   border-radius: var(--r-card);
 
   /* Inherit global semantics */
-  font-family: var(--f-sans);
+  font-family: var(--ff-sans);
   color: var(--c-muted);
   background: var(--bg-app);
 
@@ -44,12 +44,12 @@
   /* Headings */
   & h2 {
     color: var(--c-text);
-    font-size: var(--t-7);
-    font-weight: var(--f-900);
+    font-size: var(--fs-7);
+    font-weight: var(--fw-900);
   }
 
   & > p {
-    font-size: var(--t-3);
+    font-size: var(--fs-3);
   }
 
   /* Main card */
@@ -57,9 +57,9 @@
     min-width: min(375px, 100%);
 
     background: var(--bg-bold-pricing-card);
-    backdrop-filter: var(--fx-glass);
+    backdrop-filter: var(--x-glass);
     border: var(--b-standard);
-    box-shadow: var(--fx-card-shadow);
+    box-shadow: var(--x-card-shadow);
     border-radius: var(--r-bold-pricing-card);
     padding: var(--p-bold-pricing-card);
     gap: var(--g-standard);
@@ -76,24 +76,24 @@
     & small {
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      font-size: var(--t-2);
+      font-size: var(--fs-2);
     }
 
     /* Price row */
     & .price-row {
-      font-size: var(--t-3);
+      font-size: var(--fs-3);
 
       & strong {
         color: var(--c-text);
-        font-size: var(--t-9);
-        font-weight: var(--f-900);
+        font-size: var(--fs-9);
+        font-weight: var(--fw-900);
       }
     }
 
     /* Highlight text */
     & .highlight {
       color: var(--c-primary);
-      font-weight: var(--f-600);
+      font-weight: var(--fw-600);
     }
 
     /* Features list */
@@ -111,7 +111,7 @@
         &::before {
           content: "✓";
           color: var(--c-primary);
-          font-weight: var(--f-600);
+          font-weight: var(--fw-600);
         }
       }
     }
@@ -127,8 +127,8 @@
 
       background: var(--c-primary);
       color: var(--c-on-primary);
-      font-weight: var(--f-700);
-      box-shadow: var(--fx-primary-glow);
+      font-weight: var(--fw-700);
+      box-shadow: var(--x-primary-glow);
 
       cursor: pointer;
       transition: background var(--a-base);
@@ -141,7 +141,7 @@
 
   /* Footer section */
   & footer {
-    font-size: var(--t-2);
+    font-size: var(--fs-2);
     font-style: italic;
 
     & > :first-child {

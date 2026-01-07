@@ -13,7 +13,7 @@ This design system uses "Ink & Paper" as the physical metaphor for context. Ever
 1. **Ink (`--c-`)**: The pigment. Anything that sits *on top* of a surface (Text, Icons, Borders).
 2. **Paper (`--bg-`)**: The surface. The substrate that holds the ink (Backgrounds, Cards, Layers).
 3. **Structure (`--s-`, `--w-`, `--g-`, ...)**: The physics. Dimensions, spacing, geometry, and layout.
-4. **Atmosphere (`--fx-`, `--a-`)**: The _feel_. Lighting, depth, and time.
+4. **Atmosphere (`--x-`, `--a-`)**: The _feel_. Lighting, depth, and time.
 
 ---
 
@@ -25,7 +25,7 @@ We strictly separate **what we have** (Primitives) from **how we use it** (Seman
 
 * **Analogy:** The supply depot containing raw building blocks.
 * **Scope:** Global (`:root`).
-* **Naming:** Strict **Numeric Scales** (e.g., `--s-4`, `--c-slate-500`, `--fx-2`).
+* **Naming:** Strict **Numeric Scales** (e.g., `--s-4`, `--c-slate-500`, `--x-2`).
 * **Purpose:** Unopinionated inventory. The warehouse doesn't care if you use a 2x4 for a wall or a floor.
 * **Rule:** Never use these directly in components if a Blueprint alias exists.
 
@@ -33,7 +33,7 @@ We strictly separate **what we have** (Primitives) from **how we use it** (Seman
 
 * **Analogy:** The architectural plans.
 * **Scope:** Global (`:root`).
-* **Naming:** **Intent-based** (e.g., `--p-card`, `--c-primary`, `--fx-card-shadow`).
+* **Naming:** **Intent-based** (e.g., `--p-card`, `--c-primary`, `--x-card-shadow`).
 * **Purpose:** Decisions. The architect looks at the warehouse and says, *"We will use Slate-500 for all secondary text."*
 * **Rule:** This is the layer you edit to change "Themes" (e.g., Dark Mode).
 
@@ -56,11 +56,12 @@ We strictly separate **what we have** (Primitives) from **how we use it** (Seman
 | **`--c-`** | **Color (Ink)** | Pigment | **050–950** | Solid colors (Lightness/Density). |
 | **`--bg-`** | **Background** | Paper | **Semantic** | Surface layers. |
 | **`--s-`** | **Space** | Ruler | **0–9** | Raw units (4px steps). |
-| **`--t-`** | **Typography** | Typesetting | **1–9** | Size scale (1 is smallest). |
-| **`--f-`** | **Font** | Typeface | **Numeric** | Families or Weights (100-900). |
+| **`--ff-`** | **Font Family** | Typeface | **Categorical** | Sans, serif, monospace. |
+| **`--fw-`** | **Font Weight** | Type density | **100–900** | Thin to black weights. |
+| **`--fs-`** | **Font Size** | Typesetting | **1–9** | Size + line-height pairs. |
 | **`--r-`** | **Radius** | Erosion | **0–6** | Corner roundness (0 is square). |
 | **`--b-`** | **Border** | Frame | **0–4** | Border Width. |
-| **`--fx-`** | **Effects** | Atmosphere | **0–5** | Shadows, Glows, Blurs. |
+| **`--x-`** | **Effects** | Atmosphere | **0–5** | Shadows, Glows, Blurs. |
 | **`--o-`** | **Opacity** | Transparency | **0–9** | Transparency/visibility level. |
 | **`--z-`** | **Z-Index** | Elevation | **0–6** | Layer stacking order. |
 | **`--a-`** | **Animation** | Time | **Semantic** | Durations and Easings. |
@@ -72,10 +73,10 @@ We strictly separate **what we have** (Primitives) from **how we use it** (Seman
 
 **Scale Logic Key:**
 - **`0–9`**: Complete numeric scale for measurable/quantifiable properties
-- **`1–9`**: Typography scale (starts at 1, no zero for readability)
+- **`1–9`**: Font size scale (starts at 1, no zero for readability)
 - **`050–950`**: Color luminance scale (specialized for contrast)
-- **`0–9`**: Opacity scale (0 is transparent, 9 is nearly opaque; fully opaque is default)
-- **`Numeric`**: Font weights (100-900) or other specialized scales
+- **`100–900`**: Font weight scale (thin to black)
+- **`Categorical`**: Font families (sans, serif, mono)
 - **`Semantic`**: Contextual values that don't follow numeric progression
 - **`Maps to --s-`**: Aliases that reference the space scale
 
@@ -90,14 +91,14 @@ We reserve `0` as a functional token to explicitly reset properties.
 * **`--s-0`**: `0px` (Use to remove padding/margin).
 * **`--r-0`**: `0px` (Use to square off corners).
 * **`--b-0`**: `0` (Use to remove borders).
-* **`--fx-0`**: `none` (Use to remove shadows/filters).
+* **`--x-0`**: `none` (Use to remove shadows/filters).
 
-### B. The Typography Exception
+### B. The Font Size Exception
 
-**`--t-0` does not exist.**
+**`--fs-0` does not exist.**
 
-* *Why:* There is no valid "neutral" font size. `0px` is invisible, `inherit` breaks the numeric scale, and `initial` resets to 16px (which is larger than `--t-1`).
-* *Rule:* The scale starts at `--t-1` (Smallest legible text).
+* *Why:* There is no valid "neutral" font size. `0px` is invisible, `inherit` breaks the numeric scale, and `initial` resets to 16px (which is larger than `--fs-1`).
+* *Rule:* The scale starts at `--fs-1` (Smallest legible text).
 
 ### C. Constraint vs. Consistency
 
@@ -107,7 +108,7 @@ We reserve `0` as a functional token to explicitly reset properties.
 
 * **Constraint Tokens (Local):** If you change this, only *this specific component* should change.
   * *Place in:* **Component CSS**
-  * *Examples:* Max Width of a card (`--w-max`), Font size of a specific price tag (`--t-9`).
+  * *Examples:* Max Width of a card (`--w-max`), Font size of a specific price tag (`--fs-9`).
 
 ---
 
@@ -176,7 +177,7 @@ Use this checklist when building new components:
 /* BAD: Over-specified for one element */
 .pricing {
   --c-pricing-subtitle: var(--c-muted);
-  --t-pricing-subtitle: var(--t-3);
+  --fs-pricing-subtitle: var(--fs-3);
   --p-pricing-subtitle: var(--s-2);
 }
 ```
@@ -184,7 +185,7 @@ Use this checklist when building new components:
 /* GOOD: Use global tokens directly */
 .pricing p {
   color: var(--c-muted);
-  font-size: var(--t-3);
+  font-size: var(--fs-3);
   padding: var(--s-2);
 }
 ```
@@ -213,7 +214,7 @@ Use this checklist when building new components:
 - Multiple components need this exact value
 - Value changes across themes (light/dark)
 - Represents intent ("primary action", "error state")
-- Example: `--c-danger`, `--p-section`, `--fx-elevated`
+- Example: `--c-danger`, `--p-section`, `--x-elevated`
 
 **Create a component property** if:
 - Only this component needs customization
@@ -222,9 +223,9 @@ Use this checklist when building new components:
 - Example: `--w-modal-max`, `--p-card-content`
 
 **Use existing tokens** if:
-- Typography for body text → `var(--t-3)`, `var(--c-text)`
+- Typography for body text → `var(--fs-3)`, `var(--c-text)`
 - Standard spacing → `var(--s-4)`, `var(--g-standard)`
-- Common effects → `var(--fx-card-shadow)`, `var(--r-btn)`
+- Common effects → `var(--x-card-shadow)`, `var(--r-btn)`
 
 ### Which Layer?
 
@@ -310,7 +311,7 @@ Primitives define the raw values. Semantics map them to intent.
 --g-standard: var(--s-2);
 ```
 
-### 3. Typography (`--t-`) — The Typesetter
+### 3. Font Size (`--fs-`) — The Typesetter
 
 **Physical Analogy:** The type cases in a traditional printing press. Each drawer contains a complete set of characters at a specific size, pre-configured with proper leading (line height) for optimal readability.
 
@@ -320,75 +321,91 @@ Primitives define the raw values. Semantics map them to intent.
 * UI labels and captions
 * Display text
 
-**Scale Logic (1–9):** Progressive size steps, **no zero** (see Typography Exception in Section 4B).
-* **Why no `--t-0`?** There's no valid "neutral" font size. 0px is invisible, and `inherit` breaks the scale.
+**Scale Logic (1–9):** Progressive size steps, **no zero** (see Font Size Exception in Section 4B).
+* **Why no `--fs-0`?** There's no valid "neutral" font size. 0px is invisible, and `inherit` breaks the scale.
 * **Modular scale:** Each step increases by approximately 1.2× the previous size.
 
 **The Scale:**
-* **`--t-1` (0.75rem/12px):** Utility. Captions, legal text, micro-labels.
-* **`--t-2` (0.875rem/14px):** Small text. Metadata, table data.
-* **`--t-3` (1rem/16px):** **Body Base.** The standard reading size.
-* **`--t-4` (1.125rem/18px):** Interface text. Emphasized body, button labels.
-* **`--t-5` (1.25rem/20px):** Large interface. Input labels, small headings.
-* **`--t-6` (1.5rem/24px):** Subheadings. Card titles, section headers.
-* **`--t-7` (1.875rem/30px):** Headings. Page sections, h2-level.
-* **`--t-8` (2.25rem/36px):** Display. Feature sections, h1-level.
-* **`--t-9` (3rem/48px):** Heroes. Page titles, major headings.
+* **`--fs-1` (0.75rem/12px):** Utility. Captions, legal text, micro-labels.
+* **`--fs-2` (0.875rem/14px):** Small text. Metadata, table data.
+* **`--fs-3` (1rem/16px):** **Body Base.** The standard reading size.
+* **`--fs-4` (1.125rem/18px):** Interface text. Emphasized body, button labels.
+* **`--fs-5` (1.25rem/20px):** Large interface. Input labels, small headings.
+* **`--fs-6` (1.5rem/24px):** Subheadings. Card titles, section headers.
+* **`--fs-7` (1.875rem/30px):** Headings. Page sections, h2-level.
+* **`--fs-8` (2.25rem/36px):** Display. Feature sections, h1-level.
+* **`--fs-9` (3rem/48px):** Heroes. Page titles, major headings.
 
 **Primitives:**
 ```css
---t-3: 1rem/1.5;    /* 16px */
---t-7: 1.875rem/1.2; /* 30px */
---t-9: 3rem/1.1;    /* 48px */
+--fs-3: 1rem/1.5;    /* 16px */
+--fs-7: 1.875rem/1.2; /* 30px */
+--fs-9: 3rem/1.1;    /* 48px */
 ```
 
 **Semantics:**
 ```css
---t-body: var(--t-3);
---t-heading: var(--t-7);
+--fs-body: var(--fs-3);
+--fs-heading: var(--fs-7);
 ```
 
-### 4. Font (`--f-`) — The Typeface
+### 4. Font Family (`--ff-`) — The Typeface
 
-**Physical Analogy:** Different physical typeface molds in a print shop. Each mold has a distinct personality (serif, sans-serif, monospace) and varying weights (thin to bold).
+**Physical Analogy:** Different physical typeface molds in a print shop. Each mold has a distinct personality (serif, sans-serif, monospace).
 
-**Category:** Font families and font weights.
+**Category:** Font family stacks.
 * Typeface families (sans, serif, mono)
-* Font weight values (100-900)
 
-**Scale Logic:** Dual system.
-* **Families:** Categorical (sans, serif, mono)
-* **Weights:** Numeric (100, 200, 300, 400, 500, 600, 700, 800, 900)
+**Scale Logic:** Categorical (named families).
 
 **The Scale:**
-
-**Font Families:**
-* **`--f-sans`:** Sans-serif. The workhorse for 99% of UI text.
-* **`--f-serif`:** Serif. Editorial content, formal headings, marketing.
-* **`--f-mono`:** Monospace. Code blocks, technical data, tabular numbers.
-
-**Font Weights:**
-* **`--f-100` to `--f-300`:** Thin to Light. Large display text only.
-* **`--f-400`:** Regular. Standard body text.
-* **`--f-500` to `--f-600`:** Medium to Semi-Bold. Emphasis, subheadings.
-* **`--f-700`:** Bold. Headings, strong emphasis.
-* **`--f-800` to `--f-900`:** Extra Bold to Black. Display headings, hero text.
+* **`--ff-sans`:** Sans-serif. The workhorse for 99% of UI text.
+* **`--ff-serif`:** Serif. Editorial content, formal headings, marketing.
+* **`--ff-mono`:** Monospace. Code blocks, technical data, tabular numbers.
 
 **Primitives:**
 ```css
---f-sans: system-ui, sans-serif;
---f-mono: 'Monaco', monospace;
---f-400: 400;
---f-700: 700;
+--ff-sans: system-ui, sans-serif;
+--ff-mono: 'Monaco', monospace;
 ```
 
 **Semantics:**
 ```css
---f-body: var(--f-sans);
---f-code: var(--f-mono);
+--ff-body: var(--ff-sans);
+--ff-code: var(--ff-mono);
 ```
 
-### 5. Radius (`--r-`) — The Erosion
+### 5. Font Weight (`--fw-`) — The Type Density
+
+**Physical Analogy:** Pressing down harder with a pen creates thicker, bolder strokes. Font weight is the visual thickness of letterforms.
+
+**Category:** Font weight values.
+* Text emphasis levels
+
+**Scale Logic:** Numeric (100-900).
+* **Standard weights**: 400 (regular), 700 (bold)
+* **Extended range**: 100 (thin) to 900 (black)
+
+**The Scale:**
+* **`--fw-100` to `--fw-300`:** Thin to Light. Large display text only.
+* **`--fw-400`:** Regular. Standard body text.
+* **`--fw-500` to `--fw-600`:** Medium to Semi-Bold. Emphasis, subheadings.
+* **`--fw-700`:** Bold. Headings, strong emphasis.
+* **`--fw-800` to `--fw-900`:** Extra Bold to Black. Display headings, hero text.
+
+**Primitives:**
+```css
+--fw-400: 400;
+--fw-700: 700;
+```
+
+**Semantics:**
+```css
+--fw-normal: var(--fw-400);
+--fw-bold: var(--fw-700);
+```
+
+### 6. Radius (`--r-`) — The Erosion
 
 **Physical Analogy:** Imagine water erosion smoothing the corners of a stone over time. `--r-0` is a freshly cut stone with sharp corners. Higher values represent more erosion, creating smoother, friendlier edges.
 
@@ -425,7 +442,7 @@ Primitives define the raw values. Semantics map them to intent.
 --r-card: var(--r-3);
 ```
 
-### 6. Border (`--b-`) — The Frame
+### 7. Border (`--b-`) — The Frame
 
 **Physical Analogy:** Picture frames of different thicknesses around a painting. Thin frames are subtle and don't compete with the content. Thick frames make a bold statement and demand attention.
 
@@ -460,9 +477,9 @@ Primitives define the raw values. Semantics map them to intent.
 --b-focus: var(--b-2);
 ```
 
-### 7. Effects (`--fx-`) — The Atmosphere
+### 8. Effects (`--x-`) — The Atmosphere
 
-**Physical Analogy:** Lighting in a theater. A spotlight creates shadows beneath elevated objects. The higher the object, the longer and softer the shadow. `--fx-0` is flat stage lighting (no shadows). Higher values are like raising an object on a pedestal under dramatic lighting.
+**Physical Analogy:** Lighting in a theater. A spotlight creates shadows beneath elevated objects. The higher the object, the longer and softer the shadow. `--x-0` is flat stage lighting (no shadows). Higher values are like raising an object on a pedestal under dramatic lighting.
 
 **Category:** Visual effects that suggest depth and hierarchy.
 * Box shadows (elevation)
@@ -476,26 +493,26 @@ Primitives define the raw values. Semantics map them to intent.
 * **Optical design:** Each level represents a distinct z-axis distance in a physical space metaphor.
 
 **The Scale:**
-* **`--fx-0` (none):** Flat. No shadow or effect. Modern, minimalist designs.
-* **`--fx-1` (subtle):** Barely elevated. Resting cards, default buttons (2-4px blur).
-* **`--fx-2` (moderate):** Clearly elevated. Dropdowns, tooltips, hover states (4-8px blur).
-* **`--fx-3` (significant):** Floating. Modals, sticky headers, drag states (8-16px blur).
-* **`--fx-4` (dramatic):** Prominently elevated. Notifications, active overlays (12-24px blur).
-* **`--fx-5` (maximum):** System-level. Full-screen dialogs, critical alerts (16-32px blur).
+* **`--x-0` (none):** Flat. No shadow or effect. Modern, minimalist designs.
+* **`--x-1` (subtle):** Barely elevated. Resting cards, default buttons (2-4px blur).
+* **`--x-2` (moderate):** Clearly elevated. Dropdowns, tooltips, hover states (4-8px blur).
+* **`--x-3` (significant):** Floating. Modals, sticky headers, drag states (8-16px blur).
+* **`--x-4` (dramatic):** Prominently elevated. Notifications, active overlays (12-24px blur).
+* **`--x-5` (maximum):** System-level. Full-screen dialogs, critical alerts (16-32px blur).
 
 **Primitives:**
 ```css
---fx-0: none;
---fx-2: 0 4px 12px oklch(0% 0 0 / 0.15);
+--x-0: none;
+--x-2: 0 4px 12px oklch(0% 0 0 / 0.15);
 ```
 
 **Semantics:**
 ```css
---fx-card-shadow: var(--fx-2);
---fx-glass: blur(10px);
+--x-card-shadow: var(--x-2);
+--x-glass: blur(10px);
 ```
 
-### 8. Background (`--bg-`) — The Paper
+### 9. Background (`--bg-`) — The Paper
 
 **Physical Analogy:** Different types of paper in a stationery shop. You have the base notebook paper, cardstock for cards, translucent vellum for overlays, and specialty papers for different purposes.
 
@@ -522,7 +539,7 @@ Primitives define the raw values. Semantics map them to intent.
 --bg-overlay: light-dark(oklch(0% 0 0 / 0.5), oklch(0% 0 0 / 0.7));
 ```
 
-### 9. Animation (`--a-`) — The Physics
+### 10. Animation (`--a-`) — The Physics
 
 **Physical Analogy:** The motion of objects in the real world. A light switch flips instantly (`--a-fast`), a door swings at normal speed (`--a-base`), and a heavy gate opens slowly (`--a-slow`). Natural motion has acceleration and deceleration—nothing moves at constant speed (linear motion feels robotic).
 
@@ -820,7 +837,7 @@ Override semantic tokens for global theming or component properties for specific
 
 /* Direct selector overrides for edge cases */
 .bold-pricing h2 {
-  font-size: var(--t-8);
+  font-size: var(--fs-8);
 }
 ```
 

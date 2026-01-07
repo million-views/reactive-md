@@ -65,24 +65,26 @@
   --b-3: 3px;
   --b-4: 4px;
 
-  /* --- FONT (--f-) --- */
-  --f-sans: system-ui, sans-serif;
-  --f-mono: 'Monaco', 'Courier New', monospace;
-  --f-400: 400;
-  --f-600: 600;
-  --f-700: 700;
-  --f-900: 900;
+  /* --- FONT FAMILY (--ff-) --- */
+  --ff-sans: system-ui, sans-serif;
+  --ff-mono: 'Monaco', 'Courier New', monospace;
 
-  /* --- TYPOGRAPHY (--t-) 1-9 --- */
-  --t-1:  0.75rem;    /* 12px */
-  --t-2:  0.875rem;   /* 14px */
-  --t-3:  1rem;       /* 16px */
-  --t-4:  1.125rem;   /* 18px */
-  --t-5:  1.25rem;    /* 20px */
-  --t-6:  1.5rem;     /* 24px */
-  --t-7:  1.875rem;   /* 30px */
-  --t-8:  2.25rem;    /* 36px */
-  --t-9:  3rem;       /* 48px */
+  /* --- FONT WEIGHT (--fw-) --- */
+  --fw-400: 400;
+  --fw-600: 600;
+  --fw-700: 700;
+  --fw-900: 900;
+
+  /* --- FONT SIZE (--fs-) 1-9 --- */
+  --fs-1:  0.75rem;    /* 12px */
+  --fs-2:  0.875rem;   /* 14px */
+  --fs-3:  1rem;       /* 16px */
+  --fs-4:  1.125rem;   /* 18px */
+  --fs-5:  1.25rem;    /* 20px */
+  --fs-6:  1.5rem;     /* 24px */
+  --fs-7:  1.875rem;   /* 30px */
+  --fs-8:  2.25rem;    /* 36px */
+  --fs-9:  3rem;       /* 48px */
 
   /* --- Z-INDEX (--z-) 0-6 --- */
   --z-0: 0;
@@ -111,25 +113,25 @@
   --o-8:  0.8;
   --o-9:  0.9;
 
-  /* --- EFFECTS (--fx-) 0-5 --- */
-  --fx-0: none;
-  --fx-1: 0 1px 2px 0 light-dark(
+  /* --- EFFECTS (--x-) 0-5 --- */
+  --x-0: none;
+  --x-1: 0 1px 2px 0 light-dark(
     oklch(from var(--c-black) l c h / 0.05),
     oklch(from var(--c-black) l c h / 0.2)
   );
-  --fx-2: 0 4px 6px -1px light-dark(
+  --x-2: 0 4px 6px -1px light-dark(
     oklch(from var(--c-slate-800) l c h / 0.1),
     oklch(from var(--c-black) l c h / 0.4)
   );
-  --fx-3: 0 10px 15px -3px light-dark(
+  --x-3: 0 10px 15px -3px light-dark(
     oklch(from var(--c-slate-800) l c h / 0.1),
     oklch(from var(--c-black) l c h / 0.5)
   );
-  --fx-4: 0 20px 25px -5px light-dark(
+  --x-4: 0 20px 25px -5px light-dark(
     oklch(from var(--c-slate-800) l c h / 0.15),
     oklch(from var(--c-black) l c h / 0.6)
   );
-  --fx-5: 0 25px 50px -12px light-dark(
+  --x-5: 0 25px 50px -12px light-dark(
     oklch(from var(--c-slate-800) l c h / 0.25),
     oklch(from var(--c-black) l c h / 0.7)
   );
@@ -165,16 +167,16 @@
     oklch(from var(--c-white) l c h / 0.1)
   );
 
-  --fx-primary-glow: 0 4px 6px -4px light-dark(transparent, var(--c-primary));
+  --x-primary-glow: 0 4px 6px -4px light-dark(transparent, var(--c-primary));
 
   /* SIMPLE ALIASES (Direct mappings to numeric primitives) */
-  --fx-card-shadow: var(--fx-2);
-  --fx-glass: blur(10px);
+  --x-card-shadow: var(--x-2);
+  --x-glass: blur(10px);
 
-  --t-body:     var(--t-3);
-  --t-heading:  var(--t-7);
-  --f-body:     var(--f-sans);
-  --f-code:     var(--f-mono);
+  --fs-body:     var(--fs-3);
+  --fs-heading:  var(--fs-7);
+  --ff-body:     var(--ff-sans);
+  --ff-code:     var(--ff-mono);
   
   /* Radius */
   --r-btn:      var(--r-2);
