@@ -118,9 +118,42 @@ export function Card({ title, children }) {
 }
 ```
 
+#### For Inline Markdown Live Fences
+````markdown
+<!-- ✅ Recommended: Wrap helpers in parent component -->
+```jsx live
+function Demo() {
+  function Button({ children, variant = 'primary' }) {
+    return <button className="btn">{children}</button>;
+  }
+  
+  return (
+    <div className="flex gap-4">
+      <Button variant="primary">Primary</Button>
+      <Button variant="secondary">Secondary</Button>
+    </div>
+  );
+}
+```
+
+<!-- ❌ Wrong: Helper function + top-level JSX (ambiguous entry point) -->
+```jsx live
+function Button({ children }) {
+  return <button>{children}</button>;
+}
+
+<div>
+  <Button>Click me</Button>
+</div>
+```
+````
+
+**Why?** Inline fences need a single clear entry point. When you have both a function definition and top-level JSX, the renderer doesn't know which to render. Wrapping everything in a parent component solves this.
+
 #### What to Avoid
 - **Mixed exports**: Don't combine `export default` with named exports in the same file
 - **Complex exports**: Avoid `export default memo(Component)` or conditional exports
+- **Ambiguous entry points**: Don't mix helper functions with top-level JSX in inline fences
 
 ## Data and Assets
 
