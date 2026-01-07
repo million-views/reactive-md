@@ -11,8 +11,6 @@ Great onboarding flows guide users through complex setup processes while keeping
 @import './wireframe.css';
 ```
 
----
-
 ## Multi-Step Wizard
 
 ```jsx live

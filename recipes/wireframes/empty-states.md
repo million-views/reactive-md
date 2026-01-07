@@ -97,7 +97,23 @@ export default function EmptyStateGallery() {
 ## Loading States
 
 ```jsx live
+function SkeletonCard() {
+  return (
+    <article className="wf-card">
+      <div className="wf-skeleton line title" />
+      <div className="wf-skeleton line label" />
+    </article>
+  );
+}
 
+function PersonCard({ name }) {
+  return (
+    <article className="wf-card">
+      <h4 className="title">{name}</h4>
+      <p className="label">Team Member</p>
+    </article>
+  );
+}
 
 export default function LoadingStates() {
   const [loading, setLoading] = React.useState(true);
@@ -107,46 +123,19 @@ export default function LoadingStates() {
     return () => clearInterval(timer);
   }, []);
   
+  const people = ['Alice', 'Bob', 'Carol'];
+  
   return (
-    <div className="space-y-4">
-      <div className="text-sm text-gray-500">
-        Auto-toggles every 3 seconds
-      </div>
+    <section>
+      <p className="description">Auto-toggles every 3 seconds</p>
       
-      {loading ? (
-        <div className="space-y-4">
-          {/* Skeleton Cards */}
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="bg-white rounded-lg p-4 shadow animate-pulse">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gray-200 rounded-full" />
-                <div className="flex-1 space-y-2">
-                  <div className="h-4 bg-gray-200 rounded w-3/4" />
-                  <div className="h-3 bg-gray-200 rounded w-1/2" />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="space-y-4">
-          {/* Loaded Cards */}
-          {['Alice', 'Bob', 'Carol'].map((name) => (
-            <div key={name} className="bg-white rounded-lg p-4 shadow">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center font-bold text-blue-600">
-                  {name[0]}
-                </div>
-                <div>
-                  <div className="font-medium">{name}</div>
-                  <div className="text-sm text-gray-500">Team Member</div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+      <ul className="wf-list">
+        {loading 
+          ? people.map((_, i) => <li key={i}><SkeletonCard /></li>)
+          : people.map((name) => <li key={name}><PersonCard name={name} /></li>)
+        }
+      </ul>
+    </section>
   );
 }
 ```

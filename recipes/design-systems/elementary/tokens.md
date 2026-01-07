@@ -51,6 +51,18 @@ We strictly separate **what we have** (Primitives) from **how we use it** (Seman
 
 *The classification system used to organize the Warehouse.*
 
+### Reading Component Custom Properties
+
+Component-level custom properties follow the pattern `--<property>-of-<element>`:
+- `--r-badge` = **radius of badge**
+- `--m-actions` = **margin of actions**  
+- `--fw-heading` = **font-weight of heading**
+- `--c-title` = **color of title**
+
+This pattern makes component customization intent immediately clear.
+
+### System Token Prefixes
+
 | Prefix | Category | Physical Analogy | Scale Logic | Meaning |
 | --- | --- | --- | --- | --- |
 | **`--c-`** | **Color (Ink)** | Pigment | **050–950** | Solid colors (Lightness/Density). |
@@ -59,6 +71,7 @@ We strictly separate **what we have** (Primitives) from **how we use it** (Seman
 | **`--ff-`** | **Font Family** | Typeface | **Categorical** | Sans, serif, monospace. |
 | **`--fw-`** | **Font Weight** | Type density | **100–900** | Thin to black weights. |
 | **`--fs-`** | **Font Size** | Typesetting | **1–9** | Size + line-height pairs. |
+| **`--t-`** | **Typography** | Complete font | **Semantic** | Font shorthand (weight + size + family). |
 | **`--r-`** | **Radius** | Erosion | **0–6** | Corner roundness (0 is square). |
 | **`--b-`** | **Border** | Frame | **0–4** | Border Width. |
 | **`--x-`** | **Effects** | Atmosphere | **0–5** | Shadows, Glows, Blurs. |
@@ -326,21 +339,21 @@ Primitives define the raw values. Semantics map them to intent.
 * **Modular scale:** Each step increases by approximately 1.2× the previous size.
 
 **The Scale:**
-* **`--fs-1` (0.75rem/12px):** Utility. Captions, legal text, micro-labels.
-* **`--fs-2` (0.875rem/14px):** Small text. Metadata, table data.
-* **`--fs-3` (1rem/16px):** **Body Base.** The standard reading size.
-* **`--fs-4` (1.125rem/18px):** Interface text. Emphasized body, button labels.
-* **`--fs-5` (1.25rem/20px):** Large interface. Input labels, small headings.
-* **`--fs-6` (1.5rem/24px):** Subheadings. Card titles, section headers.
-* **`--fs-7` (1.875rem/30px):** Headings. Page sections, h2-level.
-* **`--fs-8` (2.25rem/36px):** Display. Feature sections, h1-level.
-* **`--fs-9` (3rem/48px):** Heroes. Page titles, major headings.
+* **`--fs-1`:** 12px @ 1.5 line-height. Utility. Captions, legal text, micro-labels.
+* **`--fs-2`:** 14px @ 1.5 line-height. Small text. Metadata, table data.
+* **`--fs-3`:** 16px @ 1.5 line-height. **Body Base.** The standard reading size.
+* **`--fs-4`:** 18px @ 1.4 line-height. Interface text. Emphasized body, button labels.
+* **`--fs-5`:** 20px @ 1.4 line-height. Large interface. Input labels, small headings.
+* **`--fs-6`:** 24px @ 1.3 line-height. Subheadings. Card titles, section headers.
+* **`--fs-7`:** 30px @ 1.2 line-height. Headings. Page sections, h2-level.
+* **`--fs-8`:** 36px @ 1.2 line-height. Display. Feature sections, h1-level.
+* **`--fs-9`:** 48px @ 1.1 line-height. Heroes. Page titles, major headings.
 
 **Primitives:**
 ```css
---fs-3: 1rem/1.5;    /* 16px */
---fs-7: 1.875rem/1.2; /* 30px */
---fs-9: 3rem/1.1;    /* 48px */
+--fs-3: 1rem/1.5;
+--fs-7: 1.875rem/1.2;
+--fs-9: 3rem/1.1;
 ```
 
 **Semantics:**
@@ -405,7 +418,66 @@ Primitives define the raw values. Semantics map them to intent.
 --fw-bold: var(--fw-700);
 ```
 
-### 6. Radius (`--r-`) — The Erosion
+### 7. Typography (`--t-`) — Complete Font Declarations
+
+**Physical Analogy:** Pre-mixed paint colors. Instead of mixing your own pigments (weight + size + family), you grab a pre-configured can labeled "Body Text" or "Heading" that has the perfect combination already prepared.
+
+**Category:** Complete font shorthand declarations.
+* Ready-to-use typography presets
+* Component typography slots
+* Complete font specifications in one token
+
+**Scale Logic:** Semantic (intent-based, not numeric).
+* **Why semantic?** Typography presets represent design decisions, not measurable quantities.
+* **Composition:** Each `--t-*` token combines `font-weight`, `font-size/line-height`, and `font-family` using CSS font shorthand.
+
+**When to Use:**
+
+**Use `--t-*` (typography presets) when:**
+- Setting complete typography for an element: `font: var(--t-body)`
+- Creating component typography slots: `--t-title`, `--t-desc`
+- You want weight + size + family to change together
+- Simplifying component customization (one token controls all)
+
+**Use individual tokens (`--ff-`, `--fw-`, `--fs-`) when:**
+- Overriding only one aspect: `font-weight: var(--fw-700)`
+- Mixing different scales: `font-size: var(--fs-5); font-family: var(--ff-mono)`
+- Creating custom combinations not in presets
+- Fine-grained control needed
+
+**The Pattern:**
+```css
+/* System preset */
+--t-body: var(--fw-400) var(--fs-3) var(--ff-sans);
+
+/* Component slot */
+.card .title {
+  font: var(--t-title, var(--t-heading));
+}
+```
+
+**Built from these primitives:**
+```css
+--ff-sans: system-ui, sans-serif;
+--fw-400: 400;
+--fs-3: 1rem/1.5;
+```
+
+**Semantics:**
+```css
+/* Global typography presets */
+--t-body: var(--fw-400) var(--fs-3) var(--ff-sans);
+--t-heading: var(--fw-700) var(--fs-7) var(--ff-sans);
+--t-code: var(--fw-400) var(--fs-3) var(--ff-mono);
+
+/* Component-level typography slots */
+.hero {
+  --t-hero-title: var(--fw-900) var(--fs-9) var(--ff-sans);
+  --t-hero-subtitle: var(--fw-400) var(--fs-5) var(--ff-sans);
+}
+```
+
+### 7. Radius (`--r-`) — The Erosion
 
 **Physical Analogy:** Imagine water erosion smoothing the corners of a stone over time. `--r-0` is a freshly cut stone with sharp corners. Higher values represent more erosion, creating smoother, friendlier edges.
 
@@ -442,7 +514,7 @@ Primitives define the raw values. Semantics map them to intent.
 --r-card: var(--r-3);
 ```
 
-### 7. Border (`--b-`) — The Frame
+### 8. Border (`--b-`) — The Frame
 
 **Physical Analogy:** Picture frames of different thicknesses around a painting. Thin frames are subtle and don't compete with the content. Thick frames make a bold statement and demand attention.
 
@@ -477,7 +549,7 @@ Primitives define the raw values. Semantics map them to intent.
 --b-focus: var(--b-2);
 ```
 
-### 8. Effects (`--x-`) — The Atmosphere
+### 9. Effects (`--x-`) — The Atmosphere
 
 **Physical Analogy:** Lighting in a theater. A spotlight creates shadows beneath elevated objects. The higher the object, the longer and softer the shadow. `--x-0` is flat stage lighting (no shadows). Higher values are like raising an object on a pedestal under dramatic lighting.
 
@@ -512,7 +584,7 @@ Primitives define the raw values. Semantics map them to intent.
 --x-glass: blur(10px);
 ```
 
-### 9. Background (`--bg-`) — The Paper
+### 10. Background (`--bg-`) — The Paper
 
 **Physical Analogy:** Different types of paper in a stationery shop. You have the base notebook paper, cardstock for cards, translucent vellum for overlays, and specialty papers for different purposes.
 
@@ -832,7 +904,7 @@ Override semantic tokens for global theming or component properties for specific
 /* Component-specific customization */
 .bold-pricing {
   --w-bold-pricing-max: 800px;
-  --bg-bold-pricing-card: var(--c-slate-100);
+  --bg-bold-pricing-card: var(--c-slate-200);
 }
 
 /* Direct selector overrides for edge cases */

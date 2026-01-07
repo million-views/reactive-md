@@ -2,28 +2,26 @@
 
 /* Base Contextual Children - styled via custom properties */
 .title {
-  font-size: var(--t-title, var(--t-4));
-  font-weight: var(--f-title, 600);
+  font: var(--t-title, var(--t-body));
   margin-block-end: var(--m-title, var(--s-4));
   color: var(--c-title, inherit);
 }
 
 .description {
-  font-size: var(--t-desc, var(--t-3));
+  font: var(--t-desc, var(--t-body));
   color: var(--c-desc, var(--c-text-secondary));
   margin-block-end: var(--m-desc, 0);
   opacity: var(--o-desc, 1);
 }
 
 .label {
-  font-size: var(--t-label, var(--t-2));
-  font-weight: var(--f-label, 400);
+  font: var(--t-label, var(--t-body));
   color: var(--c-label, var(--c-text-secondary));
   margin-block-end: var(--m-label, 0);
 }
 
 .icon {
-  font-size: var(--t-icon, var(--t-5));
+  font: var(--t-icon, var(--t-body));
   margin-block-end: var(--m-icon, var(--s-4));
 }
 
@@ -33,7 +31,7 @@
   background-color: var(--bg-badge, var(--c-primary));
   color: var(--c-badge, var(--c-white));
   border-radius: var(--r-badge, var(--r-6));
-  font-size: var(--t-badge, var(--t-2));
+  font: var(--t-badge, var(--t-body));
   margin-block-end: var(--m-badge, var(--s-2));
 }
 
@@ -51,7 +49,7 @@
   padding: var(--p-card);
   border-radius: var(--r-card);
   text-align: center;
-  font-family: var(--f-body);
+  font-family: var(--ff-body);
 
   & .content {
     max-inline-size: var(--w-prose);
@@ -64,11 +62,11 @@
   }
 
   & .title {
-    --t-title: var(--t-6);
+    --t-title: var(--t-heading);
   }
 
   & .description {
-    --t-desc: var(--t-6);
+    --t-desc: var(--t-heading);
     --o-desc: var(--o-9);
     --m-desc: var(--s-6);
   }
@@ -80,7 +78,7 @@
   }
 
   & .footnote {
-    font-size: var(--t-2);
+    font: var(--t-body);
     opacity: var(--o-8);
   }
 }
@@ -89,11 +87,11 @@
 .wf-btn {
   padding: var(--p-btn);
   border-radius: var(--r-btn);
-  font-weight: var(--f-500);
+  font: var(--t-body);
   cursor: pointer;
   transition: background-color var(--a-fast);
   border: none;
-  font-family: var(--f-body);
+  margin-block-start: var(--btn-margin-block-start, 0);
 
   &.primary {
     background-color: var(--bg-surface);
@@ -135,7 +133,6 @@
   background-color: var(--bg-app);
   border-radius: var(--r-card);
   text-align: center;
-  font-family: var(--f-body);
 
   & .label {
     --m-label: var(--s-6);
@@ -150,7 +147,7 @@
     & .logo {
       padding: var(--s-2) var(--s-4);
       color: var(--c-text-secondary);
-      font-weight: var(--f-500);
+      font: var(--t-body);
     }
   }
 }
@@ -158,14 +155,13 @@
 /* Feature Section */
 .wf-features {
   padding: var(--s-8) 0;
-  font-family: var(--f-body);
 
   & .header {
     text-align: center;
     margin-block-end: var(--s-6);
 
     & .title {
-      --t-title: var(--t-6);
+      --t-title: var(--t-heading);
       --c-title: var(--c-text);
     }
 
@@ -176,10 +172,10 @@
   }
 
   & .wf-card {
-    text-align: center;
+    --card-text-align: center;
 
     & .icon {
-      --t-icon: var(--t-6);
+      --t-icon: var(--t-heading);
     }
 
     & .title {
@@ -188,7 +184,7 @@
     }
 
     & .description {
-      --t-desc: var(--t-2);
+      --t-desc: var(--t-body);
     }
   }
 }
@@ -200,7 +196,6 @@
   background-color: var(--bg-app);
   border-radius: var(--r-card);
   overflow: hidden;
-  font-family: var(--f-body);
 
   & .sidebar {
     min-inline-size: var(--w-sidebar);
@@ -223,7 +218,7 @@
         gap: var(--s-3);
         padding: var(--s-2) var(--s-3);
         border-radius: var(--r-btn);
-        font-size: var(--t-2);
+        font: var(--t-body);
         border: none;
         background-color: transparent;
         color: var(--c-white);
@@ -246,8 +241,7 @@
     padding: var(--p-card);
 
     & .heading {
-      font-size: var(--t-heading);
-      font-weight: var(--f-600);
+      font: var(--t-heading);
       margin-block-end: var(--s-4);
       text-transform: capitalize;
       color: var(--c-text);
@@ -260,17 +254,18 @@
   background-color: var(--bg-surface);
   border-radius: var(--r-card);
   padding: var(--p-card);
-  border: var(--b-subtle);
-  font-family: var(--f-body);
+  border: var(--b-card, var(--b-subtle));
+  text-align: var(--card-text-align, left);
+  display: var(--card-display, block);
+  flex-direction: var(--card-flex-direction, row);
 
   & .value {
-    font-size: var(--t-heading);
-    font-weight: var(--f-600);
+    font: var(--t-heading);
     color: var(--c-text);
   }
 
   & .change {
-    font-size: var(--t-2);
+    font: var(--t-body);
     margin-block-start: var(--s-2);
 
     &.positive {
@@ -284,39 +279,60 @@
   }
 
   & .description {
-    --t-desc: var(--t-2);
+    --t-desc: var(--t-body);
+  }
+}
+
+/* List Layouts */
+.wf-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--g-list, var(--s-4));
+
+  &.compact {
+    --g-list: var(--s-2);
+  }
+
+  &.comfortable {
+    --g-list: var(--s-6);
+  }
+
+  &.spacious {
+    --g-list: var(--s-8);
   }
 }
 
 /* Grid Layouts */
 .wf-grid {
   display: grid;
-  gap: var(--grid-gap, var(--s-6));
+  gap: var(--g-grid, var(--s-6));
   grid-template-columns: var(--grid-columns, repeat(3, 1fr));
 
   &.features {
     --grid-columns: repeat(3, 1fr);
-    --grid-gap: var(--s-6);
+    --g-grid: var(--s-6);
   }
 
   &.metrics {
     --grid-columns: repeat(3, 1fr);
-    --grid-gap: var(--s-4);
+    --g-grid: var(--s-4);
   }
 
   &.stats {
     --grid-columns: repeat(auto-fit, minmax(200px, 1fr));
-    --grid-gap: var(--s-4);
+    --g-grid: var(--s-4);
   }
 
   &.pricing {
     --grid-columns: repeat(3, 1fr);
-    --grid-gap: var(--s-6);
+    --g-grid: var(--s-6);
   }
 
   &.footer {
     --grid-columns: repeat(5, 1fr);
-    --grid-gap: var(--s-6);
+    --g-grid: var(--s-6);
   }
 }
 
@@ -331,7 +347,7 @@
     & .tab {
       padding: var(--s-1) var(--s-3);
       border-radius: var(--r-6);
-      font-size: var(--t-2);
+      font: var(--t-body);
       transition: background-color var(--a-fast), color var(--a-fast);
       border: none;
       cursor: pointer;
@@ -360,11 +376,11 @@
     border: var(--b-subtle);
 
     & .icon {
-      --t-icon: 4rem;
+      --t-icon: var(--t-heading);
     }
 
     & .title {
-      --t-title: var(--t-6);
+      --t-title: var(--t-heading);
       --m-title: var(--s-2);
       --c-title: var(--c-text);
     }
@@ -380,11 +396,53 @@
 
 /* Loading States */
 .wf-skeleton {
-  background-color: var(--bg-surface);
-  border-radius: var(--r-card);
-  padding: var(--p-card);
-  border: var(--b-subtle);
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  background-color: var(--c-slate-300);
+  animation: pulse var(--a-skeleton) infinite;
+  
+  &.card {
+    background-color: var(--bg-surface);
+    border-radius: var(--r-card);
+    padding: var(--p-card);
+    border: var(--b-subtle);
+  }
+  
+  &.line {
+    border-radius: var(--r-1);
+    block-size: var(--skeleton-line-height, 1em);
+    inline-size: var(--skeleton-line-width, 100%);
+    
+    &.title {
+      font: var(--t-title, var(--t-heading));
+      --skeleton-line-width: 40%;
+    }
+    
+    &.subtitle {
+      font: var(--t-desc, var(--t-body));
+      --skeleton-line-width: 60%;
+    }
+    
+    &.label {
+      font: var(--t-label, var(--t-body));
+      --skeleton-line-width: 50%;
+    }
+    
+    &.text {
+      font: var(--t-body);
+      --skeleton-line-width: 80%;
+    }
+  }
+  
+  &.circle {
+    border-radius: 50%;
+    inline-size: var(--skeleton-circle-size, var(--s-9));
+    block-size: var(--skeleton-circle-size, var(--s-9));
+  }
+  
+  &.block {
+    border-radius: var(--r-2);
+    block-size: var(--skeleton-block-height, var(--s-8));
+    inline-size: var(--skeleton-block-width, 100%);
+  }
 }
 
 @keyframes pulse {
@@ -396,7 +454,6 @@
 .wf-wizard {
   max-inline-size: calc(var(--s-8) * 16);
   margin: 0 auto;
-  font-family: var(--f-body);
   min-inline-size: fit-content;
 
   & .progress {
@@ -421,7 +478,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: var(--f-600);
+      font: var(--t-body);
       transition: all var(--a-fast);
 
       &.complete,
@@ -465,7 +522,7 @@
   }
 
   & .wf-card {
-    text-align: center;
+    --card-text-align: center;
 
     & .title {
       --t-title: var(--t-heading);
@@ -491,14 +548,13 @@
   border-radius: var(--r-card);
   border: var(--b-subtle);
   overflow: hidden;
-  font-family: var(--f-body);
 
   & .header {
     padding: var(--p-card);
     border-block-end: var(--b-subtle);
 
     & .title {
-      --t-title: var(--t-6);
+      --t-title: var(--t-heading);
       --c-title: var(--c-text);
       --m-title: var(--s-0);
     }
@@ -518,12 +574,12 @@
         flex: 1;
 
         & .label {
-          --f-label: var(--f-600);
+          --t-label: var(--t-body);
           --c-label: var(--c-text);
         }
 
         & .description {
-          --t-desc: var(--t-2);
+          --t-desc: var(--t-body);
         }
       }
     }
@@ -542,8 +598,7 @@
   position: relative;
   cursor: pointer;
   transition: background-color var(--a-fast), border-color var(--a-fast);
-  background-color: var(--bg-hover);
-  border: var(--b-2) solid var(--c-primary);
+  background-color: var(--c-muted);
   display: inline-block;
 
   & .thumb {
@@ -553,10 +608,11 @@
     border-radius: 50%;
     position: absolute;
     inset-block-start: 50%;
-    inset-inline-start: var(--b-2);
-    transform: translateY(-50%);
+    inset-inline-start: var(--s-0);
+    /* Optical centering: 4px offset compensates for shadow visual weight */
+    transform: translateX(var(--s-1)) translateY(-50%);
     transition: all var(--a-fast);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 1px 2px rgba(0,0,0,0.15);
+    box-shadow: var(--x-1);
   }
 
   &.active {
@@ -573,7 +629,6 @@
 .wf-pricing {
   padding: var(--s-8) 0;
   text-align: center;
-  font-family: var(--f-body);
 
   & .header {
     margin-block-end: var(--s-6);
@@ -588,27 +643,31 @@
     }
   }
 
-  & .toggle {
+  & .billing {
     display: flex;
     gap: var(--s-4);
     justify-content: center;
     align-items: center;
 
     & .label {
+      font: var(--t-body);
+      
       &.active {
-        font-weight: var(--f-500);
+        font-weight: var(--fw-500);
       }
     }
   }
 
   & .save-badge {
     color: var(--c-text-accent);
-    font-size: var(--t-2);
+    font: var(--t-body);
   }
 
   & .wf-card {
-    border: var(--b-standard);
-    text-align: center;
+    --b-card: var(--b-standard);
+    --card-text-align: center;
+    --card-display: flex;
+    --card-flex-direction: column;
 
     &.featured {
       border-color: var(--c-primary);
@@ -616,19 +675,18 @@
     }
 
     & .plan-name {
-      font-weight: var(--f-600);
+      font: var(--t-body);
       margin-block-end: var(--s-2);
       color: var(--c-text);
     }
 
     & .amount {
-      font-size: var(--t-6);
-      font-weight: var(--f-600);
+      font: var(--t-heading);
       margin-block-end: var(--s-2);
       color: var(--c-text);
 
       & .suffix {
-        font-size: var(--t-2);
+        font: var(--t-body);
         color: var(--c-text-secondary);
       }
     }
@@ -640,15 +698,20 @@
       display: flex;
       flex-direction: column;
       gap: var(--s-3);
+      flex: 1;
 
       & .feature {
-        font-size: var(--t-2);
+        font: var(--t-body);
         color: var(--c-text-secondary);
 
         & .checkmark {
           color: var(--c-text-accent);
         }
       }
+    }
+    
+    & .wf-btn {
+      --btn-margin-block-start: auto;
     }
   }
 }
@@ -660,10 +723,9 @@
   padding: var(--s-8);
   border-radius: var(--r-card);
   text-align: center;
-  font-family: var(--f-body);
 
   & .title {
-    --t-title: var(--t-6);
+    --t-title: var(--t-heading);
   }
 
   & .description {
@@ -695,19 +757,18 @@
   padding: var(--s-8) 0;
   background-color: var(--bg-app);
   border-block-start: var(--b-subtle);
-  font-family: var(--f-body);
 
   & .brand {
     grid-column: 1 / 3;
 
     & .name {
-      font-weight: var(--f-600);
+      font: var(--t-body);
       margin-block-end: var(--s-2);
       color: var(--c-text);
     }
 
     & .tagline {
-      font-size: var(--t-2);
+      font: var(--t-body);
       color: var(--c-text-secondary);
       margin-block-end: var(--s-4);
     }
@@ -727,7 +788,7 @@
     gap: var(--s-2);
 
     & .link {
-      font-size: var(--t-2);
+      font: var(--t-body);
       color: var(--c-text-secondary);
       cursor: pointer;
       transition: color var(--a-fast);
@@ -747,7 +808,7 @@
     margin: 0 auto;
 
     & .copyright {
-      font-size: var(--t-2);
+      font: var(--t-body);
       color: var(--c-text-secondary);
     }
   }

@@ -10,7 +10,6 @@ Settings pages often have complex state management. These wireframes explore tog
 @import '../design-systems/wireframe/tokens.css';
 @import './wireframe.css';
 ```
----
 ## Settings Panel
 
 ```jsx live

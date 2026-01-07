@@ -171,7 +171,7 @@ export default function PricingCards() {
       <header className="header">
         <h2 className="title">Simple, transparent pricing</h2>
         
-        <div className="toggle">
+        <div className="billing">
           <span className={`label ${!annual ? 'active' : ''}`}>Monthly</span>
           <button
             onClick={() => setAnnual(!annual)}

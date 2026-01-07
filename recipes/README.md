@@ -66,7 +66,7 @@ recipes/
 └── design-systems/                  # Design token systems
     ├── README.md                    # Styling strategy and decision framework
     ├── wireframe/                   # Low-fidelity sketch aesthetic
-    └── elementary/                  # Production design system
+    └── elementary/                  # High-fidelity design system
 ```
 
 ---
@@ -96,7 +96,7 @@ Recipes should:
 - **Tell a story** — context before code
 - **Be interactive** — click, hover, see state changes
 - **Use local imports** — keep components alongside the spec
-- **Choose the right styling approach** — Wireframe for exploration, Material for production, Tailwind for speed
+- **Choose the right styling approach** — Wireframe for exploration, Elementary for high-fidelity, Tailwind for speed
 - **Show real patterns** — things people actually build
 
 ---
