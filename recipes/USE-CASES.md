@@ -1,30 +1,5 @@
 # Reactive MD: Jobs To Be Done
 
-> **Philosophy**: This recipes collection helps you accomplish real work with Reactive MD - from rapid prototyping to polished documentation.
-
-## Table of Contents
-
-- [What Are These Recipes?](#what-are-these-recipes)
-- [Jobs You Can Accomplish](#jobs-you-can-accomplish)
-  - [Create Product Specifications](#1-create-product-specifications)
-  - [Design User Interfaces](#2-design-user-interfaces)
-  - [Document User Journeys](#3-document-user-journeys)
-  - [Prototype Features](#4-prototype-features)
-  - [Build Design Systems](#5-build-design-systems)
-  - [Write Technical Documentation](#6-write-technical-documentation)
-
----
-
-## What Are These Recipes?
-
-This collection provides **practical templates and examples** for using Reactive MD to accomplish real development and product work. Each recipe demonstrates how to leverage Reactive MD's instant component preview capabilities for specific jobs.
-
-**Why recipes?** Because Reactive MD isn't just a code viewer - it's a tool that helps you **get work done faster** by eliminating the context-switching between editor and browser.
-
----
-
-## Jobs You Can Accomplish
-
 ### 1. Create Product Specifications
 
 **The Job**: Define what to build and why it matters.
@@ -50,8 +25,8 @@ This collection provides **practical templates and examples** for using Reactive
 **How Reactive MD Helps**: Design interfaces with instant visual feedback, no build setup required.
 
 **Recipe Categories**:
-- **Wireframes** (`wireframes/`): Quick visual concepts for landing pages, dashboards, onboarding flows, settings pages, and empty states
-- **Design Patterns** (`design-patterns/`): Reusable UI patterns for navigation, data tables, modals, cards, and feedback states
+- **Design Systems** (`design-systems/use-cases/`): Quick wireframe visual concepts for landing pages, dashboards, onboarding flows, settings pages, and empty states
+- **UI Catalog** (`ui-catalog/`): Reusable UI patterns for navigation, data tables, modals, cards, and feedback states
 
 **Example Workflow**:
 1. Sketch wireframes with markdown and JSX
@@ -131,18 +106,8 @@ This collection provides **practical templates and examples** for using Reactive
 
 ## Getting Started
 
-1. **Browse the recipe categories** above to find templates for your current job
-2. **Open any `.md` file** in VS Code with Reactive MD installed
-3. **Use `Cmd+K P`** (Mac) or `Ctrl+K P` (Windows/Linux) to open Interactive Preview
-4. **Modify the JSX** in code fences to customize examples
-5. **See changes instantly** - no build step required
-
-## Contributing
-
-Found a recipe that could be improved? Missing a template for your job?
-
-- **Improve existing recipes**: Edit the markdown files directly
-- **Add new recipes**: Create new `.md` files in the appropriate category folder
-- **Report issues**: Open issues for broken examples or outdated content
-
-**All contributions welcome!** The goal is to build a comprehensive collection of practical templates that help developers accomplish real work with Reactive MD.
+1. Browse the recipe categories above to find templates for your current job
+2. Open any `.md` file in VS Code with Reactive MD installed
+3. Use `Cmd+K P` (Mac) or `Ctrl+K P` (Windows/Linux) to open Interactive Preview
+4. Modify the JSX in code fences to customize examples
+5. See changes instantly - no build step required

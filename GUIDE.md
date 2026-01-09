@@ -1,30 +1,12 @@
 # Reactive MD User Guide
 
-This guide helps you troubleshoot and optimize your experience with Reactive MD when components don't render as expected. It focuses on practical solutions for common issues and best practices for reliable previews.
-
-## Getting Started
-
-### Extension Settings
-
-Reactive MD offers several configuration options to customize your experience:
-
-- **`reactiveMd.debounceMs`** (default: 300ms): Controls live reload delay. Increase if updates feel too frequent.
-- **`reactiveMd.showCodeLens`** (default: true): Shows "▶ Preview" buttons above exported components.
-- **`reactiveMd.previewOverlay`** (default: "full"): Controls error card display ("full", "minimal", or "none").
-- **`reactiveMd.updateMode`** (default: "live"): Choose "live" for real-time updates or "on-save" for updates only when files are saved.
-
-Access settings via `Cmd+,` (Mac) or `Ctrl+,` (Windows/Linux) and search for "Reactive MD".
-
-### Preview Modes
-
-- **Markdown Preview** (`Cmd+Shift+V`): Fast, offline, shows initial component state
-- **Interactive Preview** (`Cmd+K P`): Full browser environment with live reload and external packages
+Practical solutions for common issues and best practices for reliable previews.
 
 ## Component Development
 
-### React Imports in JSX Files
+### React Imports
 
-**Do not import React explicitly** in `.jsx` or `.tsx` files - it's already globally available:
+**Do not import React explicitly** in `.jsx`, `.tsx` files, or `jsx live` markdown fences - it's already globally available:
 
 ```jsx
 // ❌ Wrong: Causes "React has already been declared" error
@@ -50,35 +32,26 @@ import { useState, useEffect } from 'react';
 
 export default function MyComponent() {
   const [count, setCount] = useState(0);
-  
+
   useEffect(() => {
     console.log('Component mounted');
   }, []);
-  
+
   return <div>Hello World</div>;
 }
 ```
 
-**Why?** Reactive MD uses JSX automatic mode, which provides React globally for JSX compilation. However, hooks and other React APIs are not automatically available and must be imported.
+**Why?** JSX automatic mode provides React globally, but hooks must be imported explicitly.
 
 ### Quick Diagnosis
 
-When a component shows an error card instead of rendering, check these common causes first:
+When components show error cards instead of rendering:
 
-#### 1. File Type and Extension
-- **Issue**: Only `.jsx` and `.tsx` files are supported
-- **Solution**: Rename `.js` files to `.jsx` or `.ts` to `.tsx`
-- **Why**: VS Code needs the extension to recognize JSX syntax
+**File Extension**: Only `.jsx` and `.tsx` files work (VS Code needs this to recognize JSX syntax)
 
-#### 2. Syntax Errors
-- **Issue**: Unclosed tags, missing brackets, or invalid JSX
-- **Solution**: Check VS Code's Problems panel (`View → Problems`) for syntax errors
-- **Tip**: Use the Interactive Preview (`Cmd+K P`) for detailed error messages
+**Syntax Errors**: Check the Problems panel (`View → Problems`), or use Interactive Preview (`Cmd+K P`) for detailed messages
 
-#### 3. Export Patterns
-- **Issue**: Complex or unsupported export structures
-- **Solution**: Use simple `export default function` or `export function` patterns
-- **Limitation**: Dynamic exports, conditional exports, or HOCs like `memo()` may not work
+**Export Patterns**: Use simple `export default function` or `export function`. Avoid `memo()`, conditional exports, or dynamic exports
 
 ### Component Structure Best Practices
 
@@ -126,7 +99,7 @@ function Demo() {
   function Button({ children, variant = 'primary' }) {
     return <button className="btn">{children}</button>;
   }
-  
+
   return (
     <div className="flex gap-4">
       <Button variant="primary">Primary</Button>
@@ -148,20 +121,18 @@ function Button({ children }) {
 ```
 ````
 
-**Why?** Inline fences need a single clear entry point. When you have both a function definition and top-level JSX, the renderer doesn't know which to render. Wrapping everything in a parent component solves this.
+**Why?** The renderer needs a single entry point. Wrapping helpers in a parent component avoids ambiguity.
 
 #### What to Avoid
-- **Mixed exports**: Don't combine `export default` with named exports in the same file
-- **Complex exports**: Avoid `export default memo(Component)` or conditional exports
-- **Ambiguous entry points**: Don't mix helper functions with top-level JSX in inline fences
+- Mixed `export default` with named exports in the same file
+- Complex exports: `export default memo(Component)` or conditional exports
+- Helper functions + top-level JSX in inline fences
 
-## Data and Assets
+## Data Files
 
-### Local Data Files
+### Local Files
 
-**Don't use `fetch()` for local files** - it doesn't work in either preview mode due to security restrictions.
-
-Instead, **use ES6 import statements**:
+**Don't use `fetch()` for local files** (security restrictions block it). Use import statements instead:
 
 ```jsx
 // ✅ Correct: Import local JSON
@@ -176,11 +147,11 @@ export default function MyComponent() {
 // ❌ Wrong: fetch() doesn't work
 export default function MyComponent() {
   const [data, setData] = useState(null);
-  
+
   useEffect(() => {
     fetch('./data.json').then(r => r.json()).then(setData);
   }, []);
-  
+
   return <div>{data?.items.map(item => <span>{item.name}</span>)}</div>;
 }
 ```
@@ -192,50 +163,139 @@ export default function MyComponent() {
 
 ## Package and Dependency Management
 
-### Always Available (Bundled)
-These packages work in both Markdown Preview and Interactive Preview:
+### Bundled (Both Preview Modes)
+`lucide-react`, `motion/react`, `dayjs`, `clsx`, `uuid`, `es-toolkit`
 
-- `lucide-react` - Icons
-- `motion/react` - Animations  
-- `dayjs` - Date formatting
-- `clsx` - Conditional classes
-- `uuid` - ID generation
-- `es-toolkit` - Utility functions
+### External (Interactive Preview Only)
+Require internet: `@heroicons/react`, `zustand`, `jotai`, `tailwind-merge`, `react-hook-form`
 
-### External Packages
-- **Markdown Preview**: Only bundled packages work
-- **Interactive Preview**: Most npm packages via CDN (requires internet), but some complex packages with transitive dependencies may not work
-- **Tip**: Switch to Interactive Preview (`Cmd+K P`) for external dependencies
+### Broken Packages
+`recharts`, `swr`, `@tanstack/react-query` - missing dependencies or React conflicts
 
-## VS Code Integration Notes
+## Styling and Design Systems
 
-### CSS Conflicts
-VS Code's markdown preview applies its own styles that can override yours:
+### Design System Imports
 
+**Component Library**: `reactive-md.css` (`.wf-card`, `.wf-hero`, `.wf-btn`)
+
+**Token Systems**: Swap tokens to change fidelity (low-fi wireframe vs high-fi polished):
+
+```css live
+/* Step 1: Import tokens (determines visual fidelity) */
+@import '../design-systems/wireframe/tokens.css';     /* Low-fi: monospace, grayscale */
+/* OR */
+@import '../design-systems/elementary/tokens.css';    /* High-fi: branded, polished */
+
+/* Step 2: Import components (work with ANY token system) */
+@import '../design-systems/reactive-md.css';          /* .wf-card, .wf-hero, etc. */
+```
+
+**For custom components using tokens directly**:
+
+```css live
+@import '../design-systems/elementary/tokens.css';
+
+.my-card {
+  background: var(--bg-surface);
+  color: var(--c-text);
+  padding: var(--p-card);
+}
+```
+
+**Key insight**: `reactive-md.css` is a component library, NOT a fidelity level. Tokens determine whether components look like sketches or polished designs.
+
+### CSS Cascade Issues
+
+#### VS Code Markdown Preview Conflicts
+VS Code's markdown preview applies default styles that override yours:
+
+**Problem areas**:
 - **Headings** (`h1-h6`): Default `font-weight: bold` ignores Tailwind's `font-light`
 - **Links** (`a`): Default blue color and underline
 - **Buttons**: Browser default borders
 
 **Solutions**:
-- Use `<div role="heading">` instead of `<h3>` for custom styling
-- Apply `style={{ fontWeight: 300 }}` for inline overrides
-- Test in Interactive Preview where VS Code styles don't apply
+```jsx
+// Option 1: Use semantic HTML with inline styles
+<div role="heading" style={{ fontWeight: 300 }}>Light Heading</div>
 
-## Performance and Reliability
+// Option 2: Test in Interactive Preview (no VS Code style conflicts)
+// Cmd+K P to open Interactive Preview
+```
 
-### Live Reload Settings
-- Adjust debounce timing in settings if updates feel slow
-- Default 300ms works for most users
+#### Tailwind + Custom CSS Mixing
+Avoid mixing Tailwind utilities with custom CSS on the same element:
+
+```jsx
+// ❌ Problematic: Class order may change, Tailwind overrides custom
+<div className="custom-card bg-blue-500 p-4">...</div>
+
+// ✅ Better: Use one system consistently
+<div className="wf-card">...</div>
+<div className="bg-blue-500 p-4 rounded-lg">...</div>
+```
+
+**Why**: Dynamic class order in development can cause Tailwind to override custom CSS unpredictably.
+
+## Platform APIs and Browser Features
+
+### Supported in Interactive Preview
+These browser APIs work in Interactive Preview (requires full browser environment):
+
+- `localStorage` / `sessionStorage`
+- `IntersectionObserver`
+- `ResizeObserver`
+- `Geolocation API`
+- `Clipboard API`
+
+### Limitations in Markdown Preview
+Markdown Preview uses static SSR rendering with limited browser APIs. Switch to Interactive Preview (`Cmd+K P`) for full platform API access.
+
+---
+
+## Performance
+
+### Live Reload
+Default debounce: 300ms. Increase via `reactiveMd.debounceMs` if updates feel too frequent.
+
+### Module-Level Side Effects
+Avoid side effects at module level (they run multiple times on hot reload):
+
+```jsx
+// ❌ Wrong: Runs on every hot reload
+console.log('Module loaded');
+const timestamp = Date.now();
+
+export default function Demo() { ... }
+```
+
+```jsx
+// ✅ Correct: Side effects in useEffect
+import { useEffect } from 'react';
+
+export default function Demo() {
+  useEffect(() => {
+    console.log('Component mounted');
+  }, []);
+}
+```
 
 ### Large Files
-- Very large JSX files may slow down parsing
-- Consider splitting into multiple components
-
-### State and Effects
-- Module-level code runs multiple times in multi-component files
-- Avoid side effects that shouldn't repeat
+Very large JSX files may slow parsing - consider splitting into multiple components.
 
 ## Troubleshooting
+
+### Quick Checklist
+
+1. ✅ File extension is `.jsx` or `.tsx`?
+2. ✅ Not importing React (`import React from 'react'`)?
+3. ✅ Using `import` not `fetch()` for local files?
+4. ✅ Simple export pattern (`export default function`)?
+5. ✅ Single entry point in inline fences?
+6. ✅ Check Output panel (`View → Output → "Reactive MD"`)?
+7. ✅ Try Interactive Preview (`Cmd+K P`) for detailed errors?
+
+**When in doubt**: Simplify to a basic component, then add complexity gradually.
 
 ### When Things Still Don't Work
 
@@ -247,15 +307,13 @@ VS Code's markdown preview applies its own styles that can override yours:
 
 ### Common Issues
 
-- **Blank screen**: Check Output panel for errors, ensure correct file extension
-- **CSS not applying**: Test in Interactive Preview, check for VS Code style conflicts
-- **Packages not loading**: Verify internet connection for Interactive Preview
-- **Slow updates**: Increase debounce delay in settings
+- **Blank screen**: Check Output panel, verify `.jsx`/`.tsx` extension
+- **CSS not applying**: Test in Interactive Preview (no VS Code style conflicts)
+- **Packages not loading**: Check internet connection (Interactive Preview only)
+- **Slow updates**: Increase `reactiveMd.debounceMs`
 
 ## Getting Help
 
-- **Documentation**: Check examples in the extension's recipes folder
-- **Issues**: Report bugs with minimal reproduction cases
-- **Community**: Share working patterns and solutions
+Check recipes folder for examples. Report bugs with minimal reproduction cases.
 
-Remember: Reactive MD works best with standard React patterns. When in doubt, simplify your code and build up complexity gradually.
+**Best practice**: Start simple, add complexity gradually.

@@ -7,17 +7,17 @@
 Great onboarding flows guide users through complex setup processes while keeping them engaged. These wireframes explore common patterns.
 
 ```css live
-@import '../design-systems/wireframe/tokens.css';
-@import './wireframe.css';
+@import '../wireframe/tokens.css';
+@import '../reactive-md.css';
 ```
 
 ## Multi-Step Wizard
 
 ```jsx live
 function StepIndicator({ step, currentStep, isLast }) {
-  const status = step.id < currentStep ? 'complete' : 
+  const status = step.id < currentStep ? 'complete' :
                  step.id === currentStep ? 'current' : 'pending';
-  
+
   return (
     <div className="step">
       <div className={`indicator ${status}`}>
@@ -35,7 +35,7 @@ function WizardContent({ step, isComplete, onNext, onBack, showBack }) {
     <article className="wf-card">
       <h2 className="title">{step.title}</h2>
       <p className="description">{step.description}</p>
-      
+
       {!isComplete ? (
         <>
           <div className="content">
@@ -73,10 +73,10 @@ const steps = [
 
 export default function OnboardingWizard() {
   const [currentStep, setCurrentStep] = React.useState(1);
-  
+
   const step = steps.find(s => s.id === currentStep);
   const isComplete = currentStep >= steps.length;
-  
+
   return (
     <div className="wf-wizard">
       <nav className="progress">
@@ -89,7 +89,7 @@ export default function OnboardingWizard() {
           />
         ))}
       </nav>
-      
+
       <WizardContent
         step={step}
         isComplete={isComplete}

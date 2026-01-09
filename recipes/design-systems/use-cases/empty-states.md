@@ -7,8 +7,8 @@
 Empty states are often overlooked but critical for user experience. These wireframes explore patterns for when there's no data, errors occur, or content is loading.
 
 ```css live
-@import '../design-systems/wireframe/tokens.css';
-@import './wireframe.css';
+@import '../wireframe/tokens.css';
+@import '../reactive-md.css';
 ```
 ---
 
@@ -72,9 +72,9 @@ const emptyStates = [
 
 export default function EmptyStateGallery() {
   const [active, setActive] = React.useState('no-data');
-  
+
   const state = emptyStates.find(s => s.id === active);
-  
+
   return (
     <section className="wf-empty-state">
       <nav className="selector">
@@ -87,7 +87,7 @@ export default function EmptyStateGallery() {
           />
         ))}
       </nav>
-      
+
       <StateDisplay state={state} />
     </section>
   );
@@ -117,20 +117,20 @@ function PersonCard({ name }) {
 
 export default function LoadingStates() {
   const [loading, setLoading] = React.useState(true);
-  
+
   React.useEffect(() => {
     const timer = setInterval(() => setLoading(l => !l), 3000);
     return () => clearInterval(timer);
   }, []);
-  
+
   const people = ['Alice', 'Bob', 'Carol'];
-  
+
   return (
     <section>
       <p className="description">Auto-toggles every 3 seconds</p>
-      
+
       <ul className="wf-list">
-        {loading 
+        {loading
           ? people.map((_, i) => <li key={i}><SkeletonCard /></li>)
           : people.map((name) => <li key={name}><PersonCard name={name} /></li>)
         }

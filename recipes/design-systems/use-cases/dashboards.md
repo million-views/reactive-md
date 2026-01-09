@@ -7,8 +7,8 @@
 Dashboards are complex, data-heavy interfaces. Use these wireframes to explore layouts, chart placements, and information hierarchy.
 
 ```css live
-@import '../design-systems/wireframe/tokens.css';
-@import './wireframe.css';
+@import '../wireframe/tokens.css';
+@import '../reactive-md.css';
 ```
 
 ---
@@ -39,20 +39,20 @@ function MetricCard({ label, value }) {
 
 export default function DashboardLayout() {
   const [activeNav, setActiveNav] = React.useState('overview');
-  
+
   const navItems = [
     { id: 'overview', icon: '📊', label: 'Overview' },
     { id: 'analytics', icon: '📈', label: 'Analytics' },
     { id: 'reports', icon: '📋', label: 'Reports' },
     { id: 'settings', icon: '⚙️', label: 'Settings' },
   ];
-  
+
   const metrics = [
     { label: 'Metric 1', value: Math.floor(Math.random() * 1000) },
     { label: 'Metric 2', value: Math.floor(Math.random() * 1000) },
     { label: 'Metric 3', value: Math.floor(Math.random() * 1000) },
   ];
-  
+
   return (
     <div className="wf-dashboard">
       <aside className="sidebar">
@@ -68,7 +68,7 @@ export default function DashboardLayout() {
           ))}
         </nav>
       </aside>
-      
+
       <main className="main">
         <h1 className="heading">{activeNav}</h1>
         <div className="wf-grid metrics">

@@ -18,9 +18,9 @@ No games. No "most popular" badges. No artificial scarcity. Just great software 
 ### The New Pricing Component
 
 ```jsx live
-const Container = 
+const Container =
   ({ children }) => <div className="bold-pricing">{children}</div>;
-const Card = 
+const Card =
   ({ children }) => <article>{children}</article>;
 
 export function BoldPricing() {
@@ -58,18 +58,18 @@ export function BoldPricing() {
 ```
 
 #### Design Tokens
-The base design tokens are defined in the Elementary Design System: [../../design-systems/elementary/tokens.css](../../design-systems/elementary/tokens.css). The component-specific styling is in [`bold-pricing.css`](../../design-systems/elementary/bold-pricing.css).
+The base [`design tokens`](../../elementary/tokens.css) are defined in the [`Elementary Design System`](../../elementary/tokens.md). The component-specific styling is in [`bold-pricing.css`](./bold-pricing.css).
 
 ```css live
-@import '../../design-systems/elementary/tokens.css';
-@import '../../design-systems/elementary/bold-pricing.css';
+@import '../../elementary/tokens.css';
+@import './bold-pricing.css';
 
 .bold-pricing {
   color-scheme: light ;
   /* INK */
   --c-text: light-dark(var(--c-slate-800), var(--c-slate-050));
   --c-muted: light-dark(var(--c-slate-500), var(--c-slate-400));
-  
+
   /* ACCENT */
   --c-primary: light-dark(var(--c-rose-400), var(--c-emerald-400));
   --c-primary-hover: light-dark(var(--c-rose-500), var(--c-emerald-500));

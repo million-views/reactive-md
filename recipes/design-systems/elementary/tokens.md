@@ -4,6 +4,11 @@
 
 > **Acknowledgment:** Elementary is inspired by the foundational principles of Google's Material Design, particularly the "ink and paper" metaphor. We're grateful for their pioneering work in design systems.
 
+**Quick Start:**
+- [Reactive-MD components](../reactive-md.css) - Complete component library (works with these tokens)
+- [Wireframe tokens](../wireframe/tokens.md) - Low-fidelity alternative to Elementary
+- [Use cases](../use-cases/) - Complete demonstrations
+
 ## 1. The Core Philosophy: "Ink & Paper"
 
 A good design system should eliminate ambiguity when naming or choosing variables; that alone is winning half the battle. The rest of the battle is in providing a frictionless context and utility.
@@ -55,7 +60,7 @@ We strictly separate **what we have** (Primitives) from **how we use it** (Seman
 
 Component-level custom properties follow the pattern `--<property>-of-<element>`:
 - `--r-badge` = **radius of badge**
-- `--m-actions` = **margin of actions**  
+- `--m-actions` = **margin of actions**
 - `--fw-heading` = **font-weight of heading**
 - `--c-title` = **color of title**
 
@@ -872,11 +877,11 @@ Components define customizable properties at the root level, following the prefi
   --w-bold-pricing-max: 600px;
   --p-bold-pricing: var(--s-8);
   --g-bold-pricing: var(--g-standard);
-  
+
   --bg-bold-pricing-card: var(--bg-surface);
   --p-bold-pricing-card: var(--p-card);
   --r-bold-pricing-card: var(--r-card);
-  
+
   --p-bold-pricing-btn: var(--p-btn);
   --r-bold-pricing-btn: var(--r-btn);
 }

@@ -4,9 +4,14 @@
 
 ---
 
+**Quick Start:**
+- [Reactive-MD components](../reactive-md.css) - Complete component library (works with these tokens)
+- [Elementary tokens](../elementary/tokens.md) - High-fidelity alternative to Wireframe
+- [Use cases](../use-cases/) - Complete demonstrations
+
 ## Philosophy: Identical Token Names, Low-Fidelity Values
 
-The Wireframe system uses **identical token names** as the [Elementary Design System](../elementary/tokens.md). Only the **values** differ—monospace fonts, flat grayscale colors, no shadows—to create a deliberate low-fidelity aesthetic.
+The Wireframe system uses **identical token names** as the [Elementary Design System](../elementary/tokens.md). Only the **values** differ—monospace fonts, flat grayscale colors to create a deliberate low-fidelity aesthetic.
 
 **Architecture**: See [Elementary Design System](../elementary/tokens.md) for complete architecture documentation. This document only covers **differences**.
 
@@ -84,76 +89,6 @@ The Wireframe system uses **identical token names** as the [Elementary Design Sy
 
 ---
 
-## Usage: Import Swapping
-
-Switch between systems by changing one line:
-
-```css live
-/* For wireframe sketches */
-@import '../wireframe/tokens.css';
-
-/* For polished UI */
-@import '../elementary/tokens.css';
-```
-
-All component code using semantic tokens (`--c-text`, `--bg-surface`, `--p-card`) works with both systems.
-
-## Component Architecture
-
-Wireframe components use **semantic HTML elements** with **CSS nesting** and **custom properties for customization**.
-
-### Pattern: Semantic Elements + Custom Properties
-
-```jsx live
-{/* Semantic HTML with wireframe component class */}
-<section className="wf-hero">
-  <span className="badge">New Feature</span>
-  <h1 className="title">Page Title</h1>
-  <p className="description">Supporting text that explains the feature.</p>
-</section>
-```
-
-```css live
-/* wireframe.css - Component definition */
-.wf-hero {
-  background-color: var(--c-text);
-  padding: var(--p-card);
-  
-  /* Nested contextual children */
-  & .title {
-    font-size: var(--t-title, var(--fs-6));
-    color: var(--c-title, var(--c-white));
-  }
-  
-  & .description {
-    font-size: var(--t-desc, var(--fs-3));
-    color: var(--c-desc, var(--c-text-secondary));
-  }
-}
-```
-
-### Customization via Custom Properties
-
-Override defaults by setting custom properties on the component:
-
-```jsx live
-<section className="wf-hero" style={{
-  '--t-title': 'var(--fs-8)',
-  '--c-title': 'var(--c-primary)'
-}}>
-  <h1 className="title">Larger Custom Title</h1>
-</section>
-```
-
-**Key principles:**
-- **Semantic HTML**: Use appropriate elements (`<section>`, `<article>`, `<h1>`, `<p>`)
-- **Component classes**: `.wf-hero`, `.wf-card`, `.wf-btn` describe component purpose
-- **CSS nesting**: Children styled within parent context
-- **Custom properties**: Component-level tokens for easy customization
-- **Sensible defaults**: Works without configuration, customizable when needed
-
----
-
 ## Design Principles
 
 1. **Structure Over Style**: Show architecture, not visual design
@@ -164,22 +99,7 @@ Override defaults by setting custom properties on the component:
 
 ---
 
-## When to Use
-
-**Use Wireframe System:**
-- Early layout exploration
-- Information architecture testing
-- Flow-focused user testing
-- Designer handoff (structure only)
-
-**Use Elementary System:**
-- High-fidelity prototypes
-- Brand demonstrations
-- Marketing page mockups
-- Polished UI explorations
-
-
-*See [Elementary Design System](../elementary/tokens.md) for complete token documentation.*
+*See [Elementary Design System](../elementary/tokens.md) for complete token documentation and [Design Systems README](../README.md) for system selection guidance.*
 
 ---
 

@@ -1,6 +1,25 @@
 # Reactive MD
 
-**Literate UI/UX for product teams** — preview React components instantly in VS Code.
+
+**Literate UI/UX for product teams.**
+
+## The Idea
+
+> *"Instead of imagining that our main task is to instruct a computer what to do, let us concentrate rather on explaining to human beings what we want a computer to do."*
+> — Donald Knuth, *Literate Programming* (1984)
+
+Knuth's insight was simple but radical: programs should be written for people first, machines second. This idea gave us Jupyter Notebooks for data science and Org mode for Emacs wizards.
+
+**Reactive MD brings literate programming to UI/UX.**
+
+Write product specs, wireframes, and user journeys with embedded, interactive React components. Unlike static mockups or separate prototyping tools, these documents let you **tell a story with working visuals** — prose and prototypes in one scrollable narrative.
+
+<figure>
+  <img src="./recipes/demo.gif" alt="Reactive MD Demo" />
+  <figcaption style="text-align: center"><b>Ideate, visualize, and collaborate all in one place</b></figcaption>
+</figure>
+
+
 
 ## Quick Links
 
@@ -33,8 +52,8 @@ code --install-extension million-views.reactive-md
 ## 🚀 Quick Start
 
 ### Option 1: JSX/TSX Files
-1. Open any `.jsx` or `.tsx` file  
-2. Press `Cmd+K P` (Mac) / `Ctrl+K P` (Windows/Linux)  
+1. Open any `.jsx` or `.tsx` file
+2. Press `Cmd+K P` (Mac) / `Ctrl+K P` (Windows/Linux)
 3. Start coding — preview updates live!
 
 ### Option 2: Markdown Code Fences
@@ -46,19 +65,27 @@ function Hello() {
 ```
 ~~~
 
-Press `Cmd+Shift+V` for markdown preview, or `Cmd+K P` for interactive mode.
+### Preview Modes
+- **Markdown Preview** (`Cmd+Shift+V`): Fast, offline, shows initial component state
+- **Interactive Preview** (`Cmd+K P`): Full browser environment with live reload and external packages
+
+
+## Configuration
+
+### Extension Settings
+
+- **`reactiveMd.debounceMs`** (default: 300ms): Controls live reload delay. Increase if updates feel too frequent.
+- **`reactiveMd.showCodeLens`** (default: true): Shows "▶ Preview" buttons above exported components.
+- **`reactiveMd.previewOverlay`** (default: "full"): Controls error card display ("full", "minimal", or "none").
+- **`reactiveMd.updateMode`** (default: "live"): Choose "live" for real-time updates or "on-save" for updates only when files are saved.
+
+Access settings via `Cmd+,` (Mac) or `Ctrl+,` (Windows/Linux) and search for "Reactive MD".
 
 ## Recipes
 
 The [recipes/](./recipes/) folder contains **examples** of what's possible with Reactive MD — from simple components to self-contained project folders with local imports.
 
 Recipes use **three styling approaches** (Wireframe, Elementary, Tailwind) depending on the use case. See [recipes/design-systems/README.md](./recipes/design-systems/README.md) for the complete styling guide.
-
-## Contributing
-
-We welcome contributions! Please see:
-- [recipes/](./recipes/) - Example templates and patterns
-- [Issues](https://github.com/million-views/reactive-md/issues) - Report bugs or request features
 
 ## License
 

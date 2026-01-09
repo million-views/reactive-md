@@ -3,8 +3,8 @@
 Quick visual concepts for common landing page sections.
 
 ```css live
-@import '../design-systems/wireframe/tokens.css';
-@import './wireframe.css';
+@import '../wireframe/tokens.css';
+@import '../reactive-md.css';
 ```
 
 ---
@@ -23,7 +23,7 @@ export default function HeroSection() {
           Build products faster with AI
         </h1>
         <p className="description">
-          The modern platform for product teams. Design, prototype, 
+          The modern platform for product teams. Design, prototype,
           and ship — all in one place.
         </p>
         <div className="actions">
@@ -54,7 +54,7 @@ const Logo = ({ name }) => (
 
 export default function SocialProof() {
   const logos = ['Acme Inc', 'TechCorp', 'StartupXYZ', 'Enterprise Co', 'ScaleUp'];
-  
+
   return (
     <section className="wf-social-proof">
       <p className="label">
@@ -94,7 +94,7 @@ export default function FeatureGrid() {
     { icon: '📊', title: 'Analytics Built-in', desc: 'Track performance without extra tools.' },
     { icon: '🌐', title: 'Global CDN', desc: 'Deploy to 300+ edge locations worldwide.' },
   ];
-  
+
   return (
     <section className="wf-features">
       <header className="header">
@@ -159,18 +159,18 @@ function PricingCard({ plan, onSelect }) {
 
 export default function PricingCards() {
   const [annual, setAnnual] = React.useState(false);
-  
+
   const plans = [
     { name: 'Starter', price: annual ? 9 : 12, features: ['5 projects', '1 user', 'Basic analytics'] },
     { name: 'Pro', price: annual ? 29 : 39, features: ['Unlimited projects', '5 users', 'Advanced analytics', 'Priority support'], popular: true },
     { name: 'Enterprise', price: 'Custom', features: ['Everything in Pro', 'Unlimited users', 'SSO', 'Dedicated support'] },
   ];
-  
+
   return (
     <section className="wf-pricing">
       <header className="header">
         <h2 className="title">Simple, transparent pricing</h2>
-        
+
         <div className="billing">
           <span className={`label ${!annual ? 'active' : ''}`}>Monthly</span>
           <button
@@ -183,7 +183,7 @@ export default function PricingCards() {
         </div>
         <span className="save-badge" style={{ visibility: annual ? 'hidden' : 'visible' }}>Save 20% with Annual</span>
       </header>
-      
+
       <div className="wf-grid pricing" style={{ maxWidth: 'var(--w-container)', margin: '0 auto' }}>
         {plans.map(plan => (
           <PricingCard
@@ -211,8 +211,8 @@ export default function CTASection() {
         Join thousands of teams already using our platform to build better products.
       </p>
       <form className="form">
-        <input 
-          type="email" 
+        <input
+          type="email"
           placeholder="Enter your email"
           className="input"
         />
@@ -252,7 +252,7 @@ export default function Footer() {
     { title: 'Resources', links: ['Documentation', 'API Reference', 'Guides', 'Community'] },
     { title: 'Legal', links: ['Privacy', 'Terms', 'Security', 'Cookies'] },
   ];
-  
+
   return (
     <footer className="wf-footer">
       <div className="wf-grid footer" style={{ maxWidth: 'var(--w-container)', margin: '0 auto var(--s-6)' }}>

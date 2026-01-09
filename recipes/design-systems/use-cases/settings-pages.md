@@ -7,8 +7,8 @@
 Settings pages often have complex state management. These wireframes explore toggle patterns, form layouts, and save behaviors.
 
 ```css live
-@import '../design-systems/wireframe/tokens.css';
-@import './wireframe.css';
+@import '../wireframe/tokens.css';
+@import '../reactive-md.css';
 ```
 ## Settings Panel
 
@@ -48,32 +48,32 @@ export default function SettingsPanel() {
     autoSave: true,
     twoFactor: false,
   });
-  
+
   const [saved, setSaved] = React.useState(false);
-  
+
   const toggle = (key) => {
     setSettings({ ...settings, [key]: !settings[key] });
     setSaved(false);
   };
-  
+
   const save = () => {
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
   };
-  
+
   const settingsList = [
     { key: 'notifications', label: 'Push Notifications', desc: 'Receive alerts about important updates' },
     { key: 'darkMode', label: 'Dark Mode', desc: 'Use dark theme across the app' },
     { key: 'autoSave', label: 'Auto-save', desc: 'Automatically save your work' },
     { key: 'twoFactor', label: 'Two-Factor Auth', desc: 'Extra security for your account' },
   ].map(s => ({ ...s, value: settings[s.key] }));
-  
+
   return (
     <section className="wf-settings">
       <header className="header">
         <h2 className="title">Settings</h2>
       </header>
-      
+
       <ul className="list">
         {settingsList.map((setting) => (
           <SettingItem
@@ -83,7 +83,7 @@ export default function SettingsPanel() {
           />
         ))}
       </ul>
-      
+
       <footer className="footer">
         <button
           onClick={save}
