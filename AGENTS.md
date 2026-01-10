@@ -74,7 +74,7 @@ git push
 ```
 
 ### Adding a New Recipe
-1. **Determine category**: Use `./recipes/use-cases.md` to find appropriate folder
+1. **Determine category**: Use `./use-cases.md` to find appropriate folder
 2. **Choose styling approach**: Consult `./recipes/design-systems/README.md` decision framework
 3. **Follow recipe patterns**: Reference similar recipes in the same category
 4. **Update use-cases.md**: Add your recipe to the index
@@ -214,7 +214,7 @@ Before committing:
 3. **Breaking token parity**: Changing token names without updating both systems
 4. **Wrong styling in wireframes**: Using Tailwind instead of `wireframe.css` in `./recipes/wireframes/`
 5. **Hardcoded values**: Not using design tokens when they exist
-6. **Forgetting to update index**: Adding recipe but not updating `./recipes/use-cases.md`
+6. **Forgetting to update index**: Adding recipe but not updating `./use-cases.md`
 
 ---
 

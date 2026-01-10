@@ -7,7 +7,7 @@
   > Define what to build and why it matters.
 
 **Workflow**:
-1. Browse `prd-templates/` or `case-studies/` for a starting point (or create a new markdown file)
+1. Browse `recipes/prd-templates/` or `recipes/case-studies/` for a starting point (or create a new markdown file)
 2. Add interactive wireframes using Reactive MD
 3. Include live component demos in your spec
 4. Get stakeholder feedback without leaving your editor
@@ -20,7 +20,7 @@
   > Create visual concepts and page layouts.
 
 **Workflow**:
-1. Browse `design-systems/use-cases/` for layout patterns (landing pages, dashboards, settings) or `ui-catalog/` for components
+1. Browse `recipes/design-systems/use-cases/` for layout patterns (landing pages, dashboards, settings) or `recipes/ui-catalog/` for components
 2. Preview layouts instantly with `Cmd+K P`
 3. Iterate on spacing, colors, and interactions
 4. Share clickable prototypes with your team
@@ -33,7 +33,7 @@
   > Map out complete user experiences and flows.
 
 **Workflow**:
-1. Start with templates from `user-journeys/` (signup, checkout, search-to-purchase, support)
+1. Start with templates from `recipes/user-journeys/` (signup, checkout, search-to-purchase, support)
 2. Add interactive steps with working components
 3. Test the flow end-to-end in Reactive MD
 4. Validate UX assumptions before development
@@ -46,7 +46,7 @@
   > Validate ideas and explore possibilities quickly.
 
 **Workflow**:
-1. Pick a feature template from `feature-concepts/` (notifications, dark mode, infinite scroll, drag-and-drop, real-time)
+1. Pick a feature template from `recipes/feature-concepts/` (notifications, dark mode, infinite scroll, drag-and-drop, real-time)
 2. Customize the interactive demo
 3. Test user interactions and edge cases
 4. Decide whether to build or iterate further
@@ -59,9 +59,9 @@
   > Create and maintain reusable component libraries.
 
 **Workflow**:
-1. Read `design-systems/README.md` for architectural inspiration (token contracts, theming patterns)
+1. Read `recipes/design-systems/README.md` for architectural inspiration (token contracts, theming patterns)
 2. Create your own design system with live token examples
-3. Prove it out by implementing use-cases or porting examples from `design-systems/use-cases/`
+3. Prove it out by implementing use-cases or porting examples from `recipes/design-systems/use-cases/`
 4. Document your system with interactive component demos
 
 *tags: component, library, design system, pattern*

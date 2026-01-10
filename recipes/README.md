@@ -1,6 +1,6 @@
 # Reactive MD Recipes
 
-Templates and examples for accomplishing real work with Reactive MD. See [use-cases.md](./use-cases.md) for the complete index.
+Templates and examples for accomplishing real work with Reactive MD. See [use-cases.md](../use-cases.md) for the complete index.
 
 ---
 
@@ -18,7 +18,7 @@ Templates and examples for accomplishing real work with Reactive MD. See [use-ca
 
 **Design Systems** (`design-systems/`) - Styling infrastructure with Elementary and Wireframe themes. See [design-systems/README.md](./design-systems/README.md) for complete guide.
 
-**Complete Index**: See [use-cases.md](./use-cases.md) for cross-category organization by job-to-be-done.
+**Complete Index**: See [use-cases.md](../use-cases.md) for cross-category organization by job-to-be-done.
 
 ---
 
@@ -78,3 +78,12 @@ Error states, empty states, loading states.
 ## Features Used in Recipes
 
 Recipes use local imports, CSS imports, npm packages (`motion`, `lucide-react`, `dayjs`), Tailwind utilities, and TypeScript where appropriate. All recipes render with `jsx live` fences and update instantly on edit.
+
+## Quality Standards
+
+All new recipes should follow established patterns:
+- **JTBD-Aligned**: Demonstrate features within realistic use cases
+- **Self-Contained**: Work independently with clear documentation
+- **Progressive**: Start simple, show advanced patterns
+- **Accessible**: Include ARIA labels and keyboard navigation
+- **Performant**: Efficient rendering, minimal re-renders

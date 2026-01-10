@@ -14,7 +14,7 @@ Knuth's insight was simple but radical: programs should be written for people fi
 Write product specs, wireframes, and user journeys with embedded, interactive React components. Unlike static mockups or separate prototyping tools, these documents let you **tell a story with working visuals** — prose and prototypes in one scrollable narrative.
 
 <figure>
-  <img src="./recipes/demo.gif" alt="Reactive MD Demo" />
+  <img src="./demo.gif" alt="Reactive MD Demo" />
   <figcaption style="text-align: center"><b>Ideate, visualize, and collaborate all in one place</b></figcaption>
 </figure>
 
