@@ -2,6 +2,18 @@
 
 All notable changes to Reactive MD will be documented here.
 
+## [1.0.8] - 2026-01-09
+
+### Documentation
+- **Styling Behavior**: Clarified that JSX components in Markdown Preview may have slightly different list and link styling compared to native markdown **only when using Tailwind CSS in live fences**
+  - **No issue** when using regular CSS in live fences or styling components in separate `.jsx` files
+  - **Workarounds**: Use regular CSS, or style components separately and import them, or use Interactive Preview mode (`Cmd+K P`) for exact visual matching
+  - Markdown Preview provides fast rendering with good-enough styling for most use cases
+
+### Fixed
+- **CSS Import Processing**: CSS @import statements inside comments are now properly ignored
+  - Prevents accidental processing of commented-out import statements in CSS live fences
+
 ## [1.0.7] - 2025-12-21
 
 ### Added
