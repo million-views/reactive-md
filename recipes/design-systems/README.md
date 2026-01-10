@@ -1,160 +1,91 @@
-# Design Systems
+# Design Systems for Reactive MD
 
-**How to style Reactive MD recipes** - Choose the right tool for the right job.
+**Match your styling approach to your design intent**
 
-This folder contains a modest css component stylesheet and design tokens for use with Reactive MD recipes.
+Reactive MD provides two styling approaches: **Elementary design system** (use tokens directly or with component library) or **Tailwind CSS** (utility classes). `Elementary` includes a `Wireframe` theme for low-fidelity work.
 
----
+## Philosophy
 
-## Quick Start: Token Swapping
+Good prototypes communicate intent clearly. A wireframe that looks "unfinished" signals "this is the structure, not the final design." A polished mockup signals "this is what we're building."
 
-The reactive-md component library ([reactive-md.css](./reactive-md.css)) works with both token systems. Switch fidelity by changing one import:
+**Elementary design system:**
+- **Token contract** defined in [elementary/tokens.md](./elementary/tokens.md) (`--c-primary`, `--s-3`, `--r-btn`, etc.)
+- **Two themes**: Elementary (polished) and Wireframe (low-fi) - same token names, different values
+- **Optional component library** ([reactive-md.css](./reactive-md.css)) that uses these tokens
 
-```css
-/* Step 1: Choose tokens (determines fidelity) */
-@import './wireframe/tokens.css';     /* Low-fi: monospace, grayscale */
-/* OR */
-@import './elementary/tokens.css';    /* High-fi: branded, polished */
+**Tailwind CSS:**
+- Completely separate utility-first system
+- Built into reactive-md (no imports needed)
+- No shared tokens with Elementary
 
-/* Step 2: Import components  */
-@import './reactive-md.css';
+**Critical: NEVER mix Elementary tokens with Tailwind utilities.** Pick one system and commit to it.
+
+## When to Use Each Approach
+
+### Elementary Design System
+
+Use Elementary tokens when you need themeable, reusable components. Choose a theme based on fidelity needs.
+
+#### Elementary Theme (Default)
+
+**Purpose:** Production-ready aesthetics with automatic light/dark mode.
+
+**Use when:**
+- Feature specs showing "this is what we're building"
+- Design system documentation with working examples
+- Polished prototypes for stakeholder demos
+- Dark mode support required
+
+**Implementation:**
+```css live
+@import '../design-systems/elementary/tokens.css';
+@import '../design-systems/reactive-md.css';  /* optional */
 ```
 
-**CRITICAL for Reactive MD recipes**: When using multiple `css live` blocks in the same markdown file, **the last token import wins** due to CSS cascade. This affects all rendered examples in the document.
+**Characteristics:**
+- Semantic color tokens that adapt to light/dark mode
+- Professional typography and spacing
+- Light/dark via `light-dark()` CSS function
 
+**See:** [elementary/tokens.md](./elementary/tokens.md)
+
+#### Wireframe Theme
+
+**Purpose:** Low-fidelity structural communication without implying visual design.
+
+**Use when:**
+- Exploring layout options quickly
+- Reviewing structure before committing to aesthetics
+- Creating mockups for user testing
+- Documenting "how it works" not "how it looks"
+
+**Implementation:**
 ```css live
-/* TRY IT: change `wireframe` to elementary below */
 @import '../design-systems/wireframe/tokens.css';
-@import '../design-systems/reactive-md.css';
+@import '../design-systems/reactive-md.css';  /* optional */
 ```
 
-## Approach to styling
+**Characteristics:**
+- Monospace typography ("sketch aesthetic")
+- Grayscale palette
+- No unnecessary shadows or polish
 
-Reactive MD (extension) supports any valid css for styling. Three styling approaches are made available out of the box, each optimized for different purposes:
+**See:** [wireframe/tokens.md](./wireframe/tokens.md)
 
-### 1. Wireframe Design System
+**Both themes use the same token names.** Swap the import to change fidelity.
 
-**Location**: `design-systems/wireframe/`
+### Tailwind v4
 
-**Use when**: Early exploration, low-fidelity mockups, structural communication
+**Purpose:** Move fast without Elementary's token contract.
 
-**Characteristics**:
-- Monospace typography ("sketch on paper" feel)
-- Flat grayscale palette (no brand colors)
-- Simple borders (no shadows or gradients)
-- Explicit labels (`[HERO]`, `[IMAGE]`, `[CTA]`)
-- Fast iteration over pixel-perfect design
+**Use when:**
+- Creating PRD templates or documentation
+- Building one-off examples
+- Speed matters more than reusability
 
-**Best for**:
-- Landing page layouts
-- Dashboard wireframes
-- Empty states and error screens
-- Onboarding flow structures
-- Settings page layouts
-
-**Example**:
-
+**Implementation:**
 ```jsx live
-export default function WireframeExample() {
-  return (
-    <div className="wf-hero">
-      <div className="content">
-        <span className="badge">[Hero Section]</span>
-        <h1 className="title">Product Title</h1>
-        <p className="description">Description text in monospace.</p>
-        <button className="wf-btn primary">Get Started</button>
-      </div>
-    </div>
-  );
-}
-```
-
-**Documentation**: See [wireframe/tokens.md](./wireframe/tokens.md)
-
----
-
-### 2. Elementary Design System
-
-**Location**: `recipes/design-systems/elementary/`
-
-**Use when**: High-fidelity prototypes, themeable demonstrations, brand exploration
-
-**Characteristics**:
-- "Ink & Paper" physical metaphor (inspired by Material Design)
-- 3-layer architecture (Primitives → Semantics → Components)
-- Dark mode support via semantic tokens
-- 16-prefix taxonomy for organization
-- Design decisions codified in system
-
-**Best for**:
-- Feature concept explorations with theming
-- UI catalog demonstrations
-- Product case study mockups
-- Brand exploration prototypes
-- Dark mode demonstrations
-
-**Example**:
-
-```css live
-.elementary-demo {
-  background-color: var(--bg-error);
-  color: var(--c-text);
-  padding: var(--p-card);
-  border-radius: var(--r-card);
-  box-shadow: var(--x-card-shadow);
-
-  & h2 {
-    margin-bottom: var(--m-stack);
-  }
-
-  & p {
-    color: var(--c-text-secondary);
-  }
-}
-```
-
-```jsx live
-/*
-  Workaround: Import tokens inside JSX to avoid global cascade issues.
-  TODO: Extension will prioritize JSX imports in future version.
-*/
-import '../design-systems/elementary/tokens.css';
-export default function ElementaryExample() {
-  return (
-    <div className="elementary-demo">
-      <h2>Themed Component</h2>
-      <p>Uses semantic tokens for consistent theming.</p>
-    </div>
-  );
-}
-```
-
-
-**Documentation**: See [elementary/tokens.md](./elementary/tokens.md)
-
----
-
-### 3. Tailwind CSS
-
-**Use when**: Rapid prototyping, one-off examples, documentation snippets
-
-**Characteristics**:
-- Utility-first inline classes
-- No abstraction overhead
-- Fast iteration without token management
-- Full Tailwind v4 support
-- Ideal for one-off demonstrations
-
-**Best for**:
-- PRD templates and documentation
-- User journey visualizations
-- Quick concept demonstrations
-- Examples that won't be reused
-- When speed matters more than consistency
-
-**Example**:
-```jsx live
-export default function TailwindExample() {
+function TailwindExample() {
   return (
     <div className="bg-white rounded-xl shadow-lg p-6">
       <h2 className="text-2xl font-bold mb-2">Quick Prototype</h2>
@@ -169,107 +100,165 @@ export default function TailwindExample() {
 }
 ```
 
-**Documentation**: Built into Reactive MD, no setup needed
+**Tailwind v4 is built into reactive-md.** No imports needed—just use utility classes.
 
-## Decision Framework
+**NEVER mix with Elementary.** Pick Elementary OR Tailwind.
 
-Use this flowchart to choose the right styling approach:
+## Using Elementary Tokens
 
+### With Component Library
+
+Import tokens + components, use the pre-built component classes:
+
+```css live
+@import '../design-systems/elementary/tokens.css';  /* or wireframe */
+@import '../design-systems/reactive-md.css';
 ```
-START: What are you building?
-│
-├─ Is this a wireframe or early-stage mockup?
-│  └─ YES → Use Wireframe Design System
-│
-├─ Does it need theming, branding, or dark mode?
-│  └─ YES → Use Elementary Design System
-│
-├─ Is this a demonstration pattern for stakeholder review?
-│  └─ YES → Use Elementary Design System
-│
-├─ Is this a one-time example or quick demo?
-│  └─ YES → Use Tailwind CSS
-│
-└─ Default: Use Elementary Design System
-```
-
-### Component Patterns
-
-The reactive-md component library uses **semantic children** and **custom properties for customization**:
 
 ```jsx live
-{/* Component with semantic children (no .wf- prefix) */}
-<section className="wf-hero">
-  <span className="badge">New</span>
-  <h1 className="title">Product Title</h1>
-  <p className="description">Supporting text</p>
+<section className="wf-card">
+  <span className="badge">New Feature</span>
+  <h2 className="title">Dashboard Analytics</h2>
+  <p className="description">
+    Real-time metrics tracking user engagement and conversion rates.
+  </p>
+  <div className="actions">
+    <button className="wf-btn action">Enable</button>
+    <button className="wf-btn secondary">Learn More</button>
+  </div>
 </section>
 ```
 
-**Customization via custom properties:**
+**Key components:** `.wf-hero`, `.wf-btn`, `.wf-card`, `.wf-features`, `.wf-grid`, and more
+**Common modifiers:** `.primary`, `.secondary`, `.action`, `.full`, and more
+
+**See [reactive-md.css](./reactive-md.css) for complete component catalog.**
+
+### Without Component Library (Recommended Pattern)
+
+Import tokens, define custom CSS classes using the token contract:
+
+```css live
+@import '../design-systems/elementary/tokens.css';  /* or wireframe */
+.notifications {
+  display: flex;
+  flex-direction: column;
+  gap: var(--g-standard);
+}
+.card {
+  background-color: var(--bg-surface);
+  border: var(--b-standard);
+  border-radius: var(--r-card);
+  padding: var(--p-card);
+  box-shadow: var(--x-card-shadow);
+
+  &.error {
+    background-color: var(--bg-error);
+    border-color: var(--c-error);
+
+    .title {
+      color: var(--c-text);
+    }
+  }
+
+  .title {
+    color: var(--c-text-secondary);
+    font: var(--t-heading);
+    margin-bottom: var(--m-stack);
+  }
+
+  .message {
+    color: var(--c-text-secondary);
+    font: var(--t-body);
+  }
+}
+```
 
 ```jsx live
-<section className="wf-hero" style={{
-  '--c-title': 'var(--c-primary)',  /* Custom title color */
-  '--m-title': 'var(--s-8)'         /* Custom title margin */
+function StatusNotification({ type, title, message }) {
+  return (
+    <article className={`card ${type}`}>
+      <h3 className="title">{title}</h3>
+      <p className="message">{message}</p>
+    </article>
+  );
+}
+
+export default function NotificationDemo() {
+  return (
+    <div className="notifications">
+      <StatusNotification
+        type="error"
+        title="Build Failed"
+        message="TypeScript compilation error in src/components/Button.tsx"
+      />
+      <StatusNotification
+        title="Deployment Successful"
+        message="Your changes are now live in production"
+      />
+    </div>
+  );
+}
+```
+
+**This pattern demonstrates:**
+- Modern CSS nesting (no preprocessor required)
+- Contextual modifiers (`.error` state changes child `.title` color)
+- Semantic tokens (`--c-text`, `--bg-error`) that convey meaning
+- Spacing scale (`--p-card`, `--m-stack`, `--g-standard`) for consistent rhythm
+- Typography tokens (`--t-heading`, `--t-body`) for hierarchy
+- Theme-aware colors that automatically adapt to light/dark mode
+- Same token names work with wireframe or elementary themes
+
+**Inline styles (escape hatch only):**
+
+Use for one-off customizations that don't warrant a CSS class:
+
+```jsx live
+<div style={{
+  padding: 'var(--s-4)',
+  backgroundColor: 'var(--bg-surface)',
+  borderRadius: 'var(--r-card)'
 }}>
-  <h1 className="title">Custom Styled Title</h1>
-</section>
+  Quick override
+</div>
 ```
 
-**Pattern**: Component classes use `.wf-*` prefix (`.wf-hero`, `.wf-card`), but semantic children (`.title`, `.description`, `.badge`) are unprefixed for natural HTML structure.
+**Prefer custom CSS classes.** Use inline styles sparingly.
 
-**See also:**
-- [reactive-md.css](./reactive-md.css) - A component library (`.wf-*` classes) designed for quick communication of ideas.
-- [Wireframe tokens](./wireframe/tokens.md) - Low-fidelity token values
-- [Elementary tokens](./elementary/tokens.md) - High-fidelity token values
-- [Use cases](./use-cases/) - Complete demonstrations
+**Token reference:** [elementary/tokens.md](./elementary/tokens.md)
 
----
+## Common Mistakes
 
-## Best Practices
+**Mixing Elementary with Tailwind:**
+```jsx
+/* ❌ DON'T: Tailwind utilities + Elementary tokens */
+<button className="px-4 bg-[var(--c-primary)]">Bad</button>
 
-### ✅ Do
+/* ✅ DO: Pick one system */
+<button className="wf-btn primary">Good (Elementary + components)</button>
+<button style={{ padding: 'var(--s-3)' }}>Good (Elementary tokens only)</button>
+<button className="px-4 bg-blue-600">Good (Tailwind)</button>
+```
 
-- **Choose one system per recipe** - Consistency within a document
-- **Import tokens at file top** - Once per markdown file
-- **Document your choice** - Add comment explaining system selection
-- **Test interactivity** - Systems shouldn't block state management
-- **Use semantic names** - Prefer `--c-text` over `#333333`
+**Using tokens in Tailwind arbitrary values:**
+```jsx
+/* ❌ DON'T */
+<div className="p-[var(--s-4)]">Bad</div>
 
-### ❌ Don't
+/* ✅ DO: Use inline styles for Elementary tokens */
+<div style={{ padding: 'var(--s-4)' }}>Good</div>
+```
 
-- **Mix aesthetics** - Don't combine wireframe monospace with Elementary shadows
-- **Override system fundamentals** - Don't add gradients to wireframe components
-- **Ignore the decision tree** - Follow the flowchart unless you have good reason
-- **Create one-off tokens** - Use system tokens or fall back to Tailwind
-- **Forget dark mode** - Test Elementary system components in both themes
+## Reference Documentation
 
----
-
-## When to Create a New System
-
-Consider creating a new design system when:
-
-1. **Existing systems don't fit** - Completely different aesthetic needed
-2. **Reuse across recipes** - Justify the abstraction overhead
-3. **Complex theming requirements** - Beyond Elementary's capabilities
-4. **Brand-specific work** - Client work with strict design guidelines
-
-**Don't create a new system for**:
-- One-off components (use Tailwind)
-- Minor tweaks (override Elementary tokens locally)
-- Exploration (use Wireframe)
-
-**Browse examples**: See [USE-CASES.md](../USE-CASES.md) for the complete recipe index organized by category.
-
-## Getting Help
-
-- **Wireframe questions**: See [wireframe/tokens.md](./wireframe/tokens.md)
-- **Elementary questions**: See [elementary/tokens.md](./elementary/tokens.md)
-- **Tailwind questions**: See [public/GUIDE.md](../../GUIDE.md)
-- **Can't decide?**: Follow the decision flowchart above
+- **[elementary/tokens.md](./elementary/tokens.md)** - Token contract (master reference)
+- **[elementary/tokens.css](./elementary/tokens.css)** - Token implementation (source)
+- **[wireframe/tokens.md](./wireframe/tokens.md)** - Wireframe theme documentation
+- **[wireframe/tokens.css](./wireframe/tokens.css)** - Wireframe theme implementation
+- **[reactive-md.css](./reactive-md.css)** - Component library source
+- **[use-cases/](./use-cases/)** - Complete examples
 
 ---
 
-*Last updated: January 2026*
+**Goal:** Use Elementary for reusable, themeable components. Use Tailwind for quick one-offs. Never mix them.

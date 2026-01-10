@@ -2,46 +2,29 @@
 
 Practical solutions for common issues and best practices for reliable previews.
 
+## About Code Examples
+
+Code blocks in this guide use different markers:
+
+- **`jsx live` / `css live`** - Executable examples that render in preview (try them!)
+- **`jsx` / `css`** - Reference patterns (syntax examples, won't execute)
+- **Markdown fences** - Literal markdown syntax (showing fence usage itself)
+
 ## Component Development
 
 ### React Imports
 
-**Do not import React explicitly** in `.jsx`, `.tsx` files, or `jsx live` markdown fences - it's already globally available:
+React is global - don't import it. Hooks must be imported:
 
-```jsx
-// ❌ Wrong: Causes "React has already been declared" error
-import React from 'react';
-
-export default function MyComponent() {
-  return <div>Hello World</div>;
-}
-```
-
-```jsx
-// ✅ Correct: React is automatically available
-export default function MyComponent() {
-  return <div>Hello World</div>;
-}
-```
-
-**However, React hooks and other APIs must be imported explicitly:**
-
-```jsx
-// ✅ Correct: Import hooks and other React APIs
+```jsx live
+// ✅ Correct pattern
 import { useState, useEffect } from 'react';
 
 export default function MyComponent() {
   const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    console.log('Component mounted');
-  }, []);
-
-  return <div>Hello World</div>;
+  return <div>Count: {count}</div>;
 }
 ```
-
-**Why?** JSX automatic mode provides React globally, but hooks must be imported explicitly.
 
 ### Quick Diagnosis
 
@@ -56,7 +39,7 @@ When components show error cards instead of rendering:
 ### Component Structure Best Practices
 
 #### For Single Components with Helpers
-```jsx
+```jsx live
 // ✅ Recommended: Helpers before or after main export
 import { useState } from 'react';
 
@@ -174,35 +157,24 @@ Require internet: `@heroicons/react`, `zustand`, `jotai`, `tailwind-merge`, `rea
 
 ## Styling and Design Systems
 
-### Design System Imports
+**Choose ONE system per recipe**:
 
-**Component Library**: `reactive-md.css` (`.wf-card`, `.wf-hero`, `.wf-btn`)
+- **Elementary design system** - Token-based with themes (see [design-systems/README.md](./recipes/design-systems/README.md))
+- **Tailwind CSS** - Utility-first, built into reactive-md
 
-**Token Systems**: Swap tokens to change fidelity (low-fi wireframe vs high-fi polished):
+**CRITICAL: NEVER mix Elementary tokens with Tailwind utilities.**
 
-```css live
-/* Step 1: Import tokens (determines visual fidelity) */
-@import '../design-systems/wireframe/tokens.css';     /* Low-fi: monospace, grayscale */
-/* OR */
-@import '../design-systems/elementary/tokens.css';    /* High-fi: branded, polished */
+```jsx
+// ❌ FORBIDDEN: Mixing systems
+<div className="px-4 bg-[var(--c-primary)]">Bad</div>
 
-/* Step 2: Import components (work with ANY token system) */
-@import '../design-systems/reactive-md.css';          /* .wf-card, .wf-hero, etc. */
+// ✅ Pick ONE system:
+<div className="wf-card">Elementary + components</div>
+<div style={{ padding: 'var(--s-3)' }}>Elementary tokens</div>
+<div className="bg-blue-500 p-4 rounded-lg">Tailwind</div>
 ```
 
-**For custom components using tokens directly**:
-
-```css live
-@import '../design-systems/elementary/tokens.css';
-
-.my-card {
-  background: var(--bg-surface);
-  color: var(--c-text);
-  padding: var(--p-card);
-}
-```
-
-**Key insight**: `reactive-md.css` is a component library, NOT a fidelity level. Tokens determine whether components look like sketches or polished designs.
+See [recipes/design-systems/README.md](./recipes/design-systems/README.md) for complete architecture, examples, and implementation patterns.
 
 ### CSS Cascade Issues
 
@@ -216,26 +188,12 @@ VS Code's markdown preview applies default styles that override yours:
 
 **Solutions**:
 ```jsx
-// Option 1: Use semantic HTML with inline styles
+// Option 1: Use div with role and inline styles (bypasses heading defaults)
 <div role="heading" style={{ fontWeight: 300 }}>Light Heading</div>
 
 // Option 2: Test in Interactive Preview (no VS Code style conflicts)
 // Cmd+K P to open Interactive Preview
 ```
-
-#### Tailwind + Custom CSS Mixing
-Avoid mixing Tailwind utilities with custom CSS on the same element:
-
-```jsx
-// ❌ Problematic: Class order may change, Tailwind overrides custom
-<div className="custom-card bg-blue-500 p-4">...</div>
-
-// ✅ Better: Use one system consistently
-<div className="wf-card">...</div>
-<div className="bg-blue-500 p-4 rounded-lg">...</div>
-```
-
-**Why**: Dynamic class order in development can cause Tailwind to override custom CSS unpredictably.
 
 ## Platform APIs and Browser Features
 
@@ -269,7 +227,7 @@ const timestamp = Date.now();
 export default function Demo() { ... }
 ```
 
-```jsx
+```jsx live
 // ✅ Correct: Side effects in useEffect
 import { useEffect } from 'react';
 
@@ -277,6 +235,8 @@ export default function Demo() {
   useEffect(() => {
     console.log('Component mounted');
   }, []);
+
+  return <div>Demo Component</div>;
 }
 ```
 

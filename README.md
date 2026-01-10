@@ -1,6 +1,5 @@
 # Reactive MD
 
-
 **Literate UI/UX for product teams.**
 
 ## The Idea
@@ -18,8 +17,6 @@ Write product specs, wireframes, and user journeys with embedded, interactive Re
   <img src="./recipes/demo.gif" alt="Reactive MD Demo" />
   <figcaption style="text-align: center"><b>Ideate, visualize, and collaborate all in one place</b></figcaption>
 </figure>
-
-
 
 ## Quick Links
 
@@ -84,8 +81,12 @@ Access settings via `Cmd+,` (Mac) or `Ctrl+,` (Windows/Linux) and search for "Re
 ## Recipes
 
 The [recipes/](./recipes/) folder contains **examples** of what's possible with Reactive MD — from simple components to self-contained project folders with local imports.
+  1. Open any `.md` file in VS Code with Reactive MD installed
+  2. Use `Cmd+K P` (Mac) or `Ctrl+K P` (Windows/Linux) to open Interactive Preview
+  3. Modify the JSX in code fences to customize examples
+  4. See changes instantly - no build step required
 
-Recipes use **three styling approaches** (Wireframe, Elementary, Tailwind) depending on the use case. See [recipes/design-systems/README.md](./recipes/design-systems/README.md) for the complete styling guide.
+Recipes use **Elementary design system** (with Wireframe or Elementary themes) or **Tailwind CSS** depending on the use case. See [recipes/design-systems/README.md](./recipes/design-systems/README.md) for the complete styling guide.
 
 ## License
 

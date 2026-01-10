@@ -1,50 +1,37 @@
 # Reactive MD Recipes
 
-Templates and examples for accomplishing real work with Reactive MD. See [USE-CASES.md](./USE-CASES.md) for the complete index.
+Templates and examples for accomplishing real work with Reactive MD. See [use-cases.md](./use-cases.md) for the complete index.
 
 ---
 
-## Directory Structure
+## Recipe Categories
 
-```
-recipes/
-├── README.md
-├── USE-CASES.md                     # Index of all use cases
-│
-├── prd-templates/                   # PRD structure templates
-│   ├── feature-spec.md
-│   ├── user-flow.md
-│   ├── a-b-test-proposal.md
-│   └── ...
-│
-├── user-journeys/                   # Multi-step narratives
-│   └── ...
-│
-├── feature-concepts/                # Specific feature ideas
-│   ├── notification-system/         # Folder with spec + components
-│   ├── dark-mode-toggle/
-│   └── ...
-│
-├── ui-catalog/                       # Reusable UI patterns
-│   ├── feedback-states.md
-│   └── ...
-│
-├── case-studies/                    # Complete mini-PRDs
-│   └── ...
-│
-└── design-systems/                  # Design token systems
-    ├── README.md                    # Styling strategy and decision framework
-    ├── wireframe/                   # Low-fidelity sketch aesthetic
-    └── elementary/                  # High-fidelity design system
-```
+**PRD Templates** (`prd-templates/`) - Structured templates for feature specs, user flows, competitive analysis, and A/B test proposals
+
+**User Journeys** (`user-journeys/`) - Multi-step user flows and narratives (signup, checkout, search-to-purchase, support tickets)
+
+**Feature Concepts** (`feature-concepts/`) - Interactive feature explorations with working demos (notifications, dark mode, infinite scroll, drag-and-drop)
+
+**UI Catalog** (`ui-catalog/`) - Reusable UI patterns and components (navigation, data tables, modals, cards, feedback states)
+
+**Case Studies** (`case-studies/`) - Complete mini-PRD examples showing full product concepts
+
+**Design Systems** (`design-systems/`) - Styling infrastructure with Elementary and Wireframe themes. See [design-systems/README.md](./design-systems/README.md) for complete guide.
+
+**Complete Index**: See [use-cases.md](./use-cases.md) for cross-category organization by job-to-be-done.
 
 ---
 
 ## Styling Strategy
 
-Recipes use one of three styling approaches: **Wireframe** (low-fidelity), **Elementary** (high-fidelity), or **Tailwind** (rapid prototyping).
+**Choose ONE approach per recipe:**
 
-**See [design-systems/README.md](./design-systems/README.md) for the complete styling guide, decision framework, and examples.**
+- **Elementary design system** - Token-based with two themes: **Wireframe** (low-fi) or **Elementary** (high-fi). Use tokens directly or with component library (reactive-md.css)
+- **Tailwind CSS** - Utility-first, built into reactive-md (no imports needed)
+
+**Critical: NEVER mix Elementary tokens with Tailwind utilities.**
+
+**See [design-systems/README.md](./design-systems/README.md) for the complete styling guide and examples.**
 
 ---
 
