@@ -898,7 +898,7 @@ Override semantic tokens for global theming or component properties for specific
 
 ```css live
 @import './tokens.css';
-@import './bold-pricing.css';
+@import '../use-cases/bold-pricing-manifesto/bold-pricing.css';
 
 /* Global theme changes */
 :root {
@@ -919,7 +919,7 @@ Override semantic tokens for global theming or component properties for specific
 ```
 
 ```tsx live
-import BoldPricing from './BoldPricing';
+import BoldPricing from '../use-cases/bold-pricing-manifesto/BoldPricing';
 
 export default function BoldPricingDemo() {
   return (
