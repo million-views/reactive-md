@@ -272,6 +272,55 @@ Very large JSX files may slow parsing - consider splitting into multiple compone
 - **Packages not loading**: Check internet connection (Interactive Preview only)
 - **Slow updates**: Increase `reactiveMd.debounceMs`
 
+## Writing Recipes
+
+### What Makes a Good Recipe?
+
+Each recipe is ideally a **self-contained folder** that demonstrates a use case:
+
+```
+notification-system/
+├── README.md           # Overview and context
+├── spec.md             # The interactive document
+├── Toast.jsx           # Local component
+├── NotificationBell.jsx
+└── styles.css          # Custom styles
+```
+
+Recipes should:
+- **Tell a story** — context before code (what problem, who experiences it, what's the journey)
+- **Be interactive** — click, hover, see state changes (not static screenshots)
+- **Document the why** — explain decisions, trade-offs, and what's still uncertain
+- **Use local imports** — keep components alongside the spec
+- **Choose the right styling approach** — Wireframe for exploration, Elementary for high-fidelity, Tailwind for speed
+
+**Recipe Template**:
+
+```markdown
+# Feature Name
+
+## Problem Statement
+What user problem does this solve?
+
+## Proposed Solution
+High-level description + interactive demos.
+
+## User Journey
+Step-by-step flow with embedded components.
+
+## Edge Cases
+Error states, empty states, loading states.
+```
+
+### Quality Standards
+
+All new recipes should follow established patterns:
+- **JTBD-Aligned**: Demonstrate features within realistic use cases
+- **Self-Contained**: Work independently with clear documentation
+- **Progressive**: Start simple, show advanced patterns
+- **Accessible**: Include ARIA labels and keyboard navigation
+- **Performant**: Efficient rendering, minimal re-renders
+
 ## Getting Help
 
 Check recipes folder for examples. Report bugs with minimal reproduction cases.

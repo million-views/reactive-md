@@ -88,7 +88,7 @@ git push
 **Recipe docs** (README files in ./recipes/ subdirectories):
 - Explain the job-to-be-done
 - Show how recipes solve real problems
-- Reference the philosophy in `./recipes/README.md`
+- Reference recipe philosophy in `./GUIDE.md` (Writing Recipes section)
 
 **Design system docs** (tokens.md files in ./recipes/design-systems/):
 - Document token naming conventions
@@ -134,7 +134,7 @@ git push
 ### 4. Recipe Documentation
 - Each recipe category has a README explaining the use case
 - Individual recipe files should be self-documenting with clear explanations
-- **./recipes/README.md** explains the overall philosophy
+- **./GUIDE.md** (Writing Recipes section) explains the overall philosophy
 
 ### 5. Changelog
 - **./CHANGELOG.md**: Document user-facing changes
@@ -223,7 +223,7 @@ Before committing:
 1. **For component patterns**: Search existing recipes in same category
 2. **For token questions**: Read `./recipes/design-systems/elementary/tokens.md` (the source of truth)
 3. **For styling decisions**: Follow flowchart in `./recipes/design-systems/README.md`
-4. **For recipe structure**: Review `./recipes/README.md` and `./recipes/CONTRIBUTING.md`
+4. **For recipe structure**: Review `./GUIDE.md` (Writing Recipes section) and `./recipes/CONTRIBUTING.md`
 5. **For user workflows**: Check `./GUIDE.md` for documented patterns
 
 ---
