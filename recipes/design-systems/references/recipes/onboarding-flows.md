@@ -7,8 +7,8 @@
 Great onboarding flows guide users through complex setup processes while keeping them engaged. These wireframes explore common patterns.
 
 ```css live
-@import '../wireframe/tokens.css';
-@import '../reactive-md.css';
+@import '../../assets/elementary/tokens/sketch.css';
+@import '../../assets/elementary/components.css';
 ```
 
 ## Multi-Step Wizard

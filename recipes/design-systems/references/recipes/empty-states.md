@@ -7,8 +7,8 @@
 Empty states are often overlooked but critical for user experience. These wireframes explore patterns for when there's no data, errors occur, or content is loading.
 
 ```css live
-@import '../wireframe/tokens.css';
-@import '../reactive-md.css';
+@import '../../assets/elementary/tokens/sketch.css';
+@import '../../assets/elementary/components.css';
 ```
 ---
 

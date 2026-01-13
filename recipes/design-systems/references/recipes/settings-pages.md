@@ -7,8 +7,8 @@
 Settings pages often have complex state management. These wireframes explore toggle patterns, form layouts, and save behaviors.
 
 ```css live
-@import '../wireframe/tokens.css';
-@import '../reactive-md.css';
+@import '../../assets/elementary/tokens/sketch.css';
+@import '../../assets/elementary/components.css';
 ```
 ## Settings Panel
 

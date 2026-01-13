@@ -67,6 +67,15 @@ function Hello() {
 - **Interactive Preview** (`Cmd+K P`): Full browser environment with live reload and external packages
 
 
+## Agent Skills
+
+AI agents can work more effectively with Reactive MD using available skills:
+
+- **reactive-md skill** — Specialized in creating functional markdown documents with embedded interactive React components for product specs, wireframes, and prototypes
+- **elementary skill** — Token-based design system expertise for themeable interfaces and design system compliance (includes Wireframe/Elementary themes and optional components)
+
+Both skills are available at [github.com/million-views/skills](https://github.com/million-views/skills) and provide domain-specific patterns, examples, and guardrails for working with this tool.
+
 ## Configuration
 
 ### Extension Settings

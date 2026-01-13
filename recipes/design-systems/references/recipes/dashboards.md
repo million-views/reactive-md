@@ -7,8 +7,8 @@
 Dashboards are complex, data-heavy interfaces. Use these wireframes to explore layouts, chart placements, and information hierarchy.
 
 ```css live
-@import '../wireframe/tokens.css';
-@import '../reactive-md.css';
+@import '../../assets/elementary/tokens/sketch.css';
+@import '../../assets/elementary/components.css';
 ```
 
 ---

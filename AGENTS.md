@@ -33,20 +33,25 @@
 - Categories: prd-templates, user-journeys, feature-concepts, ui-catalog, case-studies
 
 **Design Systems** (`./recipes/design-systems/`) - Styling infrastructure:
-- **README.md** - Master reference for styling decisions (frozen, authoritative)
-- **elementary/** - Token contract definition (master)
-  - `tokens.md` - Complete token taxonomy and philosophy
-  - `tokens.css` - Elementary theme implementation (polished, light/dark)
-- **wireframe/** - Wireframe theme (same token names, different values)
-  - `tokens.md` - Documents differences from Elementary theme
-  - `tokens.css` - Wireframe theme implementation (monospace, grayscale)
-- **reactive-md.css** - Optional component library (works with both themes)
+- **README.md** - Quick start and philosophy guide (user-facing)
+- **assets/elementary/** - Token implementations
+  - `tokens/polished.css` - Elementary theme (production-ready, light/dark)
+  - `tokens/sketch.css` - Wireframe theme (low-fidelity, monospace, grayscale)
+  - `components.css` - Optional component library (works with both themes)
+- **references/** - Complete documentation
+  - `token-system.md` - Complete token taxonomy and naming conventions
+  - `themes.md` - Theme documentation and comparison
+  - `components.md` - Component patterns and usage
+  - `recipes/` - Real-world examples and demonstrations
 
-**Critical Architecture**:
-- Elementary = token contract (master reference)
-- Wireframe & Elementary = themes (same token names, different values)
-- Token parity MUST be maintained across themes
-- Tailwind = separate system (built into reactive-md, no imports needed)
+**Critical Architecture (3 Layers)**:
+- **Layer 1 (Token Names)**: Defined in `references/token-system.md` - unchanging contract used by both themes
+- **Layer 2 (Theme Values)**: Implemented in `assets/elementary/tokens/` - Elementary and Wireframe are alternatives
+  - `polished.css` = production-ready theme values
+  - `sketch.css` = low-fidelity theme values
+  - Token NAMES are identical, VALUES differ
+- **Layer 3 (Components)**: Optional in `assets/elementary/components.css` - pre-built patterns
+- **Tailwind**: Separate system (built into reactive-md, no imports needed)
 
 ---
 
@@ -100,15 +105,15 @@ git push
 **Critical Rule**: Elementary and Wireframe design systems MUST have **identical token names**. Only values differ.
 
 **Where details live**:
-- Complete taxonomy: `./recipes/design-systems/elementary/tokens.md`
-- Wireframe differences: `./recipes/design-systems/wireframe/tokens.md`
+- Complete taxonomy: `./recipes/design-systems/references/token-system.md`
+- Theme differences: `./recipes/design-systems/references/themes.md`
 - Decision framework: `./recipes/design-systems/README.md`
 
 **When adding/changing tokens**:
-1. Update token in BOTH `./recipes/design-systems/elementary/tokens.css` AND `./recipes/design-systems/wireframe/tokens.css`
-2. Use different values, same names
-3. Document any new tokens in `./recipes/design-systems/elementary/tokens.md`
-4. Document wireframe differences in `./recipes/design-systems/wireframe/tokens.md` if applicable
+1. Update token VALUES in BOTH `./recipes/design-systems/assets/elementary/tokens/polished.css` AND `./recipes/design-systems/assets/elementary/tokens/sketch.css`
+2. Use different values, same token names
+3. Document any new tokens in `./recipes/design-systems/references/token-system.md`
+4. Document theme differences in `./recipes/design-systems/references/themes.md` if applicable
 
 ---
 
@@ -121,10 +126,10 @@ git push
 - Link to actual recipe files
 
 ### 2. Design System Documentation
-- **./recipes/design-systems/elementary/tokens.md**: Complete reference for all tokens
-- **./recipes/design-systems/wireframe/tokens.md**: Document differences, not repetition
-- **./recipes/design-systems/README.md**: Decision framework and comparisons
-- **Component documentation**: Document new components in recipe files where they're introduced
+- **./recipes/design-systems/references/token-system.md**: Complete reference for all token names and semantics
+- **./recipes/design-systems/references/themes.md**: Theme documentation and comparison (Elementary vs. Wireframe)
+- **./recipes/design-systems/README.md**: Decision framework and getting started
+- **./recipes/design-systems/references/recipes/**: Real-world examples demonstrating token usage
 
 ### 3. User Guides
 - **./README.md**: Keep concise, focus on "what is this?"
@@ -147,7 +152,7 @@ git push
 
 ### Design System Token Parity
 
-Both Elementary and Wireframe MUST have identical token **names**. See `design-systems/elementary/tokens.md` for complete list.
+Both Elementary (polished.css) and Wireframe (sketch.css) MUST have identical token **names**. See `./recipes/design-systems/references/token-system.md` for complete list.
 
 Example - same name, different values:
 ```css
@@ -179,7 +184,7 @@ What are you building?
 └─ Default                         → Elementary (Elementary theme)
 ```
 
-**See**: [recipes/design-systems/README.md](./recipes/design-systems/README.md) for complete guide.
+**See**: [Design Systems README](./recipes/design-systems/README.md) for complete guide.
 
 ### Component Architecture Principles
 
@@ -221,7 +226,7 @@ Before committing:
 ## Getting Unstuck
 
 1. **For component patterns**: Search existing recipes in same category
-2. **For token questions**: Read `./recipes/design-systems/elementary/tokens.md` (the source of truth)
+2. **For token questions**: Read `./recipes/design-systems/references/token-system.md` (the source of truth)
 3. **For styling decisions**: Follow flowchart in `./recipes/design-systems/README.md`
 4. **For recipe structure**: Review `./GUIDE.md` (Writing Recipes section) and `./recipes/CONTRIBUTING.md`
 5. **For user workflows**: Check `./GUIDE.md` for documented patterns

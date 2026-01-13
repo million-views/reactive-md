@@ -20,7 +20,7 @@
   > Create visual concepts and page layouts.
 
 **Workflow**:
-1. Browse `recipes/design-systems/use-cases/` for layout patterns (landing pages, dashboards, settings) or `recipes/ui-catalog/` for components
+1. Browse `recipes/design-systems/references/recipes/` for layout patterns (landing pages, dashboards, settings) or `recipes/ui-catalog/` for components
 2. Preview layouts instantly with `Cmd+K P`
 3. Iterate on spacing, colors, and interactions
 4. Share clickable prototypes with your team
@@ -61,7 +61,7 @@
 **Workflow**:
 1. Read `recipes/design-systems/README.md` for architectural inspiration (token contracts, theming patterns)
 2. Create your own design system with live token examples
-3. Prove it out by implementing use-cases or porting examples from `recipes/design-systems/use-cases/`
+3. Prove it out by implementing use-cases or porting examples from `recipes/design-systems/references/recipes/`
 4. Document your system with interactive component demos
 
 *tags: component, library, design system, pattern*

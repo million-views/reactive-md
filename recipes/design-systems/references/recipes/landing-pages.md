@@ -3,8 +3,8 @@
 Quick visual concepts for common landing page sections.
 
 ```css live
-@import '../wireframe/tokens.css';
-@import '../reactive-md.css';
+@import '../../assets/elementary/tokens/sketch.css';
+@import '../../assets/elementary/components.css';
 ```
 
 ---

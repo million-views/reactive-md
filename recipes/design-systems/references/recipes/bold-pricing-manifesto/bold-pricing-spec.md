@@ -58,10 +58,10 @@ export function BoldPricing() {
 ```
 
 #### Design Tokens
-The base [`design tokens`](../../elementary/tokens.css) are defined in the [`Elementary Design System`](../../elementary/tokens.md). The component-specific styling is in [`bold-pricing.css`](./bold-pricing.css).
+The base design tokens are defined in the [Elementary Design System](../../../references/token-system.md). The component-specific styling is in [bold-pricing.css](./bold-pricing.css).
 
 ```css live
-@import '../../elementary/tokens.css';
+@import '../../../assets/elementary/tokens/polished.css';
 @import './bold-pricing.css';
 
 .bold-pricing {

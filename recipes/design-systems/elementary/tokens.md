@@ -2,12 +2,20 @@
 
 **Version 1.0 (Construction Standard)**
 
+> **What This Document Contains:** This manual documents the **Elementary theme** — one **Layer 2** implementation of the Elementary design system.
+>
+> The token NAMES (Layer 1) defined here are used by BOTH the Elementary theme AND the Wireframe theme. Only the VALUES differ.
+>
+> **For complete architecture:** See [Design Systems Overview](../README.md)
+>
+> **To compare themes:** See [Themes documentation](../references/themes.md) for Wireframe and Elementary theme comparison.
+
 > **Acknowledgment:** Elementary is inspired by the foundational principles of Google's Material Design, particularly the "ink and paper" metaphor. We're grateful for their pioneering work in design systems.
 
 **Quick Start:**
-- [Reactive-MD components](../reactive-md.css) - Complete component library (works with these tokens)
-- [Wireframe tokens](../wireframe/tokens.md) - Low-fidelity alternative to Elementary
-- [Use cases](../use-cases/) - Complete demonstrations
+- [Reactive-MD components](../assets/elementary/components.css) - Complete component library (works with these tokens)
+- [Themes documentation](../references/themes.md) - How Wireframe theme differs from Elementary
+- [Real-world recipes](../references/recipes/) - Complete demonstrations and examples
 
 ## 1. The Core Philosophy: "Ink & Paper"
 
@@ -898,7 +906,7 @@ Override semantic tokens for global theming or component properties for specific
 
 ```css live
 @import './tokens.css';
-@import '../use-cases/bold-pricing-manifesto/bold-pricing.css';
+@import '../references/recipes/bold-pricing-manifesto/bold-pricing.css';
 
 /* Global theme changes */
 :root {
@@ -919,7 +927,7 @@ Override semantic tokens for global theming or component properties for specific
 ```
 
 ```tsx live
-import BoldPricing from '../use-cases/bold-pricing-manifesto/BoldPricing';
+import BoldPricing from '../references/recipes/bold-pricing-manifesto/BoldPricing';
 
 export default function BoldPricingDemo() {
   return (
