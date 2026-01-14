@@ -2,36 +2,66 @@
 
 **This is the contract**: Standardized CSS custom property names used across ALL themes.
 
+> **What This Document Contains:** The complete token naming system, architecture, philosophy, and practical usage guide. Token NAMES defined here are shared by all themes (Wireframe and Elementary). Only the VALUES differ.
+
 ## Core Philosophy: Ink & Paper
 
-Every property belongs to one of four categories:
+A good design system should eliminate ambiguity when naming or choosing variables; that alone is winning half the battle. The rest of the battle is in providing a frictionless context and utility.
 
-1. **Ink (`--c-`)**: The pigment. Anything *on top* of surfaces (text, icons, borders)
-2. **Paper (`--bg-`)**: The substrate. Surface layers that hold ink (backgrounds, cards)
-3. **Structure (`--s-`, `--r-`, `--b-`)**: The physics. Dimensions, spacing, geometry
-4. **Atmosphere (`--x-`, `--a-`)**: The feel. Lighting, depth, motion
+Every property belongs to one of four physical categories:
+
+1. **Ink (`--c-`)**: The pigment. Anything *on top* of a surface (Text, Icons, Borders)
+2. **Paper (`--bg-`)**: The substrate. The surface that holds the ink (Backgrounds, Cards, Layers)
+3. **Structure (`--s-`, `--w-`, `--g-`, ...)**: The physics. Dimensions, spacing, geometry, and layout
+4. **Atmosphere (`--x-`, `--a-`)**: The _feel_. Lighting, depth, and time
 
 **Rule**: When styling, ask "Is this ink or paper?"
 
-## Token Hierarchy
+## Three-Layer Architecture
 
-### Primitives (The Warehouse)
-Raw building blocks with numeric scales:
-- `--s-4` (spacing: 16px)
-- `--c-slate-500` (color: gray)
-- `--r-3` (radius: medium)
+We strictly separate **what we have** (Primitives) from **how we use it** (Semantics) from **where we apply it** (Components).
 
-**Usage**: Internal to theme files. Rarely used directly in components.
+### Layer 1: Primitives (The Warehouse)
 
-### Semantics (The Blueprint)
-Intent-based aliases that reference primitives:
-- `--c-primary` (maps to a primitive color)
-- `--bg-surface` (maps to a primitive background)
-- `--r-btn` (maps to a primitive radius)
+* **Analogy:** The supply depot containing raw building blocks.
+* **Scope:** Global (`:root`).
+* **Naming:** Strict **Numeric Scales** (e.g., `--s-4`, `--c-slate-500`, `--x-2`).
+* **Purpose:** Unopinionated inventory. The warehouse doesn't care if you use a 2x4 for a wall or a floor.
+* **Rule:** Never use these directly in components if a Blueprint alias exists.
+* **Examples:** `--s-4` (spacing: 16px), `--c-slate-500` (color: gray), `--r-3` (radius: medium)
 
-**Usage**: Use these in component code. This is what you customize for themes.
+### Layer 2: Semantics (The Blueprint)
 
-## Complete Token Taxonomy
+* **Analogy:** The architectural plans.
+* **Scope:** Global (`:root`).
+* **Naming:** **Intent-based** (e.g., `--p-card`, `--c-primary`, `--x-card-shadow`).
+* **Purpose:** Decisions. The architect looks at the warehouse and says, *"We will use Slate-500 for all secondary text."*
+* **Rule:** This is the layer you edit to change "Themes" (e.g., Dark Mode).
+* **Examples:** `--c-primary` (maps to a primitive color), `--bg-surface` (maps to a primitive background), `--r-btn` (maps to a primitive radius)
+* **Usage**: Use these in component code. This is what you customize for themes.
+
+### Layer 3: Components (The Construction)
+
+* **Analogy:** The actual building site.
+* **Scope:** Local (e.g., `.bold-pricing`).
+* **Naming:** Local constraints or direct consumption of Blueprints, following `--<property>-of-<element>` pattern.
+* **Purpose:** Assembling the UI using the plans.
+* **Rule:** Follow the Blueprint for consistency; use local measurements only for unique constraints.
+* **Examples:** `--r-badge` (radius of badge), `--p-card-content` (padding of card content)
+
+### The Prefix Taxonomy
+
+*The classification system used to organize the Warehouse.*
+
+#### Reading Component Custom Properties
+
+Component-level custom properties follow the pattern `--<property>-of-<element>`:
+- `--r-badge` = **radius of badge**
+- `--m-actions` = **margin of actions**
+- `--fw-heading` = **font-weight of heading**
+- `--c-title` = **color of title**
+
+This pattern makes component customization intent immediately clear.
 
 | Prefix | Category | Scale Logic | Examples |
 |--------|----------|-------------|----------|
@@ -90,17 +120,17 @@ Intent-based aliases that reference primitives:
 --r-6: 24px (pill-like)
 ```
 
-## Critical Constraints
+## Nuance & Rules
 
-### The Zero Protocol
+### The "Zero Protocol"
 
-Zero tokens (`--s-0`, `--r-0`, `--b-0`, `--x-0`, `--o-0`) are **functional resets**, not design choices:
+We reserve `0` as a functional token to explicitly reset properties:
 
-- `--s-0: 0px` - Remove padding/margin entirely
-- `--r-0: 0px` - Square corners (no rounding)
-- `--b-0: 0` - Remove border
-- `--x-0: none` - Remove shadows/effects
-- `--o-0: 0` - Fully transparent
+* **`--s-0`**: `0px` (Use to remove padding/margin).
+* **`--r-0`**: `0px` (Use to square off corners).
+* **`--b-0`**: `0` (Use to remove borders).
+* **`--x-0`**: `none` (Use to remove shadows/filters).
+* **`--o-0`**: `0` (Use for fully transparent).
 
 **Use case**: Explicitly resetting properties, not default styling.
 
@@ -114,6 +144,16 @@ Zero tokens (`--s-0`, `--r-0`, `--b-0`, `--x-0`, `--o-0`) are **functional reset
 - `initial` resets to browser default (16px), which is larger than `--fs-1`
 
 **Rule**: Font size scale starts at `--fs-1` (smallest legible text). If you need to hide text, use `display: none` or `visibility: hidden`, not font-size.
+
+### Constraint vs. Consistency
+
+* **Consistency Tokens (Global):** If you change this, *every* instance in the app should change.
+  * *Place in:* **`:root`**
+  * *Examples:* Corner Radius (`--r-card`), Brand Color (`--c-primary`).
+
+* **Constraint Tokens (Local):** If you change this, only *this specific component* should change.
+  * *Place in:* **Component CSS**
+  * *Examples:* Max Width of a card (`--w-max`), Font size of a specific price tag (`--fs-9`).
 
 ## Usage Patterns
 
@@ -139,20 +179,122 @@ color: #333333;
 padding: 16px;
 ```
 
-## Component-Level Tokens
+## Component Creation Checklist
 
-Follow `--<property>-of-<element>` pattern:
-- `--r-badge` = radius of badge
-- `--c-title` = color of title
-- `--fw-heading` = font-weight of heading
-- `--m-actions` = margin of actions
+Use this checklist when building new components:
 
-## Key Insights
+### Token Selection
+- [ ] Use semantic tokens (not primitives) for colors, spacing, and effects
+- [ ] Create 6-12 component properties maximum
+- [ ] Expose only layout constraints, container appearance, and action elements
+- [ ] Let typography, colors, and effects inherit from global semantics
+- [ ] Follow prefix taxonomy: `--[prefix]-[component]-[modifier]`
+- [ ] Avoid redundant naming (~~`--s-card-padding`~~ → `--p-card`)
 
-1. **Token NAMES are the contract** - They stay constant across all themes
-2. **Token VALUES change per theme** - This is how you switch visual fidelity
-3. **Use semantics over primitives** - Enables consistent theming
-4. **Primitives = warehouse, Semantics = blueprint** - Separate what you have from how you use it
+### Customization Points
+- [ ] **Layout**: Max width, padding, gap
+- [ ] **Container**: Background, radius, shadow
+- [ ] **Actions**: Button padding, radius, colors
+- [ ] **Skip**: Individual text sizes, one-off colors, micro-spacing
+
+### Accessibility
+- [ ] Minimum 44×44px touch targets for interactive elements
+- [ ] 4.5:1 contrast ratio for normal text (3:1 for large text)
+- [ ] Focus indicators use `--b-2` or higher with high contrast
+- [ ] Semantic HTML with proper ARIA when needed
+
+## Decision Framework
+
+### Should I Create a New Token?
+
+**Create a semantic token** if:
+- Multiple components need this exact value
+- Value changes across themes (light/dark)
+- Represents intent ("primary action", "error state")
+- Example: `--c-danger`, `--p-section`, `--x-elevated`
+
+**Create a component property** if:
+- Only this component needs customization
+- Value is a constraint, not a theme concern
+- Users might want to override it
+- Example: `--w-modal-max`, `--p-card-content`
+
+**Use existing tokens** if:
+- Typography for body text → `var(--fs-3)`, `var(--c-text)`
+- Standard spacing → `var(--s-4)`, `var(--g-standard)`
+- Common effects → `var(--x-card-shadow)`, `var(--r-btn)`
+
+### Which Layer?
+
+```
+Need a color for all error states? → Semantic (--c-danger)
+Need card padding that themes don't change? → Component (--p-my-card)
+Need the raw 16px value for calculation? → Primitive (--s-4)
+```
+
+## Common Mistakes
+
+### ❌ Don't Override Global Semantics in Components
+```css
+/* BAD: Component changes global meaning */
+.my-component {
+  --c-primary: var(--c-blue-500);
+  --c-text: var(--c-slate-900);
+}
+```
+```css
+/* GOOD: Use global semantics directly */
+.my-component {
+  color: var(--c-text);
+  background: var(--c-primary);
+}
+```
+
+### ❌ Don't Use Primitives When Semantics Exist
+```css
+/* BAD: Bypasses theme system */
+.card {
+  padding: var(--s-8);
+  border-radius: var(--r-4);
+}
+```
+```css
+/* GOOD: Uses semantic aliases */
+.card {
+  padding: var(--p-card);
+  border-radius: var(--r-card);
+}
+```
+
+### ❌ Don't Create Single-Use Component Tokens
+```css
+/* BAD: Over-specified for one element */
+.pricing {
+  --c-pricing-subtitle: var(--c-muted);
+  --p-pricing-subtitle: var(--s-2);
+}
+```
+```css
+/* GOOD: Use global tokens directly */
+.pricing p {
+  color: var(--c-muted);
+  padding: var(--s-2);
+}
+```
+
+### ❌ Don't Mix Prefix Categories
+```css
+/* BAD: Wrong prefix for padding */
+.button {
+  --s-button-padding: var(--s-4);
+}
+```
+```css
+/* GOOD: Use correct prefix */
+.button {
+  --p-button: var(--s-4);
+}
+```
 
 ## See Also
 
