@@ -20,7 +20,7 @@
   > Create visual concepts and page layouts.
 
 **Workflow**:
-1. Browse `recipes/design-systems/references/recipes/` for layout patterns (landing pages, dashboards, settings) or `recipes/ui-catalog/` for components
+1. Browse `recipes/design-systems/references/recipes/` for layout patterns (landing pages, dashboards, settings) or `recipes/gallery/` for component examples
 2. Preview layouts instantly with `Cmd+K P`
 3. Iterate on spacing, colors, and interactions
 4. Share clickable prototypes with your team
@@ -46,12 +46,12 @@
   > Validate ideas and explore possibilities quickly.
 
 **Workflow**:
-1. Pick a feature template from `recipes/feature-concepts/` (notifications, dark mode, infinite scroll, drag-and-drop, real-time)
+1. Pick a pattern from `recipes/gallery/` (notifications, dark mode, infinite scroll, drag-and-drop, real-time, data loading)
 2. Customize the interactive demo
 3. Test user interactions and edge cases
 4. Decide whether to build or iterate further
 
-*tags: notification, dark, scroll, drag, realtime*
+*tags: notification, dark, scroll, drag, realtime, data*
 
 ### 5. Build Design Systems
 

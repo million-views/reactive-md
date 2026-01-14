@@ -1,31 +1,22 @@
-# A/B Test Proposal Template
-
-> Copy this template for proposing variant experiments.
-
 ---
-title: [Feature] A/B Test Proposal
-author: @your-handle
-status: draft
-date: YYYY-MM-DD
+title: Signup CTA Button Test
+author: @product-team
+status: ready-to-launch
+date: 2026-01-13
+instruction: "Copy this template for A/B testing proposals. Include hypothesis, metrics baseline, variant changes, audience, risk mitigation, and decision criteria."
+tags: ["A/B-test", "experimentation", "conversion-optimization"]
+related-jtbd: "Prototype features"
 ---
 
-# [Feature] A/B Test Proposal
+# Signup CTA Button Test: "Sign Up" vs "Get Started Free"
 
 ## Hypothesis
 
-*What do we believe, and why?*
+Changing the primary CTA button from "Sign Up" to "Get Started Free" will increase signup conversions by 15%, because "Free" reduces perceived risk and "Get Started" implies immediate value rather than a long-term commitment.
 
-> If we [change X], then [metric Y] will [increase/decrease] by [Z%],
-> because [reasoning].
+Our main page shows 3.2% CTR on the button. If we can lift that to 3.7%, we'll see roughly 50 additional signups per day at current traffic—that's $2,400/month in ARR at our average ACV, with near-zero implementation cost.
 
-Example:
-> If we change the CTA button from "Sign Up" to "Get Started Free", 
-> then signup conversions will increase by 15%, because "Free" reduces 
-> perceived risk and "Get Started" implies immediate value.
-
-## Current State (Control)
-
-*Show the current implementation:*
+## Control: Current Button Copy
 
 ```jsx live
 export default function ControlVariant() {
@@ -43,13 +34,14 @@ export default function ControlVariant() {
 }
 ```
 
-**Current metrics**:
-- Click-through rate: 3.2%
-- Signup completion: 45%
+**Performance baseline** (last 30 days):
+- CTR: 3.2%
+- Signup-to-completion: 45%
+- Est. monthly signups: ~1,600
 
-## Variant A
+## Variant A: "Get Started Free"
 
-*First alternative:*
+Removing friction with two key words:
 
 ```jsx live
 export default function VariantA() {
@@ -67,15 +59,15 @@ export default function VariantA() {
 }
 ```
 
-**Changes**:
-- Button text: "Sign Up" → "Get Started Free"
-- Button color: Blue → Green
+Key word changes:
+- "Sign Up" → "Get Started Free" (psychological safety: "Free" removes cost barrier, "Get Started" implies action not obligation)
+- Color shift to green signals a positive, actionable choice
 
 **Expected impact**: +15% CTR
 
-## Variant B
+## Variant B: "Start Free Trial" + Reassurance
 
-*Second alternative (optional):*
+More explicit about the trial nature with direct objection handling:
 
 ```jsx live
 export default function VariantB() {
@@ -96,51 +88,41 @@ export default function VariantB() {
 }
 ```
 
-**Changes**:
-- Button text: "Sign Up" → "Start Free Trial →"
-- Added "No credit card" reassurance
+This variant addresses the biggest objection: "Do I need to enter my credit card?" The reassurance text directly answers this fear.
 
 **Expected impact**: +20% CTR
-
----
 
 ## Side-by-Side Comparison
 
 ```jsx live
-export default function Comparison() {
+import ABTestVariants from './ABTestVariants.jsx';
+
+export default function AllVariants() {
   return (
-    <div className="grid grid-cols-3 gap-4">
-      <div className="text-center">
-        <div className="text-sm font-medium text-gray-500 mb-2">Control</div>
-        <div className="p-4 bg-white rounded-lg shadow">
-          <button className="w-full py-2 bg-blue-500 text-white rounded">
-            Sign Up
-          </button>
-        </div>
-      </div>
-      <div className="text-center">
-        <div className="text-sm font-medium text-gray-500 mb-2">Variant A</div>
-        <div className="p-4 bg-white rounded-lg shadow">
-          <button className="w-full py-2 bg-green-500 text-white rounded">
-            Get Started Free
-          </button>
-        </div>
-      </div>
-      <div className="text-center">
-        <div className="text-sm font-medium text-gray-500 mb-2">Variant B</div>
-        <div className="p-4 bg-white rounded-lg shadow">
-          <button className="w-full py-2 bg-blue-500 text-white rounded">
-            Start Free Trial →
-          </button>
-          <p className="text-xs text-gray-500 mt-1">No credit card required</p>
-        </div>
-      </div>
-    </div>
+    <ABTestVariants
+      control={{
+        title: "Control",
+        buttonText: "Sign Up",
+        buttonClass: "bg-blue-500",
+        expectedCTR: "3.2%"
+      }}
+      variantA={{
+        title: "Variant A",
+        buttonText: "Get Started Free",
+        buttonClass: "bg-green-500",
+        expectedLift: 15
+      }}
+      variantB={{
+        title: "Variant B",
+        buttonText: "Start Free Trial →",
+        buttonClass: "bg-blue-500",
+        subtext: "No credit card required",
+        expectedLift: 20
+      }}
+    />
   );
 }
 ```
-
----
 
 ## Test Parameters
 
