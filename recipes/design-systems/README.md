@@ -8,13 +8,13 @@
 
 ### 1. Import a Theme
 
-Elementary and Wireframe themes use identical token names with different values.
+Polished and Sketch themes use identical token names with different values.
 
 ```css
 /* Polished, production-ready theme */
 @import './assets/elementary/tokens/polished.css';
 
-/* OR sketchy, low-fidelity theme */
+/* OR Sketch, low-fidelity theme */
 @import './assets/elementary/tokens/sketch.css';
 ```
 
@@ -70,13 +70,13 @@ Standardized CSS variable names that never change.
 ### Layer 2: Theme Values
 Implementations of the token names.
 
-**Elementary theme (polished):**
+**Polished Theme:**
 - Full color palette with semantic meaning
 - Professional typography and spacing
 - Depth effects (shadows, glows)
 - Light/dark mode support
 
-**Wireframe theme (sketch):**
+**Sketch Theme:**
 - Grayscale only
 - Monospace typography
 - Flat, minimal effects
@@ -104,7 +104,7 @@ Pre-built CSS classes for common patterns.
 ## Learning Path
 
 1. **Start here:** [Token System](./references/token-system.md) - Understand the naming convention
-2. **Choose a theme:** [Themes](./references/themes.md) - Elementary vs. Wireframe
+2. **Choose a theme:** [Themes](./references/themes.md) - Polished vs. Sketch
 3. **Learn components:** [Components](./references/components.md) - Pre-built patterns (optional)
 4. **See examples:** [Recipes](./references/recipes/) - Real-world implementations
 
@@ -136,7 +136,7 @@ Token names never change. Theme values do. This allows switching visual fidelity
 
 Token names (Layer 1) are your contract. They're defined once, used everywhere, and never change.
 
-Theme values (Layer 2) are your implementations. You can have as many as you want—Elementary, Wireframe, Dark Mode, Brand A, Brand B, etc.
+Theme values (Layer 2) are your implementations. You can have as many as you want—Polished, Sketch, Dark Mode, Brand A, Brand B, etc.
 
 **To swap themes:** Change one CSS import. All names stay the same.
 
@@ -187,7 +187,7 @@ Use inline styles for 1-2 property overrides. For anything more, create a CSS cl
 ## Documentation
 
 - **[Token System](./references/token-system.md)** - Complete token reference and naming conventions
-- **[Themes](./references/themes.md)** - Elementary vs. Wireframe theme documentation
+- **[Themes](./references/themes.md)** - Polished vs. Sketch theme documentation
 - **[Components](./references/components.md)** - Pre-built component patterns
 - **[Recipes](./references/recipes/)** - Real-world examples and use cases
 
@@ -198,8 +198,8 @@ Use inline styles for 1-2 property overrides. For anything more, create a CSS cl
 ```
 assets/elementary/
 ├── tokens/
-│   ├── polished.css      ← Elementary theme (production-ready)
-│   └── sketch.css        ← Wireframe theme (low-fidelity)
+│   ├── polished.css      ← Polished theme (production-ready)
+│   └── sketch.css        ← Sketch theme (low-fidelity)
 └── components.css        ← Optional component classes
 ```
 

@@ -112,7 +112,7 @@ document.documentElement.style.colorScheme = 'dark'; // or 'light'
 /* High-fidelity */
 @import './assets/elementary/tokens/polished.css';
 
-/* OR Wireframe */
+/* OR Low-fidelity */
 @import './assets/elementary/tokens/sketch.css';
 ```
 
@@ -132,7 +132,7 @@ Note: Install Elementary assets first using `elementary.mjs install .` from the 
 /* Before: High-fidelity */
 @import './assets/elementary/tokens/polished.css';
 
-/* After: Wireframe */
+/* After: Low-fidelity */
 @import './assets/elementary/tokens/sketch.css';
 ```
 
@@ -176,7 +176,7 @@ To create a custom theme:
 
 ## Theme Comparison
 
-| Aspect | High-Fidelity | Wireframe |
+| Aspect | High-Fidelity | Sketch |
 |--------|---------------|-----------|
 | **Colors** | Full palette + light/dark | Grayscale only |
 | **Typography** | System font stack | Monospace |

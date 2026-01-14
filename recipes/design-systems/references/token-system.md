@@ -2,7 +2,7 @@
 
 **This is the contract**: Standardized CSS custom property names used across ALL themes.
 
-> **What This Document Contains:** The complete token naming system, architecture, philosophy, and practical usage guide. Token NAMES defined here are shared by all themes (Wireframe and Elementary). Only the VALUES differ.
+> **What This Document Contains:** The complete token naming system, architecture, philosophy, and practical usage guide. Token NAMES defined here are shared by all themes (Polished and Sketch). Only the VALUES differ.
 
 ## Core Philosophy: Ink & Paper
 
