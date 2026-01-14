@@ -1,3 +1,13 @@
+---
+title: Feedback States Pattern
+author: million-views
+status: implemented
+date: 2026-01-13
+instruction: "Design clear feedback states that guide users through uncertain moments in your application. Master loading states with skeletons, success confirmations, error messages with recovery paths, and empty states with helpful guidance. This recipe teaches empathetic UX patterns that reduce user anxiety and increase confidence."
+tags: ["interaction-pattern", "feedback", "loading-states", "error-handling", "empty-states", "ux"]
+related-jtbd: "Design User Interfaces"
+---
+
 # Feedback States Pattern
 
 Common patterns for loading, success, error, and empty states.

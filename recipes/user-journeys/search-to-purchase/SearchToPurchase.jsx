@@ -1,17 +1,4 @@
-# Search to Purchase
-
-> Discovery → Details → Buy
-
-## About This Recipe
-
-The search-to-purchase journey is fundamental to e-commerce. This recipe explores product discovery, comparison, and the path to conversion.
-
----
-
-## Interactive Journey
-
-```jsx live
-
+import React from 'react';
 
 const products = [
   { id: 1, name: 'Wireless Headphones', price: 99, rating: 4.5, image: '🎧' },
@@ -24,11 +11,9 @@ export default function SearchToPurchase() {
   const [stage, setStage] = React.useState('search');
   const [query, setQuery] = React.useState('');
   const [selected, setSelected] = React.useState(null);
-  
-  const filtered = products.filter((p) =>
-    p.name.toLowerCase().includes(query.toLowerCase())
-  );
-  
+
+  const filtered = products.filter((p) => p.name.toLowerCase().includes(query.toLowerCase()));
+
   if (stage === 'purchased') {
     return (
       <div className="text-center p-8 bg-white rounded-xl shadow-lg">
@@ -36,7 +21,11 @@ export default function SearchToPurchase() {
         <h2 className="text-2xl font-bold text-green-600">Purchased!</h2>
         <p className="text-gray-600 mt-2">{selected.name} is on its way.</p>
         <button
-          onClick={() => { setStage('search'); setSelected(null); setQuery(''); }}
+          onClick={() => {
+            setStage('search');
+            setSelected(null);
+            setQuery('');
+          }}
           className="mt-4 text-blue-600 hover:underline"
         >
           Start Over
@@ -44,14 +33,11 @@ export default function SearchToPurchase() {
       </div>
     );
   }
-  
+
   if (stage === 'detail' && selected) {
     return (
       <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-        <button
-          onClick={() => setStage('search')}
-          className="p-4 text-blue-600 hover:underline"
-        >
+        <button onClick={() => setStage('search')} className="p-4 text-blue-600 hover:underline">
           ← Back to Search
         </button>
         <div className="p-6 text-center">
@@ -62,9 +48,7 @@ export default function SearchToPurchase() {
             <span className="text-gray-400">•</span>
             <span className="text-2xl font-bold text-green-600">${selected.price}</span>
           </div>
-          <p className="text-gray-600 my-4">
-            Premium quality product with excellent reviews.
-          </p>
+          <p className="text-gray-600 my-4">Premium quality product with excellent reviews.</p>
           <button
             onClick={() => setStage('purchased')}
             className="w-full py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700"
@@ -75,7 +59,7 @@ export default function SearchToPurchase() {
       </div>
     );
   }
-  
+
   return (
     <div className="space-y-4">
       {/* Search */}
@@ -89,13 +73,16 @@ export default function SearchToPurchase() {
         />
         <span className="absolute right-4 top-3.5 text-gray-400">🔍</span>
       </div>
-      
+
       {/* Results */}
       <div className="grid grid-cols-2 gap-4">
         {filtered.map((product) => (
           <button
             key={product.id}
-            onClick={() => { setSelected(product); setStage('detail'); }}
+            onClick={() => {
+              setSelected(product);
+              setStage('detail');
+            }}
             className="bg-white rounded-xl p-4 shadow hover:shadow-lg transition-shadow text-left"
           >
             <div className="text-4xl mb-2">{product.image}</div>
@@ -110,7 +97,3 @@ export default function SearchToPurchase() {
     </div>
   );
 }
-```
-
----
-*Created with [Reactive MD](https://marketplace.visualstudio.com/items?itemName=million-views.reactive-md)*

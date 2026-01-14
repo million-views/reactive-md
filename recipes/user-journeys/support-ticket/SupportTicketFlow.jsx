@@ -1,17 +1,4 @@
-# Support Ticket
-
-> Issue → Resolution
-
-## About This Recipe
-
-A well-designed support ticket flow reduces frustration and helps users get help quickly. This recipe explores the journey from problem to resolution.
-
----
-
-## Interactive Support Flow
-
-```jsx live
-
+import React from 'react';
 
 const categories = [
   { id: 'billing', label: 'Billing Issue', icon: '💳' },
@@ -24,7 +11,7 @@ export default function SupportTicketFlow() {
   const [step, setStep] = React.useState('category');
   const [category, setCategory] = React.useState(null);
   const [priority, setPriority] = React.useState(null);
-  
+
   if (step === 'submitted') {
     return (
       <div className="bg-white rounded-xl p-8 shadow-lg text-center">
@@ -33,10 +20,16 @@ export default function SupportTicketFlow() {
         <p className="text-gray-600 mt-2">Ticket #38291 - We'll respond within 24 hours</p>
         <div className="mt-6 p-4 bg-gray-50 rounded-lg text-left">
           <div className="text-sm text-gray-500">Category</div>
-          <div className="font-medium">{category.icon} {category.label}</div>
+          <div className="font-medium">
+            {category.icon} {category.label}
+          </div>
         </div>
         <button
-          onClick={() => { setStep('category'); setCategory(null); setPriority(null); }}
+          onClick={() => {
+            setStep('category');
+            setCategory(null);
+            setPriority(null);
+          }}
           className="mt-6 text-blue-600 hover:underline"
         >
           Submit Another Ticket
@@ -44,7 +37,7 @@ export default function SupportTicketFlow() {
       </div>
     );
   }
-  
+
   if (step === 'details') {
     return (
       <div className="bg-white rounded-xl p-6 shadow-lg">
@@ -55,10 +48,7 @@ export default function SupportTicketFlow() {
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium mb-1">Subject</label>
-            <input
-              placeholder="Brief summary of your issue"
-              className="w-full px-4 py-2 border rounded-lg"
-            />
+            <input placeholder="Brief summary of your issue" className="w-full px-4 py-2 border rounded-lg" />
           </div>
           <div>
             <label className="block text-sm font-medium mb-1">Description</label>
@@ -96,7 +86,7 @@ export default function SupportTicketFlow() {
       </div>
     );
   }
-  
+
   return (
     <div className="bg-white rounded-xl p-6 shadow-lg">
       <h2 className="text-xl font-bold mb-4">How can we help?</h2>
@@ -104,7 +94,10 @@ export default function SupportTicketFlow() {
         {categories.map((cat) => (
           <button
             key={cat.id}
-            onClick={() => { setCategory(cat); setStep('details'); }}
+            onClick={() => {
+              setCategory(cat);
+              setStep('details');
+            }}
             className="p-4 border rounded-xl hover:border-blue-500 hover:bg-blue-50 transition-colors text-left"
           >
             <div className="text-2xl mb-2">{cat.icon}</div>
@@ -115,7 +108,3 @@ export default function SupportTicketFlow() {
     </div>
   );
 }
-```
-
----
-*Created with [Reactive MD](https://marketplace.visualstudio.com/items?itemName=million-views.reactive-md)*

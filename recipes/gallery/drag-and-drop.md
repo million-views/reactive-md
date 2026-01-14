@@ -1,3 +1,13 @@
+---
+title: Drag and Drop
+author: million-views
+status: implemented
+date: 2026-01-13
+instruction: "Create intuitive drag-and-drop interfaces for reordering lists and building kanban boards. Learn pointer event handling, visual feedback during drag operations, drop zones, and accessibility patterns. This recipe demonstrates how to make complex interactions feel natural while maintaining keyboard accessibility."
+tags: ["interaction-pattern", "drag-drop", "reordering", "kanban", "accessibility", "feedback"]
+related-jtbd: "Design User Interfaces"
+---
+
 # Drag and Drop
 
 > Reordering, kanban boards, and drag interactions.

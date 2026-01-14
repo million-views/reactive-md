@@ -1,3 +1,13 @@
+---
+title: Data Tables
+author: million-views
+status: implemented
+date: 2026-01-13
+instruction: "Build interactive data tables that help users explore, sort, filter, and paginate structured information. Learn patterns for column headers, sorting indicators, filter inputs, row selection, and pagination controls. This recipe teaches efficient information architecture and state management for complex data displays."
+tags: ["ui-pattern", "data-display", "tables", "sorting", "filtering", "pagination"]
+related-jtbd: "Design User Interfaces"
+---
+
 # Data Tables
 
 > Sorting, filtering, pagination, and table interactions.

@@ -1,3 +1,13 @@
+---
+title: Navigation Patterns
+author: million-views
+status: implemented
+date: 2026-01-13
+instruction: "Build effective navigation systems that help users understand where they are and where they can go. Learn responsive navbars, collapsible sidebars, breadcrumb trails, and active state indicators. This recipe teaches wayfinding principles, mobile-responsive patterns, and accessibility for keyboard and screen reader users."
+tags: ["interaction-pattern", "navigation", "responsive-design", "wayfinding", "accessibility", "mobile"]
+related-jtbd: "Design User Interfaces"
+---
+
 # Navigation Patterns
 
 > Navbars, sidebars, breadcrumbs, and navigation systems.

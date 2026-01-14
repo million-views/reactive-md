@@ -1,3 +1,13 @@
+---
+title: Modals and Dialogs
+author: million-views
+status: implemented
+date: 2026-01-13
+instruction: "Master modal and dialog patterns for capturing user attention effectively. Learn confirmation dialogs, form modals, alert patterns, and overlay interactions. This recipe teaches when to use modals (critical actions) versus when they harm UX, plus accessibility requirements like focus management and keyboard support."
+tags: ["interaction-pattern", "modals", "dialogs", "overlays", "accessibility", "focus-management"]
+related-jtbd: "Design User Interfaces"
+---
+
 # Modals and Dialogs
 
 > Confirmations, forms, alerts, and overlay patterns.

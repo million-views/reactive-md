@@ -1,3 +1,13 @@
+---
+title: Social Feed
+author: million-views
+status: implemented
+date: 2026-01-13
+instruction: "Architect scalable social features with post creation, engagement tracking, and real-time updates. This case study demonstrates proper component separation for a post composer, post cards with interactions, feed management, and optimistic UI updates. Learn patterns for building social experiences that scale."
+tags: ["case-study", "social", "feed", "component-architecture", "real-time-updates", "engagement"]
+related-jtbd: "Create Product Specifications"
+---
+
 # Social Feed
 
 > Timeline, posts, and reactions with proper component architecture.

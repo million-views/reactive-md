@@ -1,3 +1,13 @@
+---
+title: Mobile App Concept
+author: million-views
+status: implemented
+date: 2026-01-13
+instruction: "Design responsive, mobile-first applications that work seamlessly across devices. This case study explores tab navigation, responsive layouts, hamburger menus, and touch-friendly interactions. Learn patterns for adapting desktop interfaces to mobile constraints and creating intuitive mobile experiences."
+tags: ["case-study", "mobile", "responsive-design", "mobile-first", "navigation", "touch-interactions"]
+related-jtbd: "Create Product Specifications"
+---
+
 # Mobile App Concept
 
 > Responsive mobile-first design patterns.

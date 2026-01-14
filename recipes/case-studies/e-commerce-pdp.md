@@ -1,3 +1,13 @@
+---
+title: E-Commerce Product Detail Page
+author: million-views
+status: implemented
+date: 2026-01-13
+instruction: "Learn how to build high-converting product detail pages with interactive galleries, variant selection, real-time cart updates, and wishlist functionality. This case study demonstrates proper component architecture for complex e-commerce UIs with realistic data structures and state management patterns."
+tags: ["case-study", "e-commerce", "product-detail", "component-architecture", "interactive-ui", "conversion"]
+related-jtbd: "Create Product Specifications"
+---
+
 # E-Commerce Product Detail Page
 
 > A complete mini-PRD for an e-commerce PDP with proper component architecture.

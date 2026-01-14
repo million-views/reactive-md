@@ -1,3 +1,13 @@
+---
+title: Real-Time Updates
+author: million-views
+status: implemented
+date: 2026-01-13
+instruction: "Create engaging real-time features with live data feeds, presence indicators, and collaborative updates. Learn patterns for activity feeds with timestamps, presence awareness showing who's online, live notifications, and conflict resolution. This recipe teaches patterns for building collaborative applications that feel responsive and alive."
+tags: ["interaction-pattern", "real-time", "collaboration", "presence", "notifications", "engagement"]
+related-jtbd: "Design User Interfaces"
+---
+
 # Real-Time Updates
 
 > Live data, presence indicators, and collaborative features.

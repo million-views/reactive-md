@@ -1,3 +1,13 @@
+---
+title: Infinite Scroll
+author: million-views
+status: implemented
+date: 2026-01-13
+instruction: "Implement infinite scroll patterns that engage users with seamless content discovery. Learn intersection observers for auto-loading, loading states, error recovery, and accessibility considerations. This recipe explores when infinite scroll enhances UX versus when traditional pagination is better."
+tags: ["interaction-pattern", "pagination", "infinite-scroll", "performance", "accessibility", "engagement"]
+related-jtbd: "Design User Interfaces"
+---
+
 # Infinite Scroll
 
 > Loading patterns and pagination alternatives.

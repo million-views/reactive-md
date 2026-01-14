@@ -1,3 +1,13 @@
+---
+title: Cards and Lists
+author: million-views
+status: implemented
+date: 2026-01-13
+instruction: "Master fundamental layout patterns for displaying collections of items. Learn grid layouts with responsive columns, list views with proper spacing, card components with status indicators, and interaction patterns. This recipe teaches progressive disclosure, visual hierarchy, and accessibility for collection interfaces."
+tags: ["ui-pattern", "layout", "cards", "lists", "grid", "component-architecture"]
+related-jtbd: "Design User Interfaces"
+---
+
 # Cards and Lists
 
 > Grid layouts, list views, and card patterns with proper component architecture.

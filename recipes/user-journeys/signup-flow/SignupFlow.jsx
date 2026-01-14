@@ -1,17 +1,4 @@
-# Signup Flow
-
-> Registration → Email Verification → Onboarding
-
-## About This Recipe
-
-The signup flow is critical for conversion. This recipe explores the complete journey from initial registration through onboarding.
-
----
-
-## Interactive Journey
-
-```jsx live
-
+import React from 'react';
 
 const stages = [
   {
@@ -42,10 +29,10 @@ const stages = [
 
 export default function SignupFlow() {
   const [stage, setStage] = React.useState(0);
-  
+
   const current = stages[stage];
   const isComplete = stage >= stages.length;
-  
+
   return (
     <div className="max-w-md mx-auto">
       {/* Progress */}
@@ -71,14 +58,14 @@ export default function SignupFlow() {
           </div>
         ))}
       </div>
-      
+
       {/* Stage Content */}
       <div className="bg-white rounded-xl p-6 shadow-lg">
         {!isComplete ? (
           <>
             <div className="text-4xl text-center mb-4">{current.icon}</div>
             <h2 className="text-xl font-bold text-center mb-4">{current.title}</h2>
-            
+
             {current.fields ? (
               <div className="space-y-3 mb-6">
                 {current.fields.map((field) => (
@@ -92,7 +79,7 @@ export default function SignupFlow() {
             ) : (
               <p className="text-gray-600 text-center mb-6">{current.message}</p>
             )}
-            
+
             <button
               onClick={() => setStage(stage + 1)}
               className="w-full py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700"
@@ -117,7 +104,3 @@ export default function SignupFlow() {
     </div>
   );
 }
-```
-
----
-*Created with [Reactive MD](https://marketplace.visualstudio.com/items?itemName=million-views.reactive-md)*

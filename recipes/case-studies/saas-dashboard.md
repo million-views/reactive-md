@@ -1,3 +1,13 @@
+---
+title: SaaS Dashboard PRD
+author: million-views
+status: implemented
+date: 2026-01-13
+instruction: "Build comprehensive analytics dashboards that deliver real-time insights to different user personas. This case study demonstrates executive summaries, metric cards with change indicators, multi-tab views, and period selectors. Learn patterns for visualizing complex data and building interactive product requirements."
+tags: ["case-study", "saas", "dashboard", "analytics", "product-requirements", "data-visualization"]
+related-jtbd: "Create Product Specifications"
+---
+
 # SaaS Dashboard PRD
 
 > A complete mini-PRD for a SaaS analytics dashboard.

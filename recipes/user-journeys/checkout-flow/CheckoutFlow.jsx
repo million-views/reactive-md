@@ -1,17 +1,4 @@
-# Checkout Flow
-
-> Cart → Payment → Confirmation
-
-## About This Recipe
-
-E-commerce checkout is where conversions happen or abandon. This recipe explores the multi-step checkout journey with interactive examples.
-
----
-
-## Interactive Checkout
-
-```jsx live
-
+import React from 'react';
 
 const steps = [
   { id: 'cart', title: 'Cart', icon: '🛒' },
@@ -22,7 +9,7 @@ const steps = [
 
 export default function CheckoutFlow() {
   const [step, setStep] = React.useState(0);
-  
+
   const CartStep = () => (
     <div className="space-y-4">
       {['Product A - $29.99', 'Product B - $49.99'].map((item) => (
@@ -37,7 +24,7 @@ export default function CheckoutFlow() {
       </div>
     </div>
   );
-  
+
   const ShippingStep = () => (
     <div className="space-y-3">
       {['Standard (5-7 days) - Free', 'Express (2-3 days) - $9.99', 'Overnight - $24.99'].map((opt) => (
@@ -48,7 +35,7 @@ export default function CheckoutFlow() {
       ))}
     </div>
   );
-  
+
   const PaymentStep = () => (
     <div className="space-y-3">
       <input placeholder="Card Number" className="w-full px-4 py-2 border rounded" />
@@ -58,7 +45,7 @@ export default function CheckoutFlow() {
       </div>
     </div>
   );
-  
+
   const ConfirmStep = () => (
     <div className="text-center py-4">
       <div className="text-6xl mb-4">🎉</div>
@@ -66,17 +53,22 @@ export default function CheckoutFlow() {
       <p className="text-gray-600 mt-2">Order #12345 - Check your email</p>
     </div>
   );
-  
+
   const renderStep = () => {
     switch (step) {
-      case 0: return <CartStep />;
-      case 1: return <ShippingStep />;
-      case 2: return <PaymentStep />;
-      case 3: return <ConfirmStep />;
-      default: return null;
+      case 0:
+        return <CartStep />;
+      case 1:
+        return <ShippingStep />;
+      case 2:
+        return <PaymentStep />;
+      case 3:
+        return <ConfirmStep />;
+      default:
+        return null;
     }
   };
-  
+
   return (
     <div className="max-w-md mx-auto">
       {/* Progress */}
@@ -90,18 +82,16 @@ export default function CheckoutFlow() {
             >
               {s.icon}
             </div>
-            <span className={`text-xs ${i <= step ? 'text-blue-600' : 'text-gray-400'}`}>
-              {s.title}
-            </span>
+            <span className={`text-xs ${i <= step ? 'text-blue-600' : 'text-gray-400'}`}>{s.title}</span>
           </div>
         ))}
       </div>
-      
+
       {/* Content */}
       <div className="bg-white rounded-xl p-6 shadow-lg">
         <h2 className="text-xl font-bold mb-4">{steps[step].title}</h2>
         {renderStep()}
-        
+
         {step < 3 && (
           <div className="flex gap-3 mt-6">
             {step > 0 && (
@@ -132,7 +122,3 @@ export default function CheckoutFlow() {
     </div>
   );
 }
-```
-
----
-*Created with [Reactive MD](https://marketplace.visualstudio.com/items?itemName=million-views.reactive-md)*
