@@ -1,5 +1,5 @@
 import { useState } from "react";
-import tasks from './tasks.json';
+import tasks from './data/tasks.json';
 
 export default function ListView() {
   const [selected, setSelected] = useState([]);
