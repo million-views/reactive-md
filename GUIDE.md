@@ -130,7 +130,7 @@ Use the DSL (fenced code modifiers) to lock the presentation and guide the reade
 | `mid` | `iphone-15-pro`, `ipad-air-2024` | N/A | High-priority lookup by internal ID. |
 | `orientation` | `portrait`, `landscape`, `auto` | `auto` | Initial viewport orientation. |
 | `lock-view` | (Flag) | N/A | Hides UI controls (🚫). Reader sees only your intent. |
-| `no-placeholder` | (Flag) | N/A | Disables blurred background for cleaner layouts. |
+| `no-placeholder` | (Flag) | N/A | Disables display of helpful cards (EIP and BAP) in static preview |
 
 ### For the Architect: Constraint & Consistency
 The system defaults to **Constraint-First Testing** using the lowest common denominator displays:
