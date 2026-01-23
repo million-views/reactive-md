@@ -111,6 +111,50 @@ function Button({ children }) {
 - Complex exports: `export default memo(Component)` or conditional exports
 - Helper functions + top-level JSX in inline fences
 
+## Device Emulation & Responsive Storytelling
+
+Reactive MD uses a **Document-Level Authority** model (Device Emulation 3.0). This allows you to synchronize the viewport across your entire document or pin specific components for side-by-side comparison.
+
+### For the Storyteller: Narrative Control
+Use the DSL (fenced code modifiers) to lock the presentation and guide the reader through specific breakpoints.
+
+```markdown
+<!-- Force a specific mobile view for a narrative step -->
+`​``jsx live device=mobile orientation=portrait lock-view
+```
+
+**DSL Reference**:
+| Modifier | Values | Default | Purpose |
+| :--- | :--- | :--- | :--- |
+| `device` | `mobile`, `tablet`, `desktop` | `mobile` | Strategic category preset. |
+| `mid` | `iphone-15-pro`, `ipad-air-2024` | N/A | High-priority lookup by internal ID. |
+| `orientation` | `portrait`, `landscape`, `auto` | `auto` | Initial viewport orientation. |
+| `lock-view` | (Flag) | N/A | Hides UI controls (🚫). Reader sees only your intent. |
+| `no-placeholder` | (Flag) | N/A | Disables blurred background for cleaner layouts. |
+
+### For the Architect: Constraint & Consistency
+The system defaults to **Constraint-First Testing** using the lowest common denominator displays:
+- **Mobile**: 375x667 (iPhone SE/8)
+- **Tablet**: 768x1024 (Classic iPad)
+- **Desktop**: 1440x900 (13" Notebook)
+
+#### The Document Bus (🔗 vs 📌)
+By default, all components are **Synced (🔗)**. Changing the device in one header updates the entire document. This ensures visual consistency while "walking through" a design.
+
+If you need to compare a fix on a specific device while the rest of the document moves, **Pin (📌)** the component. Pinned components ignore the global Document Bus until unpinned.
+
+#### Pixel-Perfect Scaling
+Reactive MD uses a "Double-Wrapper" architecture to ensure pixel accuracy even in narrow VS Code panes. The component always "thinks" it is in a 375px wide browser, but scales fluidly to fit your window using CSS Container Query units (`cqw`).
+
+### Responsive Design: Container Queries
+Since the `ViewportFrame` provides `container-type: inline-size`, you should prefer **Container Queries** over Media Queries for component responsiveness.
+
+- **Why?**: Media queries target the global VS Code window. Container queries target the emulated device viewport.
+- **Tailwind v4**:
+    1.  Mark your container with the `@container` class.
+    2.  Use responsive variants: `@md:`, `@lg:`, or arbitrary values like `@[400px]:`.
+- **CSS**: Use standard `@container (min-width: ...)` blocks.
+
 ## Data Files
 
 ### Local Files
