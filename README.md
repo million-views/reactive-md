@@ -29,9 +29,11 @@ Write product specs, wireframes, and user journeys with embedded, interactive Re
 |---------|-------------|
 | ⚡ **Live Reload** | See changes as you type — no manual refresh |
 | 📝 **Markdown Fences** | `jsx live` renders inline in markdown preview |
+| 📱 **Device Emulation** | Test responsive designs with a synchronized "Document Bus" |
 | 🎨 **Tailwind v4** | Full utility support, zero config |
 | 📦 **npm Packages** | Most packages work via esm.sh CDN |
 | 🔍 **CodeLens** | Click "▶ Preview" above exported components |
+| ⚛️ **React 19** | Modern runtime for high-fidelity interactive previews |
 | 🎯 **TypeScript** | Full `.tsx` support with type stripping |
 
 ## Installation

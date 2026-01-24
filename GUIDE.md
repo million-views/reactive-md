@@ -143,6 +143,8 @@ By default, all components are **Synced (🔗)**. Changing the device in one hea
 
 If you need to compare a fix on a specific device while the rest of the document moves, **Pin (📌)** the component. Pinned components ignore the global Document Bus until unpinned.
 
+**Editing while Pinned**: If you edit the code fence's `device` or `orientation` while it is pinned, the preview will stay on your current interactive state to avoid interrupting your work. The changes will be applied (and the document bus reset) once you toggle back to **Synced (🔗)** mode.
+
 #### Pixel-Perfect Scaling
 Reactive MD uses a "Double-Wrapper" architecture to ensure pixel accuracy even in narrow VS Code panes. The component always "thinks" it is in a 375px wide browser, but scales fluidly to fit your window using CSS Container Query units (`cqw`).
 

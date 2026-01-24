@@ -113,6 +113,16 @@ Common causes:
 
 **Technical note**: This is a fundamental VS Code limitation. The `markdown.preview.refresh` command always triggers scroll sync, and there's no API to disable it.
 
+### Device Emulation Stability
+
+**Issue**: A component isn't syncing with the rest of the document or seems stuck on a specific device.
+
+**Solutions**:
+1. **Check for Pins**: Ensure the component header shows the 🔗 icon. If it shows 📌, it is intentionally ignoring the document bus.
+2. **Check the DSL**: Look at the code fence header. If it contains `lock-view`, it is forced into a specific state by the author and cannot be changed interactively.
+3. **Reset the Bus**: Toggling any **Synced (🔗)** component to a different device will force a re-synchronization across the entire document.
+4. **Reload Window**: If the state feels out of sync after heavy document restructuring, use `Cmd+Shift+P` → "Developer: Reload Window".
+
 ### Extension Not Activating
 
 The extension only activates when you open a `.jsx` or `.tsx` file. Opening a `.js` file won't trigger activation.
