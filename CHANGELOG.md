@@ -5,7 +5,7 @@ All notable changes to Reactive MD will be documented here.
 ## [1.1.0] - 2026-01-24
 
 ### Added
-- **Device Emulation 3.0**: A completely overhauled viewport system featuring a shared **Document Bus**.
+- **Device Emulation**: A completely overhauled viewport system featuring a shared **Document Bus**.
   - **Synchronized Viewports**: Change the device or orientation on any component, and all other components in the document follow automatically.
   - **Viewport Pinning (📌)**: "Break away" from the document sync to compare a specific component on a different device side-by-side.
   - **Author Locks (🚫)**: Enforce specific viewports for your readers using the `lock-view` modifier in code fences.

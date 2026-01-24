@@ -113,7 +113,7 @@ function Button({ children }) {
 
 ## Device Emulation & Responsive Storytelling
 
-Reactive MD uses a **Document-Level Authority** model (Device Emulation 3.0). This allows you to synchronize the viewport across your entire document or pin specific components for side-by-side comparison.
+Reactive MD uses a simple device emulation model that allows you to synchronize the viewport across your entire document or pin specific components for side-by-side comparison.
 
 ### For the Storyteller: Narrative Control
 Use the DSL (fenced code modifiers) to lock the presentation and guide the reader through specific breakpoints.
