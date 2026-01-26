@@ -145,7 +145,19 @@ If you need to compare a fix on a specific device while the rest of the document
 
 **Editing while Pinned**: If you edit the code fence's `device` or `orientation` while it is pinned, the preview will stay on your current interactive state to avoid interrupting your work. The changes will be applied (and the document bus reset) once you toggle back to **Synced (🔗)** mode.
 
-#### Pixel-Perfect Scaling
+### Visibility & Resilience: The Dormant State
+The Interactive Preview (`Cmd+K P`) is designed to be visible alongside your code, even when you aren't actively using the Markdown Preview (`Cmd+Shift+V`).
+
+- **Live Updates**: While the Markdown Preview is open, changes to your code or orientation are reflected instantly.
+- **Dormant State**: If you close the Markdown Preview, the Interactive Preview enters a **Dormant** state. It maintains its last known rendering so your work isn't lost. A footer warning will appear: *"Live updates paused. Open Markdown Preview (Cmd+Shift+V) to resume."*
+- **Persistence**: Your current page, active fence selection, and pinning states are persisted across document re-parses and even VS Code window reloads.
+
+#### Stability Boundary (Zero-Flicker)
+To maintain a high-quality experience, the system uses a **Stability Boundary** to distinguish between different types of changes:
+- **UI Changes** (Rotating, Pinning, Scaling): These are handled as partial updates. They *do not* reload the webview, meaning your React components keep their internal state (like counter values or animation progress).
+- **Code Changes**: When you edit the JSX or CSS, the system performs a targeted reload to ensure the new logic is active.
+
+### Pixel-Perfect Scaling
 Reactive MD uses a "Double-Wrapper" architecture to ensure pixel accuracy even in narrow VS Code panes. The component always "thinks" it is in a 375px wide browser, but scales fluidly to fit your window using CSS Container Query units (`cqw`).
 
 ### Responsive Design: Container Queries

@@ -143,7 +143,7 @@ The extension only activates when you open a `.jsx` or `.tsx` file. Opening a `.
 
 ### Developer Tools Console
 
-**How to open**: `Help → Toggle Developer Tools` → **Console** tab  
+**How to open**: `Help → Toggle Developer Tools` → **Console** tab
 **Shortcut**: `Cmd+Option+I` (Mac) or `Ctrl+Shift+I` (Windows/Linux)
 
 Look for red error messages when opening a `.jsx` file or clicking Preview.
@@ -159,6 +159,14 @@ Extension-specific logs appear here.
 **How to open**: `Cmd+Shift+P` → "Developer: Show Running Extensions"
 
 Check if `reactive-md` is listed. If not, the extension failed to load.
+
+### "Live updates paused" Warning in Footer
+
+**Issue**: The Interactive Preview shows a footer warning: *"Live updates paused. Open Markdown Preview (Cmd+Shift+V) to resume."*
+
+**Cause**: The Interactive Preview relies on the Markdown Preview to provide updated code and metadata. If the Markdown Preview is closed, the Interactive Preview remains as a "Dormant" artifact. It stays visible so you don't lose your place, but it cannot receive new code edits or sync signals.
+
+**Solution**: Press `Cmd+Shift+V` (Mac) or `Ctrl+Shift+V` (Windows/Linux) to open the Markdown Preview. The connection will be restored automatically.
 
 ---
 
@@ -180,7 +188,7 @@ If blocked:
 These packages work offline in both preview modes:
 
 - `lucide-react` - Icons
-- `dayjs` - Date formatting  
+- `dayjs` - Date formatting
 - `motion` - Animations
 - `clsx` - Conditional classes
 - `uuid` - ID generation

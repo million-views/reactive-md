@@ -2,9 +2,12 @@
 
 All notable changes to Reactive MD will be documented here.
 
-## [1.1.0] - 2026-01-24
+## [1.1.0] - 2026-01-25
 
 ### Added
+- **Stability Boundary (Zero-Flicker)**: Introduced a logic-gate that distinguishes between code changes and UI-only interactions. Changes to orientation, pinning, or scaling no longer reload the webview, preserving component state and eliminating flickering.
+- **Path B Sync Resilience**: The Interactive Preview now enters a "Dormant" state when the Markdown preview is closed, maintaining the last rendered view with a warning instead of showing a "Waiting" screen.
+- **Persistence & Recovery**: The pager and active fence selection now accurately survive window reloads and document re-parses, ensuring your focus is never lost.
 - **Device Emulation**: A completely overhauled viewport system featuring a shared **Document Bus**.
   - **Synchronized Viewports**: Change the device or orientation on any component, and all other components in the document follow automatically.
   - **Viewport Pinning (📌)**: "Break away" from the document sync to compare a specific component on a different device side-by-side.
@@ -13,10 +16,13 @@ All notable changes to Reactive MD will be documented here.
   - **Native Container Queries**: Support for CSS Container Queries (`@container`) allows components to respond to the emulated device size rather than the global window size.
 - **React 19 Interactive Preview**: Upgraded the high-fidelity preview environment to React 19 for improved performance and modern feature support.
 
-### Improved
-- **Component Detection**: More accurate CodeLens ("▶ Preview") placement and faster identification of exported components.
-- **Stability**: Enhanced synchronization between the editor and preview to eliminate "state drift" and ensure the preview always matches your code precisely.
-- **Performance**: Faster cold-start times for the Interactive Preview panel.
+### Changed
+- **Unified Component Detection**: Speed up identification of exported components and improved CodeLens ("▶ Preview") placement.
+- **M5NV Brand Alignment**: Refined the UI color palette and icons (now using Lucide) for a more professional, native feel.
+
+### Fixed
+- **Sync Stabilization**: Resolved race conditions between Markdown and Interactive previews that caused occasional "Initializing..." hangs.
+- **State Preservation**: Fixed issues where component state (e.g., counters or animation progress) was lost during UI interactions.
 
 ## [1.0.8] - 2026-01-09
 

@@ -198,6 +198,20 @@ What are you building?
 
 ---
 
+## Technical Strategy for Agents
+
+### Leveraging the Stability Boundary
+Reactive MD uses a **Stability Boundary** (Content Hashing) to prevent UI flickering.
+- **Goal**: When you are generating code or updating fences, the system detects if you changed logic (forcing a reload) or just metadata/UI state (preserving component state).
+- **Agent Advice**: To maintain a user's interactive state (e.g., a form's input or an animation's progress) while adjusting the viewport, ensure the code hash remains identical.
+
+### Promoting Sync Resilience (Path B)
+The system uses **Path B (Dormant State)** to maintain visual artifacts when the Markdown Preview is closed.
+- **Goal**: Informed agents help users recover from synchronization loss without confusion.
+- **Agent Advice**: Inform users that their Interactive Preview is still "alive" but paused if they see the footer warning. They do not need to restart the entire process; simply re-opening the Markdown Preview (`Cmd+Shift+V`) will re-establish the live link.
+
+---
+
 ## Testing & Validation Checklist
 
 Before committing:
