@@ -9,7 +9,7 @@ To use Reactive MD effectively, a document architect must distinguish between th
 - **Markdown Preview**: Provides the **Static Preview**. It renders the initial HTML and CSS for reading and review only when the integrated VS Code markdown preview is opened. It **cannot execute code** because of the markdown extension's security model.
 - **Interactive Preview**: Provides the **High-Fidelity Prototype**. It executes the full React 19 lifecycle, enabling stateful testing, animations, and responsive device emulation.
 
-### Code Block Modes
+### Code Fence Modes
 The system distinguishes between **interactive prototypes** and **static examples** based on the fence info string:
 - **`jsx live` / `css live`**: Code that is utilized to render a React component in both preview modes.
 - **`jsx` / `css` / `json`**: Static syntax highlighting only. Use these for snippets that shouldn't be executed.
@@ -39,9 +39,8 @@ A "Reactive Document" is more than a single file; it is ideally a self-contained
 
 ```text
 my-prototype/
-├── README.md           # Overview and problem statement
-├── spec.md             # The Literate Narrative (Main entry)
-├── Component.jsx       # Implementation details (Sidecar)
+├── spec.md             # The Literate Narrative (Main entry hub)
+├── proto-kit.jsx       # Implementation details (Sidecar)
 ├── theme.css           # Custom styles (Sidecar)
 └── data.json           # Sample data (Sidecar)
 ```
@@ -93,7 +92,27 @@ External files are for shared libraries. They require explicit exports to work w
 - **Avoid Tail-End Exports**: Do not place `export default` at the very bottom of a file. This separates the preview controls from the source code.
 - **Library Discipline**: Use named exports for utilities; reserve `export default` for your primary "App" component.
 
-### 4. Local Imports
+### 4. Component Resilience (Preview Safety)
+When you open a sidecar file (`.jsx` or `.tsx`) directly in the **Interactive Preview**, the extension defaults to **Gallery Mode** to show all exported components at once. In this configuration, each component is rendered in isolation with an empty object as its props.
+
+To prevent the **"Minified React error #130"** (attempting to render `undefined`), always provide default values for props that are used as components or iterated over.
+
+**❌ Fragile Pattern**:
+```jsx
+export function FeatureIcon({ icon: Icon }) {
+  return <Icon size={24} />; // Crashes if Icon is undefined
+}
+```
+
+**✅ Resilient Pattern**:
+```jsx
+// Defaulting Icon to a null component ensures the preview remains stable
+export function FeatureIcon({ icon: Icon = () => null }) {
+  return <Icon size={24} />;
+}
+```
+
+### 5. Local Imports
 Organize data and logic into sidecar files.
 
 | File Type | Purpose | Syntax |
@@ -158,13 +177,22 @@ Flags are standalone keywords added to the fence header (no `=` required).
 
 ## Styling & Visual System
 
-Reactive MD uses a modern, container-first styling system that ensures your prototypes look and behave correctly across all devices.
+Reactive MD uses a modern, container-first styling system. This ensures that your interactive prototypes behave correctly regardless of the physical size of the VS Code editor window.
+
+### The Responsive Root (Rule #1)
+To ensure your UI responds to the **emulated device size** (e.g., iPhone SE) rather than the global VS Code window, you must mark the root of your component as a "Container."
+
+- **Tailwind (Preferred)**: Add the `@container` class to your root element.
+- **Native CSS**: Apply `container-type: inline-size;` to your root element.
+
+Without this "containment context," responsive utilities or media queries will look at the entire editor window, causing your "Mobile" prototype to incorrectly show "Desktop" layouts on large monitors.
+
 
 ### 1. Tailwind CSS (v4)
 Tailwind is the primary styling engine. It is available in both **Markdown** and **Interactive** previews.
 - **Usage**: Use standard utility classes (e.g., `className="p-8 bg-slate-50"`) directly in your JSX.
-- **Container Queries (Recommended)**: Use `@container` on your root element. This allows your UI to respond to the *emulated device* dimensions (using `@md:`, `@lg:`, etc.) rather than the global VS Code window size.
-- **Media Queries (Avoid)**: Standard CSS media queries target the entire VS Code editor window, which can cause layout issues during emulation.
+- **Container Queries**: Use the `@` prefix for responsive variants (e.g., `@md:p-8`, `@lg:grid-cols-2`). These only work if you have followed **Rule #1** above.
+- **Media Queries (Avoid)**: Standard media query variants (e.g., `md:`, `lg:`) target the entire VS Code window and should be avoided in interactive prototypes.
 
 ### 2. The CSS Context (`css live`)
 Use `css live` fences to define document-specific styles, such as custom properties or unique brand tokens. These styles apply to every subsequent component in the document.
