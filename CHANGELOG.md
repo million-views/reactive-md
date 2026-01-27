@@ -2,27 +2,26 @@
 
 All notable changes to Reactive MD will be documented here.
 
-## [1.1.0] - 2026-01-25
+## [1.1.0] - 2026-01-27
 
 ### Added
-- **Stability Boundary (Zero-Flicker)**: Introduced a logic-gate that distinguishes between code changes and UI-only interactions. Changes to orientation, pinning, or scaling no longer reload the webview, preserving component state and eliminating flickering.
-- **Path B Sync Resilience**: The Interactive Preview now enters a "Dormant" state when the Markdown preview is closed, maintaining the last rendered view with a warning instead of showing a "Waiting" screen.
-- **Persistence & Recovery**: The pager and active fence selection now accurately survive window reloads and document re-parses, ensuring your focus is never lost.
-- **Device Emulation**: A completely overhauled viewport system featuring a shared **Document Bus**.
-  - **Synchronized Viewports**: Change the device or orientation on any component, and all other components in the document follow automatically.
-  - **Viewport Pinning (📌)**: "Break away" from the document sync to compare a specific component on a different device side-by-side.
-  - **Author Locks (🚫)**: Enforce specific viewports for your readers using the `lock-view` modifier in code fences.
-  - **Fluid Scaling**: New "Double-Wrapper" architecture ensures components scale perfectly to fit narrow VS Code panes without losing pixel accuracy.
-  - **Native Container Queries**: Support for CSS Container Queries (`@container`) allows components to respond to the emulated device size rather than the global window size.
-- **React 19 Interactive Preview**: Upgraded the high-fidelity preview environment to React 19 for improved performance and modern feature support.
+- **Stable Identity (Identity Anchors)**: You can now edit your narrative text without causing the interactive components to reload or lose their state. Use the `id="name"` modifier to "anchor" a component's identity.
+- **Interactive Preview Sync Warnings**: **Interactive Preview** now tells you exactly when it's out of sync with your document edits, providing clear guidance on how to resume live updates.
+- **Improved Focus Preservation**: The system now remembers exactly which component and page you were looking at across document reloads and app restarts.
+- **Shared Document Bus**:
+  - **Synchronized Design**: Changing the device or orientation on one component updates the entire document simultaneously, allowing you to review an entire feature set at once.
+  - **Component Pinning (📌)**: "Pin" a specific component to take it out of sync, letting you compare mobile and desktop designs side-by-side.
+  - **Author Locks (🚫)**: Enforce specific viewports for your readers using the `lock-view` modifier in your code fences.
+  - **Pixel-Perfect Scaling**: Prototypes now scale fluidly to fit your VS Code pane without any distortion or layout shift.
+  - **Container-First Styling**: Built-in support for CSS Container Queries (`@container`), so your components respond to their *emulated device size* rather than the window size.
 
 ### Changed
-- **Unified Component Detection**: Speed up identification of exported components and improved CodeLens ("▶ Preview") placement.
-- **M5NV Brand Alignment**: Refined the UI color palette and icons (now using Lucide) for a more professional, native feel.
+- **Modern Brand Identity**: Refined UI icons and styling for a more professional, native feel within VS Code.
+- **Term Standardization**: Solidified **Markdown Preview** and **Interactive Preview** as the canonical terms across documentation and UI.
 
 ### Fixed
-- **Sync Stabilization**: Resolved race conditions between Markdown and Interactive previews that caused occasional "Initializing..." hangs.
-- **State Preservation**: Fixed issues where component state (e.g., counters or animation progress) was lost during UI interactions.
+- **Sync Reliability**: Eliminated the "Initializing..." hangs that occasionally occurred when switching between previews.
+- **State Persistence**: Component state (like form data or toggle switches) is now much more resilient during document edits.
 
 ## [1.0.8] - 2026-01-09
 
