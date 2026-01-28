@@ -5,22 +5,22 @@ All notable changes to Reactive MD will be documented here.
 ## [1.1.0] - 2026-01-27
 
 ### Added
+- **Visual Zoom (Automated Artboards)**: Replaced fixed logic scaling with an ergonomic **Visual Zoom** model. Viewports now default to `zoom=auto`, fitting the artboard to your sidebar width without reflowing content. Added a 3-state icon toggle ([Auto] [Fit] [1:1]) in the component header for high-fidelity verification.
 - **Stable Identity (Identity Anchors)**: You can now edit your narrative text without causing the interactive components to reload or lose their state. Use the `id="name"` modifier to "anchor" a component's identity.
-- **Interactive Preview Sync Warnings**: **Interactive Preview** now tells you exactly when it's out of sync with your document edits, providing clear guidance on how to resume live updates.
-- **Improved Focus Preservation**: The system now remembers exactly which component and page you were looking at across document reloads and app restarts.
+- **2D Container Queries**: Enabled full `size` based container queries (width, height, aspect-ratio) on the viewport frame. Components now adapt to their *emulated device size* rather than the global sidebar width.
 - **Shared Document Bus**:
-  - **Synchronized Design**: Changing the device or orientation on one component updates the entire document simultaneously, allowing you to review an entire feature set at once.
+  - **Synchronized Design**: Changing the device or orientation on one component updates the entire document simultaneously.
   - **Component Pinning (📌)**: "Pin" a specific component to take it out of sync, letting you compare mobile and desktop designs side-by-side.
-  - **Author Locks (🚫)**: Enforce specific viewports for your readers using the `lock-view` modifier in your code fences.
-  - **Pixel-Perfect Scaling**: Prototypes now scale fluidly to fit your VS Code pane without any distortion or layout shift.
-  - **Container-First Styling**: Built-in support for CSS Container Queries (`@container`), so your components respond to their *emulated device size* rather than the window size.
+  - **Author Locks (🚫)**: Enforce specific viewports for your readers using the `device="..." lock-view` modifier in your code fences.
+- **Sync Resilience**: **Interactive Preview** now enters a "Dormant Artifact" state when the Markdown preview is closed, preserving the last rendered view with a warning instead of showing a "Waiting" screen.
 
 ### Changed
-- **Modern Brand Identity**: Refined UI icons and styling for a more professional, native feel within VS Code.
+- **Modern Brand Identity**: Refined UI icons and styling using `lucide-react` for a professional, native feel within VS Code.
 - **Term Standardization**: Solidified **Markdown Preview** and **Interactive Preview** as the canonical terms across documentation and UI.
+- **Logical Truth Persistence**: Components always render at 1:1 logical dimensions internally to maintain coordinate integrity for Queries, even when visually zoomed.
 
 ### Fixed
-- **Sync Reliability**: Eliminated the "Initializing..." hangs that occasionally occurred when switching between previews.
+- **Sync Reliability**: Resolved race conditions and "Initializing..." hangs that occasionally occurred when switching between previews.
 - **State Persistence**: Component state (like form data or toggle switches) is now much more resilient during document edits.
 
 ## [1.0.8] - 2026-01-09

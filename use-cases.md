@@ -79,3 +79,16 @@
 
 *tags: docs, documentation, tutorial, guide, example*
 
+### 7. Data Journalism & Visual Essays
+
+**The Job**: Create immersive, narrative-driven data stories where the prose and visualizations are deeply integrated.
+  > Turn complex measurements into human-centered insights.
+
+**Workflow**:
+1. Gather datasets in `.json` sidecars
+2. Write the narrative hub in your markdown file
+3. Implement custom chart logic or SVG visualizations in sidecar files
+4. Embed interactive components that let readers explore the data through filters or scrollytelling
+
+*tags: journalism, essay, visualization, data-story, svg, storytelling*
+

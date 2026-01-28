@@ -158,14 +158,15 @@ Use these modifiers in the opening fence header (e.g., ` ```jsx live device="mob
 | **`model`** | Device | Human-readable name (e.g., `model="iPhone 14"`). The system will search for the closest match. |
 | **`device`** | Device | General category preset: `mobile`, `tablet`, or `desktop`. |
 | **`orientation`**| Viewport | Sets the initial rotation: `portrait` or `landscape`. |
+| **`zoom`** | Viewport | Sets the zoom strategy: `fit`, `auto` (default), or `none` (1:1). |
 
 > **Precedence**: For device emulation, keywords are resolved in this order: **`mid`** > **`model`** > **`device`**.
 
 ### Standard Device Viewports
 Reactive MD uses these logical device dimensions:
 - **Mobile (`mobile`)**: 375 × 667 (Logical SE)
-- **Tablet (`tablet`)**: 768 × 1024 (Logical iPad)
-- **Desktop (`desktop`)**: 1440 × 900 (Logical Notebook)
+- **Tablet (`tablet`)**: 768 × 1024 (Classic iPad)
+- **Desktop (`desktop`)**: 1920 × 1080 (Desktop HD)
 
 ### Specification Flags
 Flags are standalone keywords added to the fence header (no `=` required).
@@ -179,19 +180,23 @@ Flags are standalone keywords added to the fence header (no `=` required).
 
 Reactive MD uses a modern, container-first styling system. This ensures that your interactive prototypes behave correctly regardless of the physical size of the VS Code editor window.
 
-### The Responsive Root (Rule #1)
-To ensure your UI responds to the **emulated device size** (e.g., iPhone SE) rather than the global VS Code window, you must mark the root of your component as a "Container."
+### Automatic Containment
+To ensure your UI responds to the **emulated device size** (e.g., iPhone SE) rather than the global VS Code window, the extension automatically wraps every component in a "Containment Context" (`container-type: size`).
 
-- **Tailwind (Preferred)**: Add the `@container` class to your root element.
-- **Native CSS**: Apply `container-type: inline-size;` to your root element.
+- **No manual setup**: You do not need to add `@container` to your root element; the frame itself provides the context.
+- **Support for @ Variants**: Tailwind v4 utilities using the `@` prefix (e.g., `@md:p-8`) will automatically respond to the emulated device viewport.
 
-Without this "containment context," responsive utilities or media queries will look at the entire editor window, causing your "Mobile" prototype to incorrectly show "Desktop" layouts on large monitors.
-
+### Technical Truth Scaling (Automated Zoom)
+The system uses a "Zoom, Not Scale" model to ensure both pixel accuracy and ergonomic design:
+- **Logical Truth**: Elements are always rendered at 1:1 scale (1 logical pixel = 1 CSS pixel). This ensures that `@container` queries and media queries calculate correctly.
+- **Visual Zoom**: By default, the entire artifact is "zoomed" visually to fit your sidebar using `transform: scale()`.
+- **The Result**: A 1920px desktop design will fit in a 400px sidebar without horizontal reflowing, preserving the "Desktop Layout" while remaining viewable.
+- **Verification**: If you need to verify exact pixel crispness or typography at native size, use the **1:1** toggle in the header.
 
 ### 1. Tailwind CSS (v4)
 Tailwind is the primary styling engine. It is available in both **Markdown** and **Interactive** previews.
 - **Usage**: Use standard utility classes (e.g., `className="p-8 bg-slate-50"`) directly in your JSX.
-- **Container Queries**: Use the `@` prefix for responsive variants (e.g., `@md:p-8`, `@lg:grid-cols-2`). These only work if you have followed **Rule #1** above.
+- **Container Queries**: Use the `@` prefix for responsive variants (e.g., `@md:p-8`, `@lg:grid-cols-2`). These respond to the emulated device size.
 - **Media Queries (Avoid)**: Standard media query variants (e.g., `md:`, `lg:`) target the entire VS Code window and should be avoided in interactive prototypes.
 
 ### 2. The CSS Context (`css live`)

@@ -48,9 +48,9 @@ import ThemeToggle from './ThemeToggle.jsx';
 
 function ToggleDemo() {
   const [dark, setDark] = React.useState(false);
-  
+
   return (
-    <div 
+    <div
       className={`theme-bg theme-transition p-8 rounded-lg ${dark ? 'dark-theme' : ''}`}
     >
       <div className="flex items-center justify-between max-w-xs mx-auto">
@@ -76,7 +76,7 @@ import { Home, Settings, User, Bell, Search, Menu } from 'lucide-react';
 
 function PagePreview() {
   const [dark, setDark] = React.useState(false);
-  
+
   return (
     <div className={`theme-bg theme-transition rounded-lg overflow-hidden ${dark ? 'dark-theme' : ''}`}>
       {/* Header */}
@@ -86,19 +86,19 @@ function PagePreview() {
           <h1 className="text-xl font-bold">Dashboard</h1>
         </div>
         <div className="flex items-center gap-3">
-          <div 
+          <div
             className="flex items-center gap-2 px-3 py-1.5 rounded-lg theme-transition"
             style={{ backgroundColor: 'var(--color-bg-secondary)' }}
           >
             <Search className="w-4 h-4" />
-            <input 
-              type="text" 
-              placeholder="Search..." 
+            <input
+              type="text"
+              placeholder="Search..."
               className="bg-transparent border-none outline-none w-32"
               style={{ color: 'var(--color-text)' }}
             />
           </div>
-          <button 
+          <button
             className="p-2 rounded-lg theme-transition"
             style={{ backgroundColor: 'var(--color-bg-secondary)' }}
           >
@@ -107,7 +107,7 @@ function PagePreview() {
           <ThemeToggle dark={dark} onToggle={() => setDark(!dark)} />
         </div>
       </div>
-      
+
       {/* Content */}
       <div className="p-6 grid grid-cols-3 gap-4">
         {[
@@ -115,10 +115,10 @@ function PagePreview() {
           { icon: User, title: 'Users', value: '567' },
           { icon: Settings, title: 'Settings', value: '89' },
         ].map(({ icon: Icon, title, value }) => (
-          <div 
-            key={title} 
+          <div
+            key={title}
             className="p-4 rounded-lg theme-card theme-transition border"
-            style={{ 
+            style={{
               backgroundColor: 'var(--color-card)',
               borderColor: 'var(--color-border)'
             }}
@@ -147,15 +147,15 @@ import { Monitor, Sun, Moon } from 'lucide-react';
 
 function SystemPreference() {
   const [mode, setMode] = React.useState('system'); // 'light', 'dark', 'system'
-  
+
   // In real implementation, would use window.matchMedia('(prefers-color-scheme: dark)')
   const systemPrefersDark = true; // Simulated for demo
   const effectiveDark = mode === 'system' ? systemPrefersDark : mode === 'dark';
-  
+
   return (
     <div className={`theme-bg theme-transition p-6 rounded-lg ${effectiveDark ? 'dark-theme' : ''}`}>
       <h3 className="font-semibold mb-4">Theme Preference</h3>
-      
+
       <div className="flex gap-2">
         {[
           { value: 'light', icon: Sun, label: 'Light' },
@@ -176,9 +176,9 @@ function SystemPreference() {
           </button>
         ))}
       </div>
-      
+
       <p className="mt-4 text-sm theme-text-muted">
-        {mode === 'system' 
+        {mode === 'system'
           ? `Following system preference (currently ${systemPrefersDark ? 'dark' : 'light'})`
           : `Using ${mode} mode`
         }

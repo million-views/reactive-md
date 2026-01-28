@@ -123,6 +123,25 @@ Common causes:
 3. **Reset the Bus**: Toggling any **Synced (🔗)** component to a different device will force a re-synchronization across the entire document.
 4. **Reload Window**: If the state feels out of sync after heavy document restructuring, use `Cmd+Shift+P` → "Developer: Reload Window".
 
+### Content Looks Too Small or Large (Scaling)
+
+**Issue**: The component looks tiny on a large monitor, or requires horizontal scrolling on a small screen.
+
+**Reason**: Reactive MD follows "Technical Truth" scaling. It renders components at 1:1 logical pixels for the selected device (e.g., 375px wide for iPhone SE). Unlike some tools that "shrink-to-fit" content, we preserve the exact physical proportions to ensure your design matches the target hardware.
+
+**Solutions**:
+- **Use Scrollbars**: If the device is larger than your IDE pane, use the provided horizontal/vertical scrollbars to navigate the prototype.
+- **Switch Presets**: If you have limited screen space, use `device=mobile` to reduce the logical width of the frame.
+- **Use Container Queries**: Ensure you are using `@md:`, `@lg:` variants for responsiveness. These will correctly adapt to the frame size.
+
+### Horizontal Scrollbar is Always Visible
+
+**Issue**: Even on mobile presets, a horizontal scrollbar appears.
+
+**Cause**: An element within your component has a fixed width larger than the viewport (e.g., `width: 500px` inside a mobile frame).
+
+**Fix**: Check for fixed-width elements or images without `max-width: 100%`. Use responsive Tailwind classes like `w-full` or `max-w-full`.
+
 ### Extension Not Activating
 
 The extension only activates when you open a `.jsx` or `.tsx` file. Opening a `.js` file won't trigger activation.
