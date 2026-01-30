@@ -28,9 +28,8 @@
 
 **Recipes** (`./recipes/`) - Templates organized by job-to-be-done:
 - **use-cases.md** - Complete cross-category index (start here to find recipes)
-- **README.md** - Recipe philosophy and what makes a good recipe
-- Each category folder has its own README explaining the use case
-- Categories: prd-templates, user-journeys, feature-concepts, ui-catalog, case-studies
+- Each category folder has its own README explaining the use case (if present)
+- Categories: prd-templates, user-journeys, case-studies, design-systems, gallery
 
 **Design Systems** (`./recipes/design-systems/`) - Styling infrastructure:
 - **README.md** - Quick start and philosophy guide (user-facing)
@@ -231,7 +230,7 @@ Before committing:
 1. **Wrong directory**: Running git and other commands from outside of repository root (where this AGENTS.md lives)
 2. **Repeating documentation**: Writing information that exists elsewhere
 3. **Breaking token parity**: Changing token names without updating both systems
-4. **Wrong styling in wireframes**: Using Tailwind instead of `wireframe.css` in `./recipes/wireframes/`
+4. **Wrong styling in wireframes**: Using Tailwind instead of `sketch.css` in `./recipes/design-systems/assets/elementary/tokens/`
 5. **Hardcoded values**: Not using design tokens when they exist
 6. **Forgetting to update index**: Adding recipe but not updating `./use-cases.md`
 

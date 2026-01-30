@@ -66,7 +66,19 @@
 
 *tags: component, library, design system, pattern*
 
-### 6. Write Technical Documentation
+### 6. Audit Design Fidelity
+**The Job**: Verify that your components behave correctly across devices with pixel-perfect accuracy.
+  > Audit rotation, scaling, and container query fidelity.
+
+**Workflow**:
+1. Open `recipes/gallery/fidelity-benchmark/spec.md` to see the "Logical Truth" diagnostics
+2. Use the **Fidelity Toolkit** in your own documents to debug layout shifts
+3. Verify that `@container` queries respond to emulated device sizes
+4. Ensure hardware metaphors (like scrollbars) are respected
+
+*tags: audit, fidelity, benchmark, diagnostic, container-query*
+
+### 7. Write Technical Documentation
 
 **The Job**: Write docs with code examples that actually run and render.
   > Create documentation that developers can learn from and trust.
@@ -79,7 +91,7 @@
 
 *tags: docs, documentation, tutorial, guide, example*
 
-### 7. Data Journalism & Visual Essays
+### 8. Data Journalism & Visual Essays
 
 **The Job**: Create immersive, narrative-driven data stories where the prose and visualizations are deeply integrated.
   > Turn complex measurements into human-centered insights.

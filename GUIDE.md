@@ -149,12 +149,12 @@ Showcase loading, empty, or error states in separate fences.
 ## Fence Specification Reference
 
 ### Key Modifiers
-Use these modifiers in the opening fence header (e.g., ` ```jsx live device="mobile" ... ``` `) to control identity and emulation.
+Use these modifiers in the opening fence header (e.g., ` ```jsx live device=mobile ... ``` `) to control identity and emulation.
 
 | Key | Category | Description |
 | :--- | :--- | :--- |
-| **`id`** | Identity | A stable name (e.g., `id="login-form"`) that prevents a **Component Refresh** when you edit the surrounding narrative. |
-| **`mid`** | Device | Specific Model ID (e.g., `mid="iphone-15-pro"`). Best for exact viewport and safe-area specs. |
+| **`id`** | Identity | A stable name (e.g., `id=login-form`) that prevents a **Component Refresh** when you edit the surrounding narrative. |
+| **`mid`** | Device | Specific Model ID (e.g., `mid=iphone-15-pro`). Best for exact viewport and safe-area specs. |
 | **`model`** | Device | Human-readable name (e.g., `model="iPhone 14"`). The system will search for the closest match. |
 | **`device`** | Device | General category preset: `mobile`, `tablet`, or `desktop`. |
 | **`orientation`**| Viewport | Sets the initial rotation: `portrait` or `landscape`. |
@@ -165,8 +165,8 @@ Use these modifiers in the opening fence header (e.g., ` ```jsx live device="mob
 ### Standard Device Viewports
 Reactive MD uses these logical device dimensions:
 - **Mobile (`mobile`)**: 375 × 667 (Logical SE)
-- **Tablet (`tablet`)**: 768 × 1024 (Classic iPad)
-- **Desktop (`desktop`)**: 1920 × 1080 (Desktop HD)
+- **Tablet (`tablet`)**: 768 × 1024 (Logical iPad)
+- **Desktop (`desktop`)**: 1920 × 1080 (High Definition)
 
 ### Specification Flags
 Flags are standalone keywords added to the fence header (no `=` required).
@@ -195,9 +195,18 @@ The system uses a "Zoom, Not Scale" model to ensure both pixel accuracy and ergo
 
 ### 1. Tailwind CSS (v4)
 Tailwind is the primary styling engine. It is available in both **Markdown** and **Interactive** previews.
+
+#### The Concept: Logical vs. Literal Truth
+High-fidelity prototyping in a side-panel environment like VS Code requires a choice between two "Truths":
+
+- **Literal Truth (Standard Media Queries)**: These queries respond to the standard browser window. In Reactive MD, this means they respond to the entire VS Code application window. This is "Literally" true to the browser, but it's useless for testing how a component behaves inside a specific mobile device.
+- **Logical Truth (Container Queries)**: These queries respond to the *immediate container* of the component (the emulated device). This ensures that a component set to "Mobile" always triggers the correct mobile styles, even if your VS Code window is 4000 pixels wide.
+
+**Reactive MD is designed for Logical Truth.**
+
 - **Usage**: Use standard utility classes (e.g., `className="p-8 bg-slate-50"`) directly in your JSX.
-- **Container Queries**: Use the `@` prefix for responsive variants (e.g., `@md:p-8`, `@lg:grid-cols-2`). These respond to the emulated device size.
-- **Media Queries (Avoid)**: Standard media query variants (e.g., `md:`, `lg:`) target the entire VS Code window and should be avoided in interactive prototypes.
+- **Container Queries (The Golden Standard)**: Reactive MD is a **Container-First** environment. Use the `@` prefix for responsive variants (e.g., `@md:p-8`, `@lg:grid-cols-2`). These respond to the *emulated device size* rather than the global application window. Always ensure your root element is container-aware to maintain portability.
+- **Avoid standard Media Queries**: Standard media query variants (e.g., `md:`, `lg:`) target the global VS Code window and will not respond to emulated device presets or zoom levels. By adopting Container Queries, you ensure your designs work perfectly across all Reactive MD device modes.
 
 ### 2. The CSS Context (`css live`)
 Use `css live` fences to define document-specific styles, such as custom properties or unique brand tokens. These styles apply to every subsequent component in the document.
@@ -257,7 +266,7 @@ Whenever you change the **Source Code** or **CSS**, the component must be refres
 ### 2. The UI Tweak
 Changing the viewport (rotating the device or switching between presets) is a **UI Tweak**. The component stays mounted, the instance is preserved, and your state is safe.
 
-> **Persistence Tip**: Modifying the fence header in your Markdown file (e.g., changing `device="mobile"`) is a source change that triggers a **Component Refresh**. To change the device without losing form data, use the emulation buttons in the component header instead.
+> **Persistence Tip**: Modifying the fence header in your Markdown file (e.g., changing `device=mobile`) is a source change that triggers a **Component Refresh**. To change the device without losing form data, use the emulation buttons in the component header instead.
 
 ### 3. Stable Identity (The `id` modifier)
 If you want to edit your narrative text or move a fence to a different section without triggering a refresh, give it a stable `id`. This acts as an **Identity Anchor**:
