@@ -6,7 +6,7 @@ Reactive MD is an authoring system for **Literate UI/UX**. It treats a document 
 
 To use Reactive MD effectively, a document architect must distinguish between the two primary ways a document is viewed:
 
-- **Markdown Preview**: Provides the **Static Preview**. It renders the initial HTML and CSS for reading and review only when the integrated VS Code markdown preview is opened. It **cannot execute code** because of the markdown extension's security model.
+- **Markdown Preview**: It renders the initial HTML and CSS for reading and review only when the integrated VS Code markdown preview is opened. It **cannot execute code** because of the markdown extension's security model.
 - **Interactive Preview**: Provides the **High-Fidelity Prototype**. It executes the full React 19 lifecycle, enabling stateful testing, animations, and responsive device emulation.
 
 ### Code Fence Modes
@@ -163,25 +163,32 @@ Use these modifiers in the opening fence header (e.g., ` ```jsx live device=mobi
 > **Precedence**: For device emulation, keywords are resolved in this order: **`mid`** > **`model`** > **`device`**.
 
 ### Standard Device Viewports
-Reactive MD uses these logical device dimensions:
-- **Mobile (`mobile`)**: 375 × 667 (Logical SE)
-- **Tablet (`tablet`)**: 768 × 1024 (Logical iPad)
-- **Desktop (`desktop`)**: 1920 × 1080 (High Definition)
+Reactive MD uses these logical device dimensions (derived from physical hardware standards):
+- **Mobile (`mobile`)**: 375 × 667 (iPhone SE / Logical Truth)
+- **Tablet (`tablet`)**: 768 × 1024 (iPad Air / Logical Truth)
+- **Desktop (`desktop`)**: 1440 × 900 (MacBook Air / Logical Truth)
 
 ### Specification Flags
 Flags are standalone keywords added to the fence header (no `=` required).
 
-- **`lock-view`**: Hides emulation controls in Interactive Preview, strictly enforcing your DSL settings.
+- **`lock-view`**: Hides emulation controls in Interactive Preview, strictly enforcing your header settings.
 - **`no-placeholder`**: Suppresses the helpful guidance cards that normally explain why a component isn't rendering (such as missing libraries or security restrictions).
-- **`debug`**: Enables additional runtime logging in the console.
 
 
 ## Styling & Visual System
 
 Reactive MD uses a modern, container-first styling system. This ensures that your interactive prototypes behave correctly regardless of the physical size of the VS Code editor window.
 
+### The Glossary of Fidelity
+
+To master Literate UI/UX, you must align with the system's core definitions of "Truth":
+
+- **Logical Truth (Target Reality)**: The dimensions of the intended device (e.g., 375x667 for Mobile). This is the baseline for all layout calculations. Components "believe" they are on this device, triggering correct responsive logic even when squinting at a sidebar.
+- **Literal Truth (Physical Reality)**: The actual pixels available in your VS Code window (e.g., a 400px wide side panel). This is irrelevant for layout but critical for visibility.
+- **Visual Zoom (The Bridge)**: The technology that maps **Logical Truth** into the **Literal Truth** of your sidebar. It uses `transform: scale()` to shrink or grow the artifact to fit your screen without reflowing the layout.
+
 ### Automatic Containment
-To ensure your UI responds to the **emulated device size** (e.g., iPhone SE) rather than the global VS Code window, the extension automatically wraps every component in a "Containment Context" (`container-type: size`).
+To ensure your UI responds to the **Logical Truth** of the emulated device size rather than the global VS Code window, the extension automatically wraps every component in a "Containment Context" (`container-type: size`).
 
 - **No manual setup**: You do not need to add `@container` to your root element; the frame itself provides the context.
 - **Support for @ Variants**: Tailwind v4 utilities using the `@` prefix (e.g., `@md:p-8`) will automatically respond to the emulated device viewport.
@@ -226,22 +233,25 @@ For larger design systems, move your CSS to external `.css` files. These can the
 - **In JSX**: `import './theme.css';`
 - **In CSS Fences**: `@import './theme.css';`
 
-## The Package Ecosystem
+## The Library Ecosystem
 
-To ensure performance and reliability, Reactive MD categorizes packages into two tiers:
+Reactive MD is designed to work **100% offline**. To ensure high performance and zero configuration, a curated selection of the most popular libraries is pre-bundled directly into the extension.
 
-### 1. Built-in (Available Everywhere)
-These packages are bundled with the extension and work in both **Markdown** and **Interactive** previews.
-- **Foundational**: `lucide-react`, `motion/react`, `clsx`, `uuid`.
-- **Utilities**: `dayjs`, `es-toolkit`.
+### Pre-bundled Libraries (Available Offline)
+The following libraries are available in both **Markdown Preview** and **Interactive Preview**:
 
-### 2. External (Interactive Only)
-Any ESM-compatible package on NPM can be used in **Interactive Preview** (`Cmd+K P`). These are resolved via the `esm.sh` CDN.
-- **Known to work**: `@heroicons/react`, `zustand`, `jotai`, `react-hook-form`, `tailwind-merge`.
-- **Known Limitations**: The following packages are currently unsupported due to environment constraints:
-    - `recharts` (transitive dependency resolution issues)
-    - `swr` (missing React context shim)
-    - `@tanstack/react-query` (multiple React instance conflicts)
+- **Icons & Motion**: `lucide-react`, `@heroicons/react`, `motion/react` (renamed from `framer-motion`).
+- **State & Logic**: `zustand`, `jotai`, `react-hook-form`, `uuid`.
+- **Utilities**: `dayjs`, `es-toolkit`, `clsx`.
+- **Styling**: `tailwind-merge`, `class-variance-authority` (cva).
+
+### How to use
+Simply use standard import statements in your `jsx live` fences:
+```jsx
+import { motion } from 'motion/react';
+import { Heart } from 'lucide-react';
+import { create } from 'zustand';
+```
 
 
 ## Emulation & Synchronization

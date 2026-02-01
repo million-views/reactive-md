@@ -31,12 +31,14 @@ Write product specs, wireframes, and user journeys with embedded, interactive Re
 | 📝 **Markdown Fences** | `jsx live` renders inline in markdown preview |
 | 📱 **Device Emulation** | Test responsive designs with a synchronized "Document Bus" |
 | 🎨 **Tailwind v4** | Full utility support, zero config |
-| 📦 **npm Packages** | Most packages work via esm.sh CDN |
+| 📦 **npm Packages** | Pre-bundled high-quality libraries (offline-first) |
 | 🔍 **CodeLens** | Click "▶ Preview" above exported components |
 | ⚛️ **React 19** | Modern runtime for high-fidelity interactive previews |
 | 🎯 **TypeScript** | Full `.tsx` support with type stripping |
 
 ## Installation
+
+Requires **VS Code 1.106.0+**. No internet connection required (100% offline support).
 
 1. Open VS Code
 2. Press `Cmd+Shift+X` (Mac) or `Ctrl+Shift+X` (Windows/Linux)
@@ -64,10 +66,42 @@ function Hello() {
 ```
 ~~~
 
-### Preview Modes
-- **Markdown Preview** (`Cmd+Shift+V`): Fast, offline, shows initial component state
-- **Interactive Preview** (`Cmd+K P`): Full browser environment with live reload and external packages
+## 🎯 Two Preview Modes
 
+| Mode | Keyboard | Best For |
+|------|----------|----------|
+| **Markdown Preview** | `Cmd+Shift+V` | Documentation, static examples, fast review |
+| **Interactive Preview** | `Cmd+K P` | Hooks, state, animations, responsive testing |
+
+**Markdown Preview** renders server-side HTML (hooks show initial state).
+**Interactive Preview** runs full React runtime with live reload and pre-bundled libraries.
+
+## 📦 Works With Your Favorite Libraries
+
+```jsx live
+import { motion } from 'motion/react';
+import { Heart } from 'lucide-react';
+import dayjs from 'dayjs';
+
+function Demo() {
+  return (
+    <motion.div
+      initial={{ scale: 0.9 }}
+      animate={{ scale: 1 }}
+      className="flex items-center gap-2 p-4"
+    >
+      <Heart className="text-red-500" />
+      <span>Built with love • {dayjs().format('MMMM D, YYYY')}</span>
+    </motion.div>
+  );
+}
+```
+
+## 📦 Bundled Libraries
+
+Reactive MD is designed to work **100% offline**. The following libraries are pre-bundled directly into the extension:
+
+`lucide-react`, `motion/react`, `clsx`, `dayjs`, `uuid`, `es-toolkit`, `zustand`, `jotai`, `react-hook-form`, `@heroicons/react`, `tailwind-merge`, `class-variance-authority`.
 
 ## Agent Skills
 

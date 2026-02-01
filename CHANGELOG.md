@@ -2,16 +2,17 @@
 
 All notable changes to Reactive MD will be documented here.
 
-## [1.1.0] - 2026-01-27
+## [1.1.0] - 2026-01-31
 
 ### Added
 - **Visual Zoom (Automated Artboards)**: Replaced fixed logic scaling with an ergonomic **Visual Zoom** model. Viewports now default to `zoom=auto`, fitting the artboard to your sidebar width without reflowing content. Added a 3-state icon toggle ([Auto] [Fit] [1:1]) in the component header for high-fidelity verification.
 - **Stable Identity (Identity Anchors)**: You can now edit your narrative text without causing the interactive components to reload or lose their state. Use the `id="name"` modifier to "anchor" a component's identity.
-- **2D Container Queries**: Enabled full `size` based container queries (width, height, aspect-ratio) on the viewport frame. Components now adapt to their *emulated device size* rather than the global sidebar width.
+- **2D Container Queries**: Enabled full `size` based container queries (width, height, aspect-ratio) on the viewport frame. Components [can] now adapt to their *emulated device size* rather than the global sidebar width using container queries.
 - **Shared Document Bus**:
   - **Synchronized Design**: Changing the device or orientation on one component updates the entire document simultaneously.
   - **Component Pinning (📌)**: "Pin" a specific component to take it out of sync, letting you compare mobile and desktop designs side-by-side.
   - **Author Locks (🚫)**: Enforce specific viewports for your readers using the `device="..." lock-view` modifier in your code fences.
+- **100% Offline (Pre-bundled Libraries)**: Transitioned to a fully offline library model. All supported npm packages (motion, lucide, zustand, etc.) are pre-bundled, ensuring 100% reliability in restricted network environments without external CDNs.
 - **Sync Resilience**: **Interactive Preview** now enters a "Dormant Artifact" state when the Markdown preview is closed, preserving the last rendered view with a warning instead of showing a "Waiting" screen.
 
 ### Changed

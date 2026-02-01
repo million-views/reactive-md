@@ -83,9 +83,9 @@ Check the VS Code Output panel:
 3. Look for error messages
 
 Common causes:
-- Network issues (esm.sh CDN unreachable)
-- Syntax errors in your component
-- Missing default export
+- Syntax errors in your component or dependencies
+- Missing default export for component files
+- Large dependencies causing transformation timeouts
 
 ### Editor Scrolls When Editing CSS Live Fences
 
@@ -119,7 +119,7 @@ Common causes:
 
 **Solutions**:
 1. **Check for Pins**: Ensure the component header shows the 🔗 icon. If it shows 📌, it is intentionally ignoring the document bus.
-2. **Check the DSL**: Look at the code fence header. If it contains `lock-view`, it is forced into a specific state by the author and cannot be changed interactively.
+2. **Check the Fence Header**: Look at the code fence options. If it contains `lock-view`, it is forced into a specific state by the author and cannot be changed interactively.
 3. **Reset the Bus**: Toggling any **Synced (🔗)** component to a different device will force a re-synchronization across the entire document.
 4. **Reload Window**: If the state feels out of sync after heavy document restructuring, use `Cmd+Shift+P` → "Developer: Reload Window".
 
@@ -187,33 +187,18 @@ Check if `reactive-md` is listed. If not, the extension failed to load.
 
 **Solution**: Press `Cmd+Shift+V` (Mac) or `Ctrl+Shift+V` (Windows/Linux) to open the Markdown Preview. The connection will be restored automatically.
 
----
+### Offline Mode & Bundled Packages
 
-## Network Issues
+Reactive MD is designed to work **100% offline**. All supported libraries are pre-bundled directly into the extension to ensure maximum performance and security without requiring external CDN access.
 
-The extension requires network access for external npm packages via esm.sh CDN in Interactive Preview mode.
+#### Available Packages (Offline):
 
-### Test CDN Access
+- **Icons & Motion**: `lucide-react`, `@heroicons/react`, `motion/react`.
+- **State & Logic**: `zustand`, `jotai`, `react-hook-form`, `uuid`.
+- **Utilities**: `dayjs`, `es-toolkit`, `clsx`.
+- **Styling**: `tailwind-merge`, `class-variance-authority`.
 
-Open in browser: https://esm.sh/react@19
-
-If blocked:
-- Check corporate firewall/proxy settings
-- Add `esm.sh` to allowlist
-- Use offline mode with bundled packages only
-
-### Bundled Packages (Always Available)
-
-These packages work offline in both preview modes:
-
-- `lucide-react` - Icons
-- `dayjs` - Date formatting
-- `motion` - Animations
-- `clsx` - Conditional classes
-- `uuid` - ID generation
-- `es-toolkit` - Utility functions
-
-For other npm packages, use Interactive Preview with internet access.
+> **Note**: Importing arbitrary npm packages that are NOT in the bundled list is not currently supported to maintain stability and security.
 
 ---
 
