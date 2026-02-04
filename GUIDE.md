@@ -213,8 +213,8 @@ The system uses a "Zoom, Not Scale" model to ensure both pixel accuracy and ergo
 ### Zero-Clipping Physics
 To prevent the common "right-edge clipping" issues found in standard markdown previews, Reactive MD injects a mandatory **2px "Environmental Air"** buffer around your prototypes. This ensures that focused borders, shadows, and sub-pixel details are never cut off by the container walls.
 
-### 1. Tailwind CSS (v4)
-Tailwind is the primary styling engine. It is available in both **Markdown** and **Interactive** previews.
+### 1. Styling Strategy: Native CSS & Tailwind
+Reactive MD is styling-neutral. Whether you are a master of design system precision (Pure CSS) or a master of utility speed (Tailwind), the system ensures your prototypes remain high-fidelity in both **Markdown** and **Interactive** previews.
 
 #### The Concept: Logical vs. Literal Truth
 High-fidelity prototyping in a side-panel environment like VS Code requires a choice between two "Truths":
@@ -224,10 +224,13 @@ High-fidelity prototyping in a side-panel environment like VS Code requires a ch
 
 **Reactive MD is designed for Logical Truth.**
 
-- **Usage**: Use standard utility classes (e.g., `className="p-8 bg-slate-50"`) directly in your JSX.
-- **Container Queries (The Golden Standard)**: Reactive MD is a **Container-First** environment. Use the `@` prefix for responsive variants (e.g., `@md:p-8`, `@lg:grid-cols-2`). These respond to the *emulated device size* rather than the global application window. Always ensure your root element is container-aware to maintain portability.
-- **Orientation Variants**: To aid in creating responsive layouts, the system provides custom variants for orientation. Use `@landscape:flex-row` or `@portrait:flex-col` to target the emulated device's current rotation state.
-- **Avoid standard Media Queries**: Standard media query variants (e.g., `md:`, `lg:`) target the global VS Code window and will not respond to emulated device presets or zoom levels. By adopting Container Queries, you ensure your designs work perfectly across all Reactive MD device modes.
+- **Native CSS (The Design System Way)**: For architects building custom design systems, Native CSS is a first-class citizen. Use `css live` fences or imported `.css` files to refine the "UI Grind" with precise control. All Reactive MD emulation features (safe areas, device presets) are available via standard CSS properties and Container Queries.
+- **Tailwind v4 (The Utility Way)**: For rapid iteration, Tailwind v4 is available out-of-the-box. Use standard utility classes directly in your JSX.
+- **Container Queries (The Golden Standard)**: Regardless of your chosen engine, Reactive MD is a **Container-First** environment.
+  - In **CSS**: Use `@container (min-width: ...)` to respond to the emulated frame.
+  - In **Tailwind**: Use the `@` prefix for responsive variants (e.g., `@md:p-8`, `@lg:grid-cols-2`).
+- **Orientation Variants**: The system provides custom hooks for orientation change. For Tailwind, use `@landscape:flex-row`. For CSS, the `physical-viewport` element is attribute-tagged for orientation-specific styling.
+- **Avoid standard Media Queries**: Media queries (and Tailwind's `md:`, `lg:` variants) target the global VS Code window and will not respond to emulated device presets.
 
 ### 2. The CSS Context (`css live`)
 Use `css live` fences to define document-specific styles, such as custom properties or unique brand tokens. These styles apply to every subsequent component in the document.
