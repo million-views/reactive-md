@@ -193,10 +193,10 @@ Reactive MD is designed to work **100% offline**. All supported libraries are pr
 
 #### Available Packages (Offline):
 
-- **Icons & Motion**: `lucide-react`, `@heroicons/react`, `motion/react`.
+- **Animation**: `motion/react` (Framer Motion).
+- **Iconography**: `lucide-react`, `@heroicons/react`.
 - **State & Logic**: `zustand`, `jotai`, `react-hook-form`, `uuid`.
-- **Utilities**: `dayjs`, `es-toolkit`, `clsx`.
-- **Styling**: `tailwind-merge`, `class-variance-authority`.
+- **Utilities**: `dayjs`, `es-toolkit`, `clsx`, `tailwind-merge`, `class-variance-authority`.
 
 > **Note**: Importing arbitrary npm packages that are NOT in the bundled list is not currently supported to maintain stability and security.
 

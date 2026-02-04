@@ -90,6 +90,7 @@ function PricingStory() {
 External files are for shared libraries. They require explicit exports to work with the editor's "Preview" features.
 - **Inline Exports**: Use `export function Component()`. This ensures the **▶ Preview** button appears exactly where you defined the code.
 - **Avoid Tail-End Exports**: Do not place `export default` at the very bottom of a file. This separates the preview controls from the source code.
+- **Helper Components**: When using `export default function`, you can utilize helper components (non-exported functions) defined in the same file. To ensure they are correctly included in the preview, always define these helpers **before** the main `export default` function.
 - **Library Discipline**: Use named exports for utilities; reserve `export default` for your primary "App" component.
 
 ### 4. Component Resilience (Preview Safety)
@@ -156,17 +157,23 @@ Use these modifiers in the opening fence header (e.g., ` ```jsx live device=mobi
 | **`id`** | Identity | A stable name (e.g., `id=login-form`) that prevents a **Component Refresh** when you edit the surrounding narrative. |
 | **`mid`** | Device | Specific Model ID (e.g., `mid=iphone-15-pro`). Best for exact viewport and safe-area specs. |
 | **`model`** | Device | Human-readable name (e.g., `model="iPhone 14"`). The system will search for the closest match. |
-| **`device`** | Device | General category preset: `mobile`, `tablet`, or `desktop`. |
+| **`device`** | Device | General category preset: `mobile`, `tablet`, `desktop`, or **`none`** (Natural Liquid). |
 | **`orientation`**| Viewport | Sets the initial rotation: `portrait` or `landscape`. |
-| **`zoom`** | Viewport | Sets the zoom strategy: `fit`, `auto` (default), or `none` (1:1). |
+| **`zoom`** | Viewport | Sets the zoom strategy: `fill`, `auto` (default/capped), or `none` (1:1). |
 
 > **Precedence**: For device emulation, keywords are resolved in this order: **`mid`** > **`model`** > **`device`**.
+
+### Liquid-First Architecture (The Default)
+If no device modifiers are specified, the system defaults to **`device=none`** (Natural Liquid).
+- **Physics**: The component behaves like a standard block element, expanding to fit its content height (`height: auto`).
+- **Use Case**: Best for simple UI components, buttons, or snippets that don't require full-screen emulated context.
+- **Intent-Based Upgrading**: Interactive controls remain available in Liquid mode. Furthermore, providing a partial modifier like `orientation=landscape` or `zoom=fill` will automatically "upgrade" the fence to a mobile viewport to honor your request for specific emulation.
 
 ### Standard Device Viewports
 Reactive MD uses these logical device dimensions (derived from physical hardware standards):
 - **Mobile (`mobile`)**: 375 × 667 (iPhone SE / Logical Truth)
-- **Tablet (`tablet`)**: 768 × 1024 (iPad Air / Logical Truth)
-- **Desktop (`desktop`)**: 1440 × 900 (MacBook Air / Logical Truth)
+- **Tablet (`tablet`)**: 768 × 1024 (iPad Classic / Logical Truth)
+- **Desktop (`desktop`)**: 1920 × 1080 (Desktop HD / Logical Truth)
 
 ### Specification Flags
 Flags are standalone keywords added to the fence header (no `=` required).
@@ -186,19 +193,25 @@ To master Literate UI/UX, you must align with the system's core definitions of "
 - **Logical Truth (Target Reality)**: The dimensions of the intended device (e.g., 375x667 for Mobile). This is the baseline for all layout calculations. Components "believe" they are on this device, triggering correct responsive logic even when squinting at a sidebar.
 - **Literal Truth (Physical Reality)**: The actual pixels available in your VS Code window (e.g., a 400px wide side panel). This is irrelevant for layout but critical for visibility.
 - **Visual Zoom (The Bridge)**: The technology that maps **Logical Truth** into the **Literal Truth** of your sidebar. It uses `transform: scale()` to shrink or grow the artifact to fit your screen without reflowing the layout.
+- **The Sovereign Reset (Fidelity Pass)**: To ensure 1:1 parity with production browsers, the system automatically neutralizes VS Code's ambient markdown styles. It forces a clean slate (`line-height: normal`, `font-size: 16px`), ensuring your Tailwind utilities behave exactly as they would on a standalone website.
 
-### Automatic Containment
+### Automatic Containment & Hardware Emulation
 To ensure your UI responds to the **Logical Truth** of the emulated device size rather than the global VS Code window, the extension automatically wraps every component in a "Containment Context" (`container-type: size`).
 
 - **No manual setup**: You do not need to add `@container` to your root element; the frame itself provides the context.
-- **Support for @ Variants**: Tailwind v4 utilities using the `@` prefix (e.g., `@md:p-8`) will automatically respond to the emulated device viewport.
+- **Hardware Fidelity**: When a specific device model is selected (e.g., `mid=iphone-15-pro`), the system emulates physical hardware features such as the **Dynamic Island**, notches, and safe-area insets.
+- **Support for @ Variants**: Tailwind v4 utilities using the `@` prefix (e.g., `@md:p-8`) will automatically respond to the emulated device viewport. You can even use `@landscape` and `@portrait` variants to target orientation changes.
 
 ### Technical Truth Scaling (Automated Zoom)
 The system uses a "Zoom, Not Scale" model to ensure both pixel accuracy and ergonomic design:
 - **Logical Truth**: Elements are always rendered at 1:1 scale (1 logical pixel = 1 CSS pixel). This ensures that `@container` queries and media queries calculate correctly.
-- **Visual Zoom**: By default, the entire artifact is "zoomed" visually to fit your sidebar using `transform: scale()`.
-- **The Result**: A 1920px desktop design will fit in a 400px sidebar without horizontal reflowing, preserving the "Desktop Layout" while remaining viewable.
-- **Verification**: If you need to verify exact pixel crispness or typography at native size, use the **1:1** toggle in the header.
+- **Visual Zoom**: By default, the entire artifact is "zoomed" visually to fit your sidebar using CSS transforms.
+- **Adaptive Zoom (`auto`)**: This is the default. It automatically shrinks content to fit the available panel width without reflowing, **capping at 1.0x** to preserve pixel-perfect sharpness.
+- **Responsive Fill (`fill`)**: Forces the artifact to stretch to the full width of the panel, regardless of its logical size.
+- **Verification**: If you need to verify exact pixel crispness or typography at native size, use the **1:1** toggle (Zoom: None) in the header. This may result in horizontal scrolling but preserves literal fidelity.
+
+### Zero-Clipping Physics
+To prevent the common "right-edge clipping" issues found in standard markdown previews, Reactive MD injects a mandatory **2px "Environmental Air"** buffer around your prototypes. This ensures that focused borders, shadows, and sub-pixel details are never cut off by the container walls.
 
 ### 1. Tailwind CSS (v4)
 Tailwind is the primary styling engine. It is available in both **Markdown** and **Interactive** previews.
@@ -213,14 +226,17 @@ High-fidelity prototyping in a side-panel environment like VS Code requires a ch
 
 - **Usage**: Use standard utility classes (e.g., `className="p-8 bg-slate-50"`) directly in your JSX.
 - **Container Queries (The Golden Standard)**: Reactive MD is a **Container-First** environment. Use the `@` prefix for responsive variants (e.g., `@md:p-8`, `@lg:grid-cols-2`). These respond to the *emulated device size* rather than the global application window. Always ensure your root element is container-aware to maintain portability.
+- **Orientation Variants**: To aid in creating responsive layouts, the system provides custom variants for orientation. Use `@landscape:flex-row` or `@portrait:flex-col` to target the emulated device's current rotation state.
 - **Avoid standard Media Queries**: Standard media query variants (e.g., `md:`, `lg:`) target the global VS Code window and will not respond to emulated device presets or zoom levels. By adopting Container Queries, you ensure your designs work perfectly across all Reactive MD device modes.
 
 ### 2. The CSS Context (`css live`)
 Use `css live` fences to define document-specific styles, such as custom properties or unique brand tokens. These styles apply to every subsequent component in the document.
 
+- **Theme-Aware Variables**: The system automatically injects CSS variables that adapt to the active VS Code theme. Use `--rmd-bg` and `--rmd-fg` to ensure your components remain readable in both light and dark modes.
+
 ```css live
 :root {
-  --document-accent: #ff3366;
+  --document-accent: var(--rmd-fg);
 }
 
 .custom-card {
@@ -235,18 +251,18 @@ For larger design systems, move your CSS to external `.css` files. These can the
 
 ## The Library Ecosystem
 
-Reactive MD is designed to work **100% offline**. To ensure high performance and zero configuration, a curated selection of the most popular libraries is pre-bundled directly into the extension.
+Reactive MD is designed to work **100% offline**. To ensure high performance and zero configuration, a curated selection of the most popular libraries is pre-bundled directly into the extension's Tier 2 registry.
 
 ### Pre-bundled Libraries (Available Offline)
-The following libraries are available in both **Markdown Preview** and **Interactive Preview**:
+The following libraries are available in both **Markdown Preview** and **Interactive Preview**. They are maintained at their latest stable versions for full compatibility:
 
-- **Icons & Motion**: `lucide-react`, `@heroicons/react`, `motion/react` (renamed from `framer-motion`).
+- **Animation**: `motion/react` (Framer Motion).
+- **Iconography**: `lucide-react`, `@heroicons/react`.
 - **State & Logic**: `zustand`, `jotai`, `react-hook-form`, `uuid`.
-- **Utilities**: `dayjs`, `es-toolkit`, `clsx`.
-- **Styling**: `tailwind-merge`, `class-variance-authority` (cva).
+- **Utilities**: `dayjs`, `es-toolkit`, `clsx`, `tailwind-merge`, `class-variance-authority` (cva).
 
 ### How to use
-Simply use standard import statements in your `jsx live` fences:
+Simply use standard ESM import statements in your `jsx live` fences. You do not need to install these packages; they are provided by the environment:
 ```jsx
 import { motion } from 'motion/react';
 import { Heart } from 'lucide-react';
@@ -261,6 +277,13 @@ In **Interactive Preview**, you can control device emulation (phone, tablet, des
 - **Sync Mode (🔗)**: By default, components are synchronized. Changing the device on any synced component updates every other synced component in the document simultaneously.
 - **Pin Mode (📌)**: Click the Pin icon to take a specific component out of sync. This lets you lock one component to "Mobile" while the rest of the document stays on "Desktop."
 
+## Navigation & Focus
+
+Reactive MD ensures you never lose context while navigating complex documents.
+
+- **Cursor Sync & Spotlight**: The Interactive Preview automatically follows your cursor position in the Markdown file. As you scroll or type, the relevant component is spotlighted and brought into view.
+- **Full Circle Navigation**: Clicking internal links within your prototype (e.g., a link to another section of the spec) will automatically scroll the VS Code editor to the corresponding line, keeping your prose and prototype in perfect alignment.
+- **Session Persistence**: Your chosen zoom levels, device pins, and scroll positions are remembered even if you switch files or restart VS Code, ensuring a seamless workflow across sessions.
 
 ## The Lifecycle of a Prototype
 
@@ -269,6 +292,7 @@ Reactive MD keeps your prototypes alive even as you work on them, but it disting
 ### 1. The Component Refresh
 Whenever you change the **Source Code** or **CSS**, the component must be refreshed. This unmounts the current React instance and remounts a fresh one.
 
+- **Prose Stability**: Edits to the narrative text *outside* of a code fence (fixing typos, adding paragraphs) do not trigger a refresh. The system uses an intelligent cache to ensure your prototype remains responsive while you refine the story.
 - **What is lost**: Ephemeral React state (like `useState` values or form focus).
 - **What is preserved**: Data saved to `localStorage` or `sessionStorage`. If your prototype requires persistent state across refreshes, use standard Web Storage APIs.
 - **Maintenance**: You can manually wipe all document data using the **Clear Storage** (🗑️) button located in the Interactive Preview header.
@@ -288,12 +312,20 @@ If you want to edit your narrative text or move a fence to a different section w
 ````
 Without an `id`, Reactive MD identifies components by their position or a hash of their content. Changing the text *above* a fence can sometimes change its internal index, causing a brief refresh as the system re-aligns its state. Explicit IDs eliminate this.
 
+## Diagnostics & Safety
+
+Reactive MD includes a robust diagnostic framework to help you debug prototypes without leaving the narrative.
+
+- **High-Fidelity Error Cards**: If a component fails to render due to a library error or security restriction, instead of a blank screen, you'll see a branded diagnostic card providing clear instructions on how to fix it.
+- **Blank Animation Detection**: If your component is blank because it's waiting for an animation that only triggers in Interactive Preview, the Markdown Preview will provide a helpful hint to switch views.
+- **Safety Precedence**: Critical errors (like syntax mistakes) will always break through "hidden" states (like `no-placeholder`) to ensure you never lose visibility into the system's state.
+
 ## Troubleshooting
 
 ### The Quick Checklist
 If a component fails to render, go through this checklist to help isolate the issue:
 1. **File Extension**: Ensure you are using `.jsx` or `.tsx` (required for parser detection).
-2. **React Imports**: You **must** still import any hooks you use (e.g., `import { useState } from 'react'`). You only skip the generic `import React from 'react'` for JSX usage, as the modern React 19 runtime is handled automatically.
+2. **React Imports**: You **must** still import any hooks you use (e.g., `import { useState } from 'react'`). You only skip the generic `import React from 'react'` for JSX usage, as the modern React runtime is handled automatically.
 3. **The Import Pattern**: Always use ESM `import` statements (e.g., `import data from './data.json'`). Reactive MD handles the security handshake and URI translation for you. **Never use standard `fetch()` for local files.**
 4. **Interactive vs Markdown**: If it works in the Interactive Preview but not in the static Markdown Preview, check if you are relying on `useEffect` or browser events that are not available during the static render.
 5. **Output Log**: Check `View → Output → "Reactive MD"` for specific transformation or bundling errors.
