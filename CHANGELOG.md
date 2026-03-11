@@ -2,6 +2,11 @@
 
 All notable changes to Reactive MD will be documented here.
 
+## [1.1.1] - 2026-03-11
+
+### Fixed
+- **VS Code Engine Compatibility**: Dropped minimum required VS Code version to `^1.90.0` (May 2024). This fixes installation failures in Cursor (and other VS Code-based editors) where the previous `^1.106.0` requirement was unnecessarily restrictive.
+
 ## [1.1.0] - 2026-01-31
 
 ### Added
