@@ -262,6 +262,7 @@ The following libraries are available in both **Markdown Preview** and **Interac
 - **Animation**: `motion/react` (Framer Motion).
 - **Iconography**: `lucide-react`, `@heroicons/react`.
 - **State & Logic**: `zustand`, `jotai`, `react-hook-form`, `uuid`.
+- **Validation**: `zod`, `@hookform/resolvers/zod` (use `zodResolver` with `react-hook-form` for schema-driven forms).
 - **Utilities**: `dayjs`, `es-toolkit`, `clsx`, `tailwind-merge`, `class-variance-authority` (cva).
 
 ### How to use

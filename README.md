@@ -99,7 +99,7 @@ function Demo() {
 
 Reactive MD is designed to work **100% offline**. The following libraries are pre-bundled directly into the extension:
 
-`lucide-react`, `motion/react`, `clsx`, `dayjs`, `uuid`, `es-toolkit`, `zustand`, `jotai`, `react-hook-form`, `@heroicons/react`, `tailwind-merge`, `class-variance-authority`.
+`lucide-react`, `motion/react`, `clsx`, `dayjs`, `uuid`, `es-toolkit`, `zustand`, `jotai`, `react-hook-form`, `zod`, `@hookform/resolvers/zod`, `@heroicons/react`, `tailwind-merge`, `class-variance-authority`.
 
 ## Agent Skills
 

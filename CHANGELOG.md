@@ -2,6 +2,11 @@
 
 All notable changes to Reactive MD will be documented here.
 
+## [1.1.2] - 2026-03-21
+
+### Added
+- **Schema-Driven Forms**: Bundled `zod` and `@hookform/resolvers/zod` to complement the existing `react-hook-form` support. Write type-safe form schemas in your prototypes that engineers can carry directly into production React Router v7 apps.
+
 ## [1.1.1] - 2026-03-11
 
 ### Fixed
