@@ -324,6 +324,81 @@ Reactive MD includes a robust diagnostic framework to help you debug prototypes 
 - **Blank Animation Detection**: If your component is blank because it's waiting for an animation that only triggers in Interactive Preview, the Markdown Preview will provide a helpful hint to switch views.
 - **Safety Precedence**: Critical errors (like syntax mistakes) will always break through "hidden" states (like `no-placeholder`) to ensure you never lose visibility into the system's state.
 
+## Publishing Your Prototype
+
+Once your prototype is ready, `reactiveMd.publish` builds a self-contained static site and deploys it directly to your own server. No CDN, no build server, no extra tooling — just rsync over SSH.
+
+### One-Time Setup
+
+Configure your server in VS Code settings (`reactiveMd.publish.ssh.*`):
+
+| Setting | Description | Default |
+| :--- | :--- | :--- |
+| `host` | Hostname or IP of your VPS | — |
+| `user` | SSH username | — |
+| `keyPath` | Path to your SSH private key | `~/.ssh/id_rsa` |
+| `remoteBaseDir` | Base directory on the server | `/var/www/reactive-md` |
+
+Your server only needs SSH access and a static file server (nginx, Caddy, etc.) already serving the `remoteBaseDir`. No nginx config changes are required.
+
+### Commands
+
+- **`Reactive MD: Publish`** — builds and deploys. On first run it prompts you for a slug (the URL path segment) and whether the POC should be public or protected. These choices are saved in `reactive-md.publish.json` in your project folder so subsequent publishes are one-click.
+- **`Reactive MD: Preview Published Output`** — builds locally and opens the result in your browser. Use this to verify the published output before deploying.
+
+Both commands work from any open `.md` file or the active workspace folder.
+
+### The Published Site
+
+The published output is a fully static site with no server-side logic:
+
+- **Prose** renders as standard HTML.
+- **`jsx live` fences** become interactive React islands, loaded lazily as they scroll into view.
+- **Device emulation DSL** is honoured — a fence authored with `device=mobile` publishes inside the same viewport frame your client sees in the Interactive Preview.
+- **`css live` fences** and Tailwind utilities apply document-wide.
+- **Referenced local assets** (images, JSON data files) are copied automatically.
+
+### Access Control
+
+**Public** — the POC is accessible at `https://yourserver.com/{slug}/`. Anyone with the link can view it.
+
+**Protected** — the POC is deployed to `https://yourserver.com/{token}/{slug}/` where `{token}` is an 8-character unguessable path segment. A passphrase gate (no server config) prompts your client before revealing the content. The gate runs entirely in the browser; the token path keeps casual URL-guessing out.
+
+> The protection model is appropriate for sharing early-stage work with external stakeholders. It is not a substitute for authentication for sensitive data.
+
+### Per-Folder Config (`reactive-md.publish.json`)
+
+Each project folder maintains its own publish config, committed or gitignored at your discretion:
+
+```json
+{
+  "slug": "checkout-flow",
+  "entry": "spec.md",
+  "protected": true,
+  "token": "mK7nPq2x",
+  "lastPublished": "2026-03-21T10:00:00Z"
+}
+```
+
+The `entry` field follows this resolution order if omitted: `main.md` → `index.md` → the sole `.md` file in the folder → error (if multiple exist without an explicit entry).
+
+### Output Structure
+
+```
+my-prototype/
+  .publish/            ← built output (gitignore this)
+    index.html
+    vendor.js
+    island-runtime.js
+    islands/
+      island-0.js
+      island-1.js
+    styles.css
+    assets/
+  reactive-md.publish.json
+  spec.md
+```
+
 ## Troubleshooting
 
 ### The Quick Checklist
