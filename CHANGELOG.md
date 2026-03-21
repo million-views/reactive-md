@@ -2,10 +2,13 @@
 
 All notable changes to Reactive MD will be documented here.
 
-## [1.1.2] - 2026-03-21
+## [1.2.0] - 2026-03-21
 
 ### Added
-- **Schema-Driven Forms**: Bundled `zod` and `@hookform/resolvers/zod` to complement the existing `react-hook-form` support. Write type-safe form schemas in your prototypes that engineers can carry directly into production React Router v7 apps.
+- **Publish to the Web**: Run `Reactive MD: Publish` from any open `.md` file to build a self-contained static site and deploy it to your own server over SSH. Your interactive components become live islands — no CDN, no build server, no extra tooling required.
+- **Local Preview**: `Reactive MD: Preview Published Output` builds the site and opens it in your browser before deploying, so you can verify the result before it goes live.
+- **Protected Publish**: Mark a POC as protected and set a passphrase. The publish URL includes an unguessable token, and a client-side gate prompts your stakeholder for the passphrase before revealing content — no server configuration needed.
+- **Schema-Driven Forms**: `zod` and `zodResolver` (`@hookform/resolvers/zod`) are now bundled alongside `react-hook-form`. Write type-safe form schemas in your prototypes that engineers can carry directly into production.
 
 ## [1.1.1] - 2026-03-11
 
