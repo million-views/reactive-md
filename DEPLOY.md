@@ -164,41 +164,108 @@ subfolder with an `index.html` automatically.
 
 ## VPS Setup Guide
 
-The publish command copies files over SSH using `rsync` (or `scp` as a fallback).
-Your server needs an SSH-accessible deploy user and a static file server pointed at
-`remoteBaseDir`. This is a one-time setup.
+Your server needs an SSH-accessible deploy user and nginx ≥ 1.29 serving files from
+`remoteBaseDir`. This is a one-time setup. Every step below is prescriptive — follow
+them in order.
 
-### 1. Create a Deploy User
+### 1. Install nginx from the Official Mainline Repository
+
+Distribution-packaged nginx is too old for the built-in ACME module (Debian 12 ships
+1.22; Ubuntu 24.04 ships 1.24). Install from nginx's own mainline repo:
+
+**Debian / Ubuntu:**
+
+```sh
+curl -fsSL https://nginx.org/keys/nginx_signing.key \
+  | sudo gpg --dearmor -o /usr/share/keyrings/nginx-archive-keyring.gpg
+
+echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+  https://nginx.org/packages/mainline/debian $(lsb_release -cs) nginx" \
+  | sudo tee /etc/apt/sources.list.d/nginx.list
+
+sudo apt update && sudo apt install nginx
+```
+
+**Fedora / RHEL:**
+
+```sh
+sudo tee /etc/yum.repos.d/nginx.repo <<'EOF'
+[nginx-mainline]
+name=nginx mainline repo
+baseurl=https://nginx.org/packages/mainline/rhel/$releasever/$basearch/
+gpgcheck=1
+gpgkey=https://nginx.org/keys/nginx_signing.key
+enabled=1
+module_hotfixes=1
+EOF
+
+sudo dnf install nginx
+```
+
+Verify the version:
+
+```sh
+nginx -v   # must be 1.29.0 or later
+```
+
+### 2. Create a Locked-Down Deploy User
 
 ```sh
 sudo useradd --system --shell /usr/sbin/nologin --create-home deploy
+sudo passwd -l deploy   # disable password login
 ```
 
-### 2. Add Your SSH Public Key
+### 3. Generate a Dedicated Deploy Key
 
-On your local machine:
+Run this on your **local machine** — not the server. Use a dedicated key separate
+from your personal SSH key:
 
 ```sh
-cat ~/.ssh/id_rsa.pub   # or id_ed25519.pub — whichever key you set in keyPath
+ssh-keygen -t ed25519 \
+  -f ~/.ssh/id_ed25519_reactive_md_deploy \
+  -C "reactive-md deploy" \
+  -N ""
 ```
 
-On the server:
+The empty passphrase (`-N ""`) allows unattended deploys from VS Code.
+
+Copy the public key to your clipboard:
+
+```sh
+cat ~/.ssh/id_ed25519_reactive_md_deploy.pub
+```
+
+### 4. Authorize the Deploy Key on the Server
+
+On the server, add the public key with the `restrict` keyword. `restrict` disables
+PTY allocation, X11 forwarding, agent forwarding, and port forwarding — rsync works
+fine, interactive shell access does not:
 
 ```sh
 sudo mkdir -p /home/deploy/.ssh
-sudo nano /home/deploy/.ssh/authorized_keys   # paste the public key here
+sudo tee /home/deploy/.ssh/authorized_keys <<'EOF'
+restrict ssh-ed25519 AAAA...paste-your-public-key-here... reactive-md deploy
+EOF
 sudo chmod 700 /home/deploy/.ssh
 sudo chmod 600 /home/deploy/.ssh/authorized_keys
 sudo chown -R deploy:deploy /home/deploy/.ssh
 ```
 
-Verify the connection before proceeding:
+Verify the connection from your local machine:
 
 ```sh
-ssh -i ~/.ssh/id_rsa deploy@yourserver.com echo "ok"
+ssh -i ~/.ssh/id_ed25519_reactive_md_deploy deploy@yourserver.com echo "ok"
 ```
 
-### 3. Create the Base Directory
+You should see `ok` with no shell prompt.
+
+Set `keyPath` in your `reactive-md.publish.json` to match:
+
+```jsonc
+"keyPath": "~/.ssh/id_ed25519_reactive_md_deploy"
+```
+
+### 5. Create the Web Root
 
 ```sh
 sudo mkdir -p /var/www/sites
@@ -206,23 +273,47 @@ sudo chown deploy:deploy /var/www/sites
 sudo chmod 755 /var/www/sites
 ```
 
-### 4. Configure nginx
+### 6. Configure nginx
 
-nginx 1.29+ includes a native ACME client (`ngx_http_acme_module`) that provisions
-and renews Let's Encrypt certificates automatically — no Certbot required.
+nginx 1.29 includes `ngx_http_acme_module` — a native Let's Encrypt client that
+provisions and renews certificates automatically. No Certbot, no cron jobs.
+
+Replace the contents of `/etc/nginx/nginx.conf`:
 
 ```nginx
+events {}
+
 http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    sendfile      on;
+    server_tokens off;
+
     acme_client default https://acme-v02.api.letsencrypt.org/directory;
 
+    # Redirect all HTTP traffic to HTTPS
     server {
         listen 80;
+        server_name yourserver.com;
+        return 301 https://$host$request_uri;
+    }
+
+    server {
         listen 443 ssl;
+        http2  on;
         server_name yourserver.com;
 
         acme                 default;
         ssl_certificate      $acme_cert_default;
         ssl_certificate_key  $acme_cert_key_default;
+
+        ssl_protocols        TLSv1.2 TLSv1.3;
+        ssl_prefer_server_ciphers off;
+
+        add_header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload" always;
+        add_header X-Content-Type-Options    "nosniff"                                      always;
+        add_header X-Frame-Options           "SAMEORIGIN"                                   always;
+        add_header Referrer-Policy           "strict-origin-when-cross-origin"              always;
 
         root  /var/www/sites;
         index index.html;
@@ -234,26 +325,30 @@ http {
 }
 ```
 
-On first start nginx obtains the certificate automatically; subsequent starts renew it
-if needed. No cron jobs required.
+Replace `yourserver.com` with your actual domain. On first start nginx obtains the
+TLS certificate automatically via ACME; subsequent starts renew it if needed.
+
+Test and apply:
 
 ```sh
-sudo nginx -t && sudo systemctl reload nginx
+sudo nginx -t && sudo systemctl enable --now nginx
 ```
 
 > **That's all the nginx config you need.** Reactive MD uses path-based routing for
 > both public (`/{slug}/`) and protected (`/{token}/{slug}/`) projects. The passphrase
 > gate runs entirely in the browser — no server-side logic required.
 
-### 5. Verify rsync
+### 7. Verify rsync
 
 ```sh
 rsync --version   # run on the server
 ```
 
-rsync ships by default on most Linux distributions. If missing:
-`sudo apt install rsync` (Debian/Ubuntu) or `sudo dnf install rsync` (Fedora/RHEL).
-On Windows clients, `scp` is used as a fallback automatically.
+rsync ships by default on most Linux distributions. If it is missing:
+
+**Debian / Ubuntu:** `sudo apt install rsync`
+
+**Fedora / RHEL:** `sudo dnf install rsync`
 
 ---
 
