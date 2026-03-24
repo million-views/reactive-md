@@ -170,10 +170,8 @@ them in order.
 
 ### 1. Install nginx from the Official Mainline Repository
 
-Distribution-packaged nginx is too old for the built-in ACME module (Debian 12 ships
-1.22; Ubuntu 24.04 ships 1.24). Install from nginx's own mainline repo:
-
-**Debian / Ubuntu:**
+Debian's packaged nginx is too old for the built-in ACME module (Debian 12 ships 1.22).
+Install from nginx's own mainline repo:
 
 ```sh
 curl -fsSL https://nginx.org/keys/nginx_signing.key \
@@ -184,22 +182,6 @@ echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
   | sudo tee /etc/apt/sources.list.d/nginx.list
 
 sudo apt update && sudo apt install nginx
-```
-
-**Fedora / RHEL:**
-
-```sh
-sudo tee /etc/yum.repos.d/nginx.repo <<'EOF'
-[nginx-mainline]
-name=nginx mainline repo
-baseurl=https://nginx.org/packages/mainline/rhel/$releasever/$basearch/
-gpgcheck=1
-gpgkey=https://nginx.org/keys/nginx_signing.key
-enabled=1
-module_hotfixes=1
-EOF
-
-sudo dnf install nginx
 ```
 
 Verify the version:
@@ -221,10 +203,7 @@ Run this on your **local machine** — not the server. Use a dedicated key separ
 from your personal SSH key:
 
 ```sh
-ssh-keygen -t ed25519 \
-  -f ~/.ssh/id_ed25519_reactive_md_deploy \
-  -C "reactive-md deploy" \
-  -N ""
+ssh-keygen -t ed25519 -f ~/.ssh/id-deploy -C "deploy" -N ""
 ```
 
 The empty passphrase (`-N ""`) allows unattended deploys from VS Code.
@@ -232,7 +211,7 @@ The empty passphrase (`-N ""`) allows unattended deploys from VS Code.
 Copy the public key to your clipboard:
 
 ```sh
-cat ~/.ssh/id_ed25519_reactive_md_deploy.pub
+cat ~/.ssh/id-deploy.pub
 ```
 
 ### 4. Authorize the Deploy Key on the Server
@@ -254,7 +233,7 @@ sudo chown -R deploy:deploy /home/deploy/.ssh
 Verify the connection from your local machine:
 
 ```sh
-ssh -i ~/.ssh/id_ed25519_reactive_md_deploy deploy@yourserver.com echo "ok"
+ssh -i ~/.ssh/id-deploy deploy@yourserver.com echo "ok"
 ```
 
 You should see `ok` with no shell prompt.
@@ -262,7 +241,7 @@ You should see `ok` with no shell prompt.
 Set `keyPath` in your `reactive-md.publish.json` to match:
 
 ```jsonc
-"keyPath": "~/.ssh/id_ed25519_reactive_md_deploy"
+"keyPath": "~/.ssh/id-deploy"
 ```
 
 ### 5. Create the Web Root
