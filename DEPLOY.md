@@ -42,7 +42,7 @@ The file has two sections: **targets** (SSH credentials + server) and **projects
       "publicUrl": "https://m5nv.com", // optional — shown in "Open in Browser"
       "user": "sysadm",
       "keyPath": "~/.ssh/id-sysadm",
-      "remoteBaseDir": "/var/www/sites" // parent dir; each project gets a named subfolder
+      "remoteBaseDir": "/var/www/sites" // vhost docroot — must be owned by the deploy user
     }
   },
   "projects": [
@@ -74,20 +74,22 @@ The wizard creates and maintains this file for you. See
 
 ## Deploy Destinations
 
-Every project deploys into a named subfolder under `remoteBaseDir`:
+`remoteBaseDir` is the vhost docroot on the server. Named projects deploy into a
+subfolder; a nameless static project deploys to the root of that directory:
 
 | Project type | Destination |
 | :--- | :--- |
-| `static` | `{remoteBaseDir}/{name}/` — dots preserved (`m5nv.com` → `m5nv.com/`) |
+| `static` (no name) | `{remoteBaseDir}/` — deploys directly to the vhost root |
+| `static` (named) | `{remoteBaseDir}/{name}/` — dots preserved (`m5nv.com` → `m5nv.com/`) |
 | `reactive-md`, public | `{remoteBaseDir}/{slug}/` |
 | `reactive-md`, protected | `{remoteBaseDir}/{token}/{slug}/` |
 | `reactive-md` with `site` | `{remoteBaseDir}/{site-folder}/{slug}/` |
 
 `slug` is derived from `name`: lowercase, spaces/underscores/dots → hyphens.
 
-All deploys use `rsync --delete`. Because each project has its own isolated subfolder,
-`--delete` only removes stale files within that project's directory — sibling projects
-are never affected.
+Named-subfolder deploys use `rsync --delete` — stale files within that project's
+directory are removed while sibling projects remain untouched. Root deploys (nameless
+static) omit `--delete`.
 
 ---
 
@@ -331,19 +333,24 @@ rsync ships by default on most Linux distributions. If it is missing:
 
 ---
 
-## Multiple Targets (Staging + Production)
+## Multiple Targets
 
-Add a second target entry to deploy the same project to different servers:
+Set `target` to an array to deploy the same project to more than one server on each
+publish. The publish command shows a target picker so you can choose which targets to
+deploy to:
 
 ```jsonc
 "targets": {
-  "production": { "host": "aeon.local", "publicUrl": "https://m5nv.com", … },
-  "staging":    { "host": "staging.internal", … }
+  "production": { "type": "ssh", "host": "aeon.local", "publicUrl": "https://m5nv.com", … },
+  "staging":    { "type": "ssh", "host": "staging.internal", … }
 },
 "projects": [
-  { "name": "Auth Demo", "type": "reactive-md", "target": "staging", … }
+  {
+    "name": "Checkout Flow",
+    "type": "reactive-md",
+    "source": "pocs/checkout",
+    "target": ["production", "staging"],
+    "entry": "main.md"
+  }
 ]
 ```
-
-The wizard prompts for which target to use when more than one exists. Each project
-references exactly one target by name.
