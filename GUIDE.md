@@ -11,8 +11,8 @@ To use Reactive MD effectively, a document architect must distinguish between th
 
 ### Code Fence Modes
 The system distinguishes between **interactive prototypes** and **static examples** based on the fence info string:
-- **`jsx live` / `css live`**: Code that is utilized to render a React component in both preview modes.
-- **`jsx` / `css` / `json`**: Static syntax highlighting only. Use these for snippets that shouldn't be executed.
+- **`jsx live` / `tsx live` / `css live`**: Code that is utilized to render a React component in both preview modes.
+- **`jsx` / `tsx` / `css` / `json`**: Static syntax highlighting only. Use these for snippets that shouldn't be executed.
 
 ## The Literate Prototype
 
@@ -142,7 +142,7 @@ Organize data and logic into sidecar files.
 | **`.css`**  | Shared styles. | `import './theme.css'` (JSX) or `@import './theme.css'` (CSS) |
 | **`.ts`**   | Type-safe logic. | `import { util } from './util.ts'` |
 
-### 5. Recommended Template
+### 6. Recommended Template
 Maintain conceptual integrity across your team by following a standard structure:
 
 ````markdown
@@ -179,6 +179,8 @@ Use these modifiers in the opening fence header (e.g., ` ```jsx live device=mobi
 | **`device`** | Device | General category preset: `mobile`, `tablet`, `desktop`, or **`none`** (Natural Liquid). |
 | **`orientation`**| Viewport | Sets the initial rotation: `portrait` or `landscape`. |
 | **`zoom`** | Viewport | Sets the zoom strategy: `fill`, `auto` (default/capped), or `none` (1:1). |
+| **`lock-view`** | Flag | Hides emulation controls in Interactive Preview, strictly enforcing your header settings. |
+| **`no-placeholder`** | Flag | Suppresses the guidance cards that normally explain why a component isn't rendering. |
 
 > **Precedence**: For device emulation, keywords are resolved in this order: **`mid`** > **`model`** > **`device`**.
 
@@ -193,12 +195,6 @@ Reactive MD uses these logical device dimensions (derived from physical hardware
 - **Mobile (`mobile`)**: 375 × 667 (iPhone SE)
 - **Tablet (`tablet`)**: 768 × 1024 (iPad Classic)
 - **Desktop (`desktop`)**: 1920 × 1080 (Desktop HD)
-
-### Specification Flags
-Flags are standalone keywords added to the fence header (no `=` required).
-
-- **`lock-view`**: Hides emulation controls in Interactive Preview, strictly enforcing your header settings.
-- **`no-placeholder`**: Suppresses the helpful guidance cards that normally explain why a component isn't rendering (such as missing libraries or security restrictions).
 
 
 ## Styling & Visual System
@@ -219,7 +215,7 @@ To ensure your UI responds to the **Logical Truth** of the emulated device size 
 
 - **No manual setup**: You do not need to add `@container` to your root element; the frame itself provides the context.
 - **Hardware Fidelity**: When a specific device model is selected (e.g., `mid=iphone-15-pro`), the system emulates physical hardware features such as the **Dynamic Island**, notches, and safe-area insets.
-- **Support for @ Variants**: Tailwind v4 utilities using the `@` prefix (e.g., `@md:p-8`) will automatically respond to the emulated device viewport. You can even use `@landscape` and `@portrait` variants to target orientation changes.
+- **Container Query Support**: Tailwind v4 container variants (e.g., `@md:p-8`) and native CSS `@container` rules automatically respond to the emulated device viewport. Orientation variants (`@landscape`, `@portrait`) target rotation changes.
 
 ### Technical Truth Scaling (Automated Zoom)
 Components always render at 1:1 scale so `@container` queries calculate correctly against the emulated device dimensions. The entire artifact is then zoomed to fit your sidebar via CSS transforms:
@@ -230,15 +226,20 @@ Components always render at 1:1 scale so `@container` queries calculate correctl
 ### Zero-Clipping Physics
 To prevent the common "right-edge clipping" issues found in standard markdown previews, Reactive MD injects a mandatory **2px "Environmental Air"** buffer around your prototypes. This ensures that focused borders, shadows, and sub-pixel details are never cut off by the container walls.
 
-### 1. Styling Strategy: Native CSS & Tailwind
-Reactive MD is styling-neutral and **Container-First**. Components respond to the emulated device dimensions (Logical Truth), not the VS Code window — which means:
+### Styling Strategy: Native CSS & Tailwind
+Reactive MD is styling-neutral and **Container-First**. Components respond to the emulated device dimensions (Logical Truth), not the VS Code window. This means you must use **Container Queries** instead of standard media queries.
 
-- **Use Container Queries**, not standard media queries. Media queries (and Tailwind's `md:`, `lg:` variants) target the global VS Code window and will not respond to device presets.
-- **Native CSS**: Use `css live` fences or imported `.css` files. Container queries: `@container (min-width: ...)`.
-- **Tailwind v4**: Available out-of-the-box. Use the `@` prefix for responsive variants: `@md:p-8`, `@lg:grid-cols-2`.
-- **Orientation Variants**: `@landscape:flex-row` (Tailwind) or `[data-orientation=landscape]` selector (CSS).
+Standard media queries — and Tailwind's unprefixed responsive variants (`md:`, `lg:`, `sm:`) — target the global VS Code window and **will not respond** to device presets.
 
-### 2. The CSS Context (`css live`)
+**Tailwind v4**: Use the `@` prefix for responsive container variants. These respond to the emulated device frame, not the window.
+- `@md:grid-cols-2`, `@lg:p-8` (container-aware)
+- `@landscape:flex-row`, `@portrait:flex-col` (orientation-aware)
+
+**Native CSS**: Use `@container` rules and container units (`cqw`, `cqh`) instead of `@media` and viewport units (`vw`, `vh`).
+- `@container (min-width: 768px) { ... }` (container-aware)
+- `@container (orientation: landscape) { ... }` (orientation-aware)
+
+### The CSS Context (`css live`)
 Use `css live` fences to define document-specific styles, such as custom properties or unique brand tokens. These styles apply to every subsequent component in the document.
 
 - **Theme-Aware Variables**: The system automatically injects CSS variables that adapt to the active VS Code theme. Use `--rmd-bg` and `--rmd-fg` to ensure your components remain readable in both light and dark modes.
@@ -253,14 +254,14 @@ Use `css live` fences to define document-specific styles, such as custom propert
 }
 ```
 
-### 3. External Stylesheets
+### External Stylesheets
 For larger design systems, move your CSS to external `.css` files. These can then be imported in either `jsx` or `css` live fences as below:
 - **In JSX**: `import './theme.css';`
 - **In CSS Fences**: `@import './theme.css';`
 
 ## The Library Ecosystem
 
-Reactive MD is designed to work **100% offline**. To ensure high performance and zero configuration, a curated selection of the most popular libraries is pre-bundled directly into the extension's Tier 2 registry.
+Reactive MD is designed to work **100% offline**. To ensure high performance and zero configuration, a curated selection of the most popular libraries is pre-bundled directly into the extension.
 
 ### Pre-bundled Libraries (Available Offline)
 The following libraries are available in both **Markdown Preview** and **Interactive Preview**. They are maintained at their latest stable versions for full compatibility:

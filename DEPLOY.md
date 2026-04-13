@@ -41,7 +41,7 @@ The file has two sections: **targets** (SSH credentials + server) and **projects
       "host": "aeon.local",         // SSH connection address
       "publicUrl": "https://m5nv.com", // optional — shown in "Open in Browser"
       "user": "sysadm",
-      "keyPath": "~/.ssh/id-sysadm",
+      "keyPath": "~/.ssh/id-deploy",
       "remoteBaseDir": "/var/www/sites" // vhost docroot — must be owned by the deploy user
     }
   },
@@ -59,16 +59,14 @@ The file has two sections: **targets** (SSH credentials + server) and **projects
       "source": "pocs/checkout",
       "target": "production",
       "site": "m5nv.com",           // nests under the static site's folder
-      "entry": "main.md",
-      "protected": false
+      "entry": "main.md"
       // deploys to: /var/www/sites/m5nv.com/checkout-flow/
     }
   ]
 }
 ```
 
-The wizard creates and maintains this file for you. See
-`docs/reference/publish-config.md` for the full schema reference.
+The wizard creates and maintains this file for you.
 
 ---
 
@@ -87,9 +85,8 @@ subfolder; a nameless static project deploys to the root of that directory:
 
 `slug` is derived from `name`: lowercase, spaces/underscores/dots → hyphens.
 
-Named-subfolder deploys use `rsync --delete` — stale files within that project's
-directory are removed while sibling projects remain untouched. Root deploys (nameless
-static) omit `--delete`.
+Named-subfolder deploys remove stale files; sibling projects are never affected.
+Root deploys (nameless static) leave other files in the directory untouched.
 
 ---
 
@@ -97,8 +94,8 @@ static) omit `--delete`.
 
 ### Reactive MD
 
-A markdown document with interactive React islands. The extension runs a full build
-pipeline: fence extraction → island bundling → HTML generation → CSS → asset copy.
+A markdown document with interactive React islands. The extension runs a complete
+build step before uploading.
 
 The `entry` field names the `.md` file to build. If absent it is auto-detected:
 `main.md` → `index.md` → the sole `.md` file in the folder → error if multiple exist.
@@ -325,11 +322,11 @@ sudo nginx -t && sudo systemctl enable --now nginx
 rsync --version   # run on the server
 ```
 
-rsync ships by default on most Linux distributions. If it is missing:
+rsync ships by default on Debian. If it is missing:
 
-**Debian / Ubuntu:** `sudo apt install rsync`
-
-**Fedora / RHEL:** `sudo dnf install rsync`
+```sh
+sudo apt install rsync
+```
 
 ---
 
