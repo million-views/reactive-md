@@ -46,8 +46,8 @@ my-prototype/
 ```
 
 ### 2. Markdown Code Fences
-Each `jsx live` fence renders one exported component.
-- **One Export per Fence**: A fence can define multiple top-level functions, but exactly one should be the entry point. The entry is determined by `export default` if present; otherwise the last PascalCase function in the fence is used.
+Each `jsx live` fence renders one component — the entry point.
+- **One Entry per Fence**: A fence can define multiple functions, but exactly one is the entry point. Resolution order: the sole `export` if present, then the last top-level PascalCase function.
 - **The 30-Line Rule**: If a `live` fence exceeds 30 lines of code, extract the implementation to a sidecar file and `import` it.
 
 There are two styles for organizing fences with helpers. Use whichever feels natural:
@@ -71,15 +71,15 @@ function PricingStory() {
 }
 ```
 
-#### Pattern B: Top-Level Helpers with `export default`
-Helpers defined at the top level, entry component marked with `export default`. Reads more like production code.
+#### Pattern B: Top-Level Helpers
+Helpers defined at the top level, entry component marked with `export`. Reads more like production code.
 
 ```jsx live
 function Badge({ children }) {
   return <span className="bg-blue-100 px-2 py-1 rounded">{children}</span>;
 }
 
-export default function PricingStory() {
+export function PricingStory() {
   return (
     <div className="flex flex-col gap-4">
       <h3>Professional Plan <Badge>Recommended</Badge></h3>
@@ -156,7 +156,7 @@ What user problem does this solve?
 import './theme.css';
 import Component from './Component.jsx';
 
-export default function Demo() {
+export function Demo() {
   return <Component />;
 }
 ```
@@ -176,7 +176,7 @@ Use these modifiers in the opening fence header (e.g., ` ```jsx live device=mobi
 | **`id`** | Identity | A stable name (e.g., `id=login-form`) that prevents a **Component Refresh** when you edit the surrounding narrative. |
 | **`mid`** | Device | Specific Model ID (e.g., `mid=iphone-15-pro`). Best for exact viewport and safe-area specs. |
 | **`model`** | Device | Human-readable name (e.g., `model="iPhone 14"`). The system will search for the closest match. |
-| **`device`** | Device | General category preset: `mobile`, `tablet`, `desktop`, or **`none`** (Natural Liquid). |
+| **`device`** | Device | General category preset: `mobile`, `tablet`, `desktop`, or **`none`** (no emulation). |
 | **`orientation`**| Viewport | Sets the initial rotation: `portrait` or `landscape`. |
 | **`zoom`** | Viewport | Sets the zoom strategy: `fill`, `auto` (default/capped), or `none` (1:1). |
 | **`lock-view`** | Flag | Hides emulation controls in Interactive Preview, strictly enforcing your header settings. |
@@ -184,11 +184,11 @@ Use these modifiers in the opening fence header (e.g., ` ```jsx live device=mobi
 
 > **Precedence**: For device emulation, keywords are resolved in this order: **`mid`** > **`model`** > **`device`**.
 
-### Liquid-First Architecture (The Default)
-If no device modifiers are specified, the system defaults to **`device=none`** (Natural Liquid).
+### No-Emulation Default
+If no device modifiers are specified, the system defaults to **`device=none`** — no device emulation.
 - **Physics**: The component behaves like a standard block element, expanding to fit its content height (`height: auto`).
-- **Use Case**: Best for simple UI components, buttons, or snippets that don't require full-screen emulated context.
-- **Intent-Based Upgrading**: Interactive controls remain available in Liquid mode. Furthermore, providing a partial modifier like `orientation=landscape` or `zoom=fill` will automatically "upgrade" the fence to a mobile viewport to honor your request for specific emulation.
+- **Use Case**: Best for simple UI components, buttons, or snippets that don't require a full-screen emulated context.
+- **Intent-Based Upgrading**: Interactive controls remain available. Providing a partial modifier like `orientation=landscape` or `zoom=fill` will automatically upgrade the fence to a mobile viewport to honor your request for specific emulation.
 
 ### Standard Device Viewports
 Reactive MD uses these logical device dimensions (derived from physical hardware standards):
