@@ -10,12 +10,10 @@ Static websites (hand-crafted HTML/CSS/JS) deploy the same way, without a build 
 
 ## Commands
 
-- **`Reactive MD: Publish`** — builds (reactive-md only) and deploys via rsync. A setup
-  wizard runs on first use; every subsequent publish is one-click re-publish.
-- **`Reactive MD: Preview Published Output`** — builds locally and opens a local preview
-  server. Use this to verify output before deploying.
+**`Reactive MD: Publish`** — builds (reactive-md only) and deploys via rsync. A setup
+wizard runs on first use; every subsequent publish is one-click re-publish.
 
-Both commands are available from:
+Available from:
 - The editor title bar when a `.md`, `.html`, `.css`, or `reactive-md.publish.json` file
   is open.
 - Right-click on any project folder in the Explorer.
@@ -107,6 +105,8 @@ The published output is a fully static site with no server-side logic:
   your client sees in Interactive Preview.
 - `css live` fences and Tailwind utilities apply document-wide.
 - Referenced local assets (images, JSON data files) are copied automatically.
+- Markdown links between `.md` files in the same project produce a multi-page site with
+  client-side navigation and View Transitions — each page is a standalone HTML document.
 
 Build output is staged to `{source}/.publish/` before upload (gitignore this folder).
 
