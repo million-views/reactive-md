@@ -24,7 +24,6 @@
 - **README.md** - "What is Reactive MD?" overview
 - **GUIDE.md** - How-to guide for common workflows
 - **TROUBLESHOOTING.md** - Solutions to user-reported issues
-- **CHANGELOG.md** - Version history with user-facing changes
 
 **Recipes** (`./recipes/`) - Templates organized by job-to-be-done:
 - **use-cases.md** - Complete cross-category index (start here to find recipes)
@@ -141,9 +140,7 @@ git push
 - **./GUIDE.md** (Writing Recipes section) explains the overall philosophy
 
 ### 5. Changelog
-- **./CHANGELOG.md**: Document user-facing changes
-- Group by category (Added, Changed, Fixed, Removed)
-- Link to relevant documentation
+- The canonical public changelog lives in the extension source repo at `CHANGELOG.md` (consumed by VSIX packaging). Do not maintain a changelog in this repo.
 
 ---
 
