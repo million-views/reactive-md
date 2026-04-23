@@ -110,11 +110,72 @@ The published output is a fully static site with no server-side logic:
 
 Build output is staged to `{source}/.publish/` before upload (gitignore this folder).
 
-### Static Website
+---
 
-A hand-crafted HTML/CSS/JS folder. The source folder is deployed as-is — no build step.
-Use this for your main website when you also want to publish reactive-md POCs as
-sub-sections of it (see **Nested topology** below).
+## Presentation Options
+
+These optional fields on a `reactive-md` project control how the published page behaves for the people viewing it.
+
+### `islandControls`
+
+Adds an interactive device controls toolbar above each live fence. Viewers can switch between mobile, tablet, and desktop viewports, toggle orientation, and change the zoom mode directly on the page — no rebuild required.
+
+```jsonc
+{
+  "name": "Checkout Flow",
+  "type": "reactive-md",
+  "source": "pocs/checkout",
+  "target": "production",
+  "islandControls": true
+}
+```
+
+Fences marked with DSL `lock-view` are exempt — they display exactly as authored regardless of this setting.
+
+Used together with `pageDeviceOverride`, the override sets the starting device (build-time) and the controls let viewers explore from that baseline (runtime).
+
+### `clearStorageButton`
+
+Injects a floating **Reset Story** button (bottom-right corner) into every page. Clicking it clears all component state (`localStorage` + `sessionStorage`) at the current origin and reloads — so you can restart a walkthrough for a stakeholder without opening browser DevTools.
+
+```jsonc
+{
+  "name": "Checkout Flow",
+  "type": "reactive-md",
+  "source": "pocs/checkout",
+  "target": "production",
+  "clearStorageButton": true
+}
+```
+
+### `pageDeviceOverride`
+
+Applies a shared device/orientation/zoom setting across all live fences at build time. Useful when you want your whole POC to open on a specific device without adding DSL modifiers to every fence.
+
+```jsonc
+{
+  "name": "Mobile Review",
+  "type": "reactive-md",
+  "source": "pocs/checkout",
+  "target": "production",
+  "pageDeviceOverride": {
+    "device": "mobile",
+    "orientation": "portrait",
+    "zoom": "auto"
+  }
+}
+```
+
+Supported fields: `device` (`mobile` | `tablet` | `desktop` | `none`), `model`, `mid`, `orientation`, `zoom`.
+Precedence follows the standard DSL resolver order: `mid` > `model` > `device`. Fences with DSL `lock-view` are not affected.
+
+---
+
+## Static Website
+
+A hand-crafted HTML/CSS/JS folder deployed as-is — no build step. Use this for your
+main website when you also want to publish reactive-md POCs as sub-sections of it
+(see **Nested topology** below).
 
 ---
 

@@ -204,15 +204,13 @@ Reactive MD uses a modern, container-first styling system. This ensures that you
 ### The Glossary of Fidelity
 
 To master Literate UI/UX, you must align with the system's core definitions of "Truth":
-
 - **Logical Truth (Target Reality)**: The dimensions of the intended device (e.g., 375x667 for Mobile). This is the baseline for all layout calculations. Components "believe" they are on this device, triggering correct responsive logic even when squinting at a sidebar.
 - **Literal Truth (Physical Reality)**: The actual pixels available in your VS Code window (e.g., a 400px wide side panel). This is irrelevant for layout but critical for visibility.
 - **Visual Zoom (The Bridge)**: The technology that maps **Logical Truth** into the **Literal Truth** of your sidebar. It uses `transform: scale()` to shrink or grow the artifact to fit your screen without reflowing the layout.
 - **The Sovereign Reset (Fidelity Pass)**: To ensure 1:1 parity with production browsers, the system automatically neutralizes VS Code's ambient markdown styles. It forces a clean slate (`line-height: normal`, `font-size: 16px`), ensuring your Tailwind utilities behave exactly as they would on a standalone website.
 
 ### Automatic Containment & Hardware Emulation
-To ensure your UI responds to the **Logical Truth** of the emulated device size rather than the global VS Code window, the extension automatically wraps every component in a "Containment Context" (`container-type: size`).
-
+To ensure your UI responds to the **Logical Truth** of the emulated device size rather than the global VS Code window, the extension automatically wraps every component in a "Containment Context" (`container-type: size`):
 - **No manual setup**: You do not need to add `@container` to your root element; the frame itself provides the context.
 - **Hardware Fidelity**: When a specific device model is selected (e.g., `mid=iphone-15-pro`), the system emulates physical hardware features such as the **Dynamic Island**, notches, and safe-area insets.
 - **Container Query Support**: Tailwind v4 container variants (e.g., `@md:p-8`) and native CSS `@container` rules automatically respond to the emulated device viewport. Orientation variants (`@landscape`, `@portrait`) target rotation changes.
@@ -231,13 +229,13 @@ Reactive MD is styling-neutral and **Container-First**. Components respond to th
 
 Standard media queries — and Tailwind's unprefixed responsive variants (`md:`, `lg:`, `sm:`) — target the global VS Code window and **will not respond** to device presets.
 
-**Tailwind v4**: Use the `@` prefix for responsive container variants. These respond to the emulated device frame, not the window.
-- `@md:grid-cols-2`, `@lg:p-8` (container-aware)
-- `@landscape:flex-row`, `@portrait:flex-col` (orientation-aware)
+**Tailwind v4**: Use the `@` prefix for responsive container variants. These respond to the emulated device frame, not the window:
+  - `@md:grid-cols-2`, `@lg:p-8` (container-aware)
+  - `@landscape:flex-row`, `@portrait:flex-col` (orientation-aware)
 
-**Native CSS**: Use `@container` rules and container units (`cqw`, `cqh`) instead of `@media` and viewport units (`vw`, `vh`).
-- `@container (min-width: 768px) { ... }` (container-aware)
-- `@container (orientation: landscape) { ... }` (orientation-aware)
+**Native CSS**: Use `@container` rules and container units (`cqw`, `cqh`) instead of `@media` and viewport units (`vw`, `vh`):
+  - `@container (min-width: 768px) { ... }` (container-aware)
+  - `@container (orientation: landscape) { ... }` (orientation-aware)
 
 ### The CSS Context (`css live`)
 Use `css live` fences to define document-specific styles, such as custom properties or unique brand tokens. These styles apply to every subsequent component in the document.
@@ -336,6 +334,12 @@ Reactive MD includes a robust diagnostic framework to help you debug prototypes 
 Once your prototype is ready, deploy it to your own server with a single command.
 See **[DEPLOY.md](./DEPLOY.md)** for the complete guide — server setup, SSH configuration,
 project config, access control, and static site publishing.
+
+When sharing a POC with stakeholders, consider enabling **`islandControls: true`** in your
+project config. It adds a device controls toolbar above each live fence so reviewers can
+explore mobile, tablet, and desktop breakpoints directly on the published page — without
+asking you to rebuild. Pair it with **`clearStorageButton: true`** for a clean presenter
+experience: one click resets all component state for a fresh walkthrough.
 
 ---
 
