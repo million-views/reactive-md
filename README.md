@@ -29,6 +29,7 @@ Write product specs, wireframes, and user journeys with embedded, interactive Re
 - 🐛 [Report Issues](https://github.com/million-views/reactive-md/issues)
 - 📖 [User Guide](https://github.com/million-views/reactive-md/blob/main/GUIDE.md)
 - 🚀 [Deploy Guide](https://github.com/million-views/reactive-md/blob/main/DEPLOY.md)
+- 🔧 [Troubleshooting](https://github.com/million-views/reactive-md/blob/main/TROUBLESHOOTING.md)
 
 ## Installation
 
@@ -191,11 +192,7 @@ Access settings via `Cmd+,` (Mac) or `Ctrl+,` (Windows/Linux) and search for "Re
 - VS Code 1.106.0+
 - No internet connection required (100% offline support via pre-bundled library model)
 
-## 🐛 Troubleshooting
-
-See the [Troubleshooting Guide](https://github.com/million-views/reactive-md/blob/main/TROUBLESHOOTING.md) for common issues and solutions.
-
-## 📁 Recipes
+##  Recipes
 
 See the [recipes/](https://github.com/million-views/reactive-md/tree/main/recipes/) folder for examples of what's possible with Reactive MD — from simple components to self-contained project folders with local imports.
 
