@@ -192,9 +192,11 @@ Access settings via `Cmd+,` (Mac) or `Ctrl+,` (Windows/Linux) and search for "Re
 - VS Code 1.106.0+
 - No internet connection required (100% offline support via pre-bundled library model)
 
-##  Recipes
+## 📁 Recipes
 
-See the [recipes/](https://github.com/million-views/reactive-md/tree/main/recipes/) folder for examples of what's possible with Reactive MD — from simple components to self-contained project folders with local imports.
+**Pattern recipes** (document structure, AI-ready): [github.com/million-views/skills](https://github.com/million-views/skills/tree/main/reactive-md/references/recipes/) — product specs, user flows, A/B tests, data stories, competitive analyses, and more. Load the `reactive-md` skill in your AI assistant and reference these by name.
+
+**Worked examples** (hands-on, copy-paste): [recipes/](https://github.com/million-views/reactive-md/tree/main/recipes/) in this repo — complete, runnable documents organized by category.
 
 - [Case Studies](https://github.com/million-views/reactive-md/tree/main/recipes/case-studies/) — eCommerce PDPs, SaaS dashboards, social feeds.
 - [User Journeys](https://github.com/million-views/reactive-md/tree/main/recipes/user-journeys/) — Checkout flows, signup patterns.
