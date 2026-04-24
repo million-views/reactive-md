@@ -126,8 +126,9 @@ With the reactive-md skill loaded in your AI assistant, these prompts produce do
 
 > **Convention**: all reactive-md documents live under `product/` in the source root — avoiding collision with `specs/` (test suites), `docs/` (site tooling), and `design/` (design-system tooling). Two levels, no deeper: `product/<name>/spec.md` for a product or subsystem vision; `product/<name>/<feature>/spec.md` for a feature deep dive. The entry point is always `spec.md` — `find product/ -name "spec.md"` lists every document in the repo.
 
-**Write a product spec with live demos**
+### Write a product spec with live demos
 > Replace the PRD → mockup → prototype handoff chain with one document.
+
 ```
 Using the reactive-md skill, write a product spec for [your feature or idea].
 Structure it as: WHO this is for → THE PROBLEM → WHY NOW → each screen as a
@@ -136,50 +137,56 @@ the choices that can't be seen in the UI. This document should make a kickoff
 meeting unnecessary.
 ```
 
-**Prototype a user flow**
+### Prototype a user flow
 > Wire up the full flow so reviewers can walk through it without a live demo call.
+
 ```
 Using the reactive-md skill, prototype the [checkout / signup / onboarding / ...]
 flow. Show each screen as a live component with navigation state. Wire the full
 flow together at the end — first-time user and returning user scenarios.
 ```
 
-**Propose an A/B test**
+### Propose an A/B test
 > A reviewer should be able to say yes or no without scheduling a follow-up.
 ```
+
 Using the reactive-md skill, write an A/B test proposal for [CTA copy / pricing
 layout / onboarding step / ...]. State the hypothesis, show both variants as live
 components side by side, and define the success metric. No follow-up meeting
 should be needed to reach a decision.
 ```
 
-**Write a data story**
+### Write a data story
 > Prose and charts in the same artifact — readable as an article, vivid as a dashboard.
 ```
+
 Using the reactive-md skill, write a visual essay about [retention funnel /
 MAU trends / cohort analysis / ...]. Weave the narrative as prose with embedded
 SVG charts. The document should read like an article and argue a point, not just
 display numbers.
 ```
 
-**Audit responsive behavior**
+### Audit responsive behavior
 > Verify that your components respond to the emulated device, not the VS Code window.
 ```
+
 Using the reactive-md skill, audit the mobile and tablet layout of [component or
 screen]. Use device emulation (iPhone portrait and tablet landscape) to verify
 container query behavior. Document what breaks at each breakpoint and why.
 ```
 
-**Document a design system with live examples**
+### Document a design system with live examples
 > Replace frozen screenshots with components that actually run.
+
 ```
 Using the reactive-md skill, document [component name / design token / pattern]
 in our design system. Show every state as a live example — not a screenshot.
 Include usage guidelines as prose alongside each demo.
 ```
 
-**Analyze the competitive landscape**
+### Analyze the competitive landscape
 > The document makes a call — not just shows data.
+
 ```
 Using the reactive-md skill, write a competitive analysis for [your product /
 category]. Structure it as: executive summary with verdict first → scored

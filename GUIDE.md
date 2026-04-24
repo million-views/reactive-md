@@ -343,6 +343,19 @@ experience: one click resets all component state for a fresh walkthrough.
 
 ---
 
+## Examples & Recipes
+
+The **[million-views/skills](https://github.com/million-views/skills)** repository is the authoritative source for Reactive MD recipes, reference components, and reusable skill packs.
+
+| Skill | Contents |
+| :--- | :--- |
+| **`reactive-md/`** | Recipes: competitive analysis, visual essays, feature specs, user flows, notification systems, DSL showcase, data loading, and more. |
+| **`elementary/`** | Elementary design system — token files, component catalog, and bold-pricing manifesto. |
+
+Clone or reference the skills repo to get started with production-quality patterns for your next literate prototype.
+
+---
+
 ## Troubleshooting
 
 ### The Quick Checklist
