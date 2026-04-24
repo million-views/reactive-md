@@ -178,6 +178,16 @@ in our design system. Show every state as a live example — not a screenshot.
 Include usage guidelines as prose alongside each demo.
 ```
 
+**Analyze the competitive landscape**
+> The document makes a call — not just shows data.
+```
+Using the reactive-md skill, write a competitive analysis for [your product /
+category]. Structure it as: executive summary with verdict first → scored
+comparison matrix → feature-by-feature table → key insights with implications →
+a prioritized recommendation. A reader who only reads the summary should know
+where we stand and what to do next.
+```
+
 ## ⚙️ Configuration
 
 - **`reactiveMd.debounceMs`** (default: 300ms): Controls live reload delay. Increase if updates feel too frequent.
