@@ -28,6 +28,7 @@ Write product specs, wireframes, and user journeys with embedded, interactive Re
 - 📦 [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=million-views.reactive-md)
 - 🐛 [Report Issues](https://github.com/million-views/reactive-md/issues)
 - 📖 [User Guide](https://github.com/million-views/reactive-md/blob/main/GUIDE.md)
+- 🚀 [Deploy Guide](https://github.com/million-views/reactive-md/blob/main/DEPLOY.md)
 
 ## Installation
 
@@ -192,12 +193,7 @@ Access settings via `Cmd+,` (Mac) or `Ctrl+,` (Windows/Linux) and search for "Re
 
 ## 🐛 Troubleshooting
 
-**Preview not showing?**
-1. Ensure file is `.jsx` or `.tsx` (not `.js`)
-2. Reload: `Cmd+Shift+P` → "Developer: Reload Window"
-3. Check Output panel: `View → Output → "Reactive MD"`
-
-See [Troubleshooting Guide](https://github.com/million-views/reactive-md/blob/main/TROUBLESHOOTING.md) for more solutions.
+See the [Troubleshooting Guide](https://github.com/million-views/reactive-md/blob/main/TROUBLESHOOTING.md) for common issues and solutions.
 
 ## 📁 Recipes
 
