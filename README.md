@@ -194,13 +194,7 @@ Access settings via `Cmd+,` (Mac) or `Ctrl+,` (Windows/Linux) and search for "Re
 
 ## 📁 Recipes
 
-**Pattern recipes** (document structure, AI-ready): [github.com/million-views/skills](https://github.com/million-views/skills/tree/main/reactive-md/references/recipes/) — product specs, user flows, A/B tests, data stories, competitive analyses, and more. Load the `reactive-md` skill in your AI assistant and reference these by name.
-
-**Worked examples** (hands-on, copy-paste): [recipes/](https://github.com/million-views/reactive-md/tree/main/recipes/) in this repo — complete, runnable documents organized by category.
-
-- [Case Studies](https://github.com/million-views/reactive-md/tree/main/recipes/case-studies/) — eCommerce PDPs, SaaS dashboards, social feeds.
-- [User Journeys](https://github.com/million-views/reactive-md/tree/main/recipes/user-journeys/) — Checkout flows, signup patterns.
-- [Design Systems](https://github.com/million-views/reactive-md/blob/main/recipes/design-systems/README.md) — The Elementary token-based styling guide.
+Reactive MD documents require the extension to render — raw markdown with live fences is inert on GitHub. Pattern recipes (product specs, user flows, A/B tests, competitive analyses, and more) are available at [github.com/million-views/skills](https://github.com/million-views/skills/tree/main/reactive-md/references/recipes/). Load the `reactive-md` skill in your AI assistant and reference them by name.
 
 ## License
 
