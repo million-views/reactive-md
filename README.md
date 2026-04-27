@@ -197,6 +197,44 @@ a prioritized recommendation. A reader who only reads the summary should know
 where we stand and what to do next.
 ```
 
+### Audit and redesign an existing screen
+> Provide screenshots of the current experience — no codebase reading needed. The AI embeds them as-is, names the friction, then proposes the fix as a live React component.
+
+```
+Using the reactive-md skill, audit and redesign the [screen/flow].
+I've placed screenshots of the current experience in screenshots/current/.
+Embed each screenshot as a plain image, then annotate friction points below
+it — where users struggle, abandon, or make errors. For each screen, propose
+the redesign as a live React component with a design decisions block covering
+what changed, what was preserved, and what was rejected. End with migration
+notes. A reviewer should be able to approve or push back without scheduling
+a call.
+```
+
+### Map UX debt across a feature
+> Give the team a prioritized list of fixes, not a vague "needs improvement" verdict.
+
+```
+Using the reactive-md skill, map the UX debt in [feature/flow]. I've placed
+screenshots of the current screens in screenshots/current/. For each screen,
+embed the screenshot and annotate the friction points as prose. Then propose
+the improved version as a live React component. Conclude with a prioritized
+fix list — quick wins first, structural changes last — so the team can scope
+the work without a follow-up meeting.
+```
+
+### Propose a phased UX migration
+> Wire up the path from today's state to the target state in incremental steps.
+
+```
+Using the reactive-md skill, propose a migration path for redesigning
+[checkout / settings / onboarding / ...] in our existing app. I've placed
+screenshots of the current screens in screenshots/current/. Embed them to
+establish the baseline, then show each proposed stage as a live React
+component with device emulation at the intended viewport. End with a rollout
+strategy — which changes can ship independently and which are coupled.
+```
+
 ## ⚙️ Configuration
 
 - **`reactiveMd.debounceMs`** (default: 300ms): Controls live reload delay. Increase if updates feel too frequent.
