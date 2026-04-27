@@ -33,7 +33,7 @@ Write product specs, wireframes, and user journeys with embedded, interactive Re
 
 ## Installation
 
-Requires **VS Code 1.106.0+**. No internet connection required (100% offline support).
+Requires **VS Code 1.106.0+**.
 
 1. Open VS Code
 2. Press `Cmd+Shift+X` (Mac) or `Ctrl+Shift+X` (Windows/Linux)
@@ -79,7 +79,7 @@ function Hello() {
 | 📝 **Markdown Fences** | `jsx live` renders inline in both previews |
 | 📱 **Device Emulation** | Test responsive designs with a synchronized "Document Bus" |
 | 🎨 **Tailwind v4** | Full utility support, zero config |
-| 📦 **npm Packages** | Pre-bundled high-quality libraries (100% offline) |
+| 📦 **npm Packages** | Pre-bundled high-quality libraries |
 | 🔍 **CodeLens** | Click "▶ Preview" above exported components |
 | ⚛️ **React 19** | Modern runtime for high-fidelity interactive previews |
 | 🎯 **TypeScript** | Full `.tsx` support with type stripping |
@@ -107,7 +107,9 @@ function Demo() {
 
 ## 📦 Bundled Libraries
 
-Reactive MD is designed to work **100% offline**. The following libraries are pre-bundled directly into the extension:
+Reactive MD includes a curated set of pre-bundled packages, so you can use common libraries immediately without extra install/setup steps.
+
+The following libraries are included in the extension:
 
 `lucide-react`, `motion/react`, `clsx`, `dayjs`, `uuid`, `es-toolkit`, `zustand`, `jotai`, `react-hook-form`, `zod`, `@hookform/resolvers/zod`, `@heroicons/react`, `tailwind-merge`, `class-variance-authority`.
 
@@ -203,11 +205,6 @@ where we stand and what to do next.
 - **`reactiveMd.updateMode`** (default: "live"): Choose "live" for real-time updates or "on-save" for updates only when files are saved.
 
 Access settings via `Cmd+,` (Mac) or `Ctrl+,` (Windows/Linux) and search for "Reactive MD".
-
-## 📋 Requirements
-
-- VS Code 1.106.0+
-- No internet connection required (100% offline support via pre-bundled library model)
 
 ## 📁 Recipes
 
